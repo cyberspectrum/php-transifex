@@ -1,0 +1,22 @@
+language: php
+ 
+php:
+  - "5.6"
+  - "7.0"
+  - "7.1"
+
+sudo: false
+ 
+install:
+  - travis_retry composer self-update && composer --version
+  - travis_retry composer update --prefer-dist --no-interaction
+ 
+script: ant -keep-going
+ 
+# We can not use a shallow repository.
+git:
+  depth: 2147483647
+
+cache:
+  directories:
+    - vendor
