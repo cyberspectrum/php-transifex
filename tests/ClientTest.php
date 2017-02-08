@@ -101,6 +101,37 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * Test that the authentication works.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Client::authenticate()
+     */
+    public function testShouldAuthenticateUsingApiToken()
+    {
+        $builder = $this->getMockBuilder(Builder::class)
+            ->setMethods(['addPlugin', 'removePlugin'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $builder->expects($this->once())
+            ->method('addPlugin')
+            ->with($this->equalTo(new Authentication('api', 'token')));
+        $builder->expects($this->once())
+            ->method('removePlugin')
+            ->with(Authentication::class);
+
+        $client = $this->getMockBuilder(Client::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['getHttpClientBuilder'])
+            ->getMock();
+        $client->expects($this->any())
+            ->method('getHttpClientBuilder')
+            ->willReturn($builder);
+
+        $client->authenticate('token');
+    }
+
+    /**
      * Test that an exception is thrown if an auth parameter is missing.
      *
      * @param mixed $login    The login value.
@@ -129,7 +160,6 @@ class ClientTest extends \PHPUnit_Framework_TestCase
     public function getBrokenAuthProvider()
     {
         return [
-            ['login', null],
             [null, 'password'],
             [null, null]
         ];

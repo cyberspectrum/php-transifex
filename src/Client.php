@@ -150,21 +150,27 @@ class Client
     /**
      * Authenticate a user for all next requests.
      *
-     * @param string      $login    Transifex username.
-     * @param null|string $password Transifex password.
+     * @param string      $loginOrToken Transifex username or token.
+     * @param null|string $password     Transifex password or null if token is passed as username.
      *
      * @return void
      *
      * @throws InvalidArgumentException If either login or password is missing.
      */
-    public function authenticate($login, $password)
+    public function authenticate($loginOrToken, $password = null)
     {
-        if (empty($login) || empty($password)) {
+        // Token based auth.
+        if (null === $password) {
+            $password     = $loginOrToken;
+            $loginOrToken = 'api';
+        }
+
+        if (empty($loginOrToken) || empty($password)) {
             throw new InvalidArgumentException('You need to specify username and password!');
         }
 
         $this->getHttpClientBuilder()->removePlugin(Authentication::class);
-        $this->getHttpClientBuilder()->addPlugin(new Authentication($login, $password));
+        $this->getHttpClientBuilder()->addPlugin(new Authentication($loginOrToken, $password));
     }
 
     /**
