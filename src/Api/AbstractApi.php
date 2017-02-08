@@ -172,6 +172,27 @@ abstract class AbstractApi implements ApiInterface
     }
 
     /**
+     * Add options from the passed array to the result.
+     *
+     * @param array $options      The source of the option values.
+     * @param array $validOptions The allowed option names.
+     * @param array $data         The data to add the options to.
+     *
+     * @return array
+     */
+    protected function addOptions($options, $validOptions, $data = [])
+    {
+        // Loop through the valid options and if we have them, add them to the request data
+        foreach ($validOptions as $option) {
+            if (isset($options[$option])) {
+                $data[$option] = $options[$option];
+            }
+        }
+
+        return $data;
+    }
+
+    /**
      * Create a JSON encoded version of an array of parameters.
      *
      * @param array $parameters Request parameters.
