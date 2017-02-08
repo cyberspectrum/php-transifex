@@ -56,17 +56,9 @@ class TranslationString extends AbstractApi
      */
     public function all($project, $resource, $lang, $details = false, array $options = [])
     {
-        $parameters = [];
+        $parameters = $this->addOptions($options, ['key', 'context']);
         if ($details) {
             $parameters['details'] = null;
-        }
-
-        if (isset($options['key'])) {
-            $parameters['key'] = $options['key'];
-        }
-
-        if (isset($options['context'])) {
-            $parameters['context'] = $options['context'];
         }
 
         return $this->get(

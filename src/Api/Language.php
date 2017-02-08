@@ -79,18 +79,14 @@ class Language extends AbstractApi
             $uri = $uri->withQuery('skip_invalid_username');
         }
 
-        // Build the required request data.
-        $data = [
-            'language_code' => $langCode,
-            'coordinators'  => $coordinators,
-        ];
-
-        // Loop through the valid options and if we have them, add them to the request data
-        foreach (['translators', 'reviewers', 'list'] as $option) {
-            if (isset($options[$option])) {
-                $data[$option] = $options[$option];
-            }
-        }
+        $data = $this->addOptions(
+            $options,
+            ['translators', 'reviewers', 'list'],
+            [
+                'language_code' => $langCode,
+                'coordinators'  => $coordinators,
+            ]
+        );
 
         return $this->post($uri, $data);
     }
@@ -128,17 +124,11 @@ class Language extends AbstractApi
         }
 
         // Build the required request data.
-        $data = ['coordinators' => $coordinators];
-
-        // Set the translators if present
-        if (isset($options['translators'])) {
-            $data['translators'] = $options['translators'];
-        }
-
-        // Set the reviewers if present
-        if (isset($options['reviewers'])) {
-            $data['reviewers'] = $options['reviewers'];
-        }
+        $data = $this->addOptions(
+            $options,
+            ['translators', 'reviewers'],
+            ['coordinators' => $coordinators]
+        );
 
         return $this->put(
             '/api/2/project/' . rawurlencode($slug) . '/language/' . rawurlencode($langCode) . '/',

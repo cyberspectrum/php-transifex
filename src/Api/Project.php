@@ -55,14 +55,14 @@ class Project extends AbstractApi
     public function create($name, $slug, $description, $sourceLanguage, array $options = [])
     {
         // Build the request data.
-        $data = array_merge(
+        $data = $this->filterData(
+            $options,
             [
                 'name'                 => $name,
                 'slug'                 => $slug,
                 'description'          => $description,
                 'source_language_code' => $sourceLanguage
-            ],
-            $this->filterData($options)
+            ]
         );
 
         // Check mandatory fields.
@@ -120,38 +120,37 @@ class Project extends AbstractApi
      *
      * @param array $options Optional additional params to send with the request.
      *
+     * @param array $data    The data to add the options to.
+     *
      * @return array
      */
-    private function filterData(array $options)
+    private function filterData(array $options, array $data = [])
     {
-        $data = [];
-        // Valid options to check
-        $validOptions = [
-            'long_description',
-            'private',
-            'homepage',
-            'trans_instructions',
-            'tags',
-            'maintainers',
-            'team',
-            'auto_join',
-            'license',
-            'fill_up_resources',
-            'repository_url',
-            'organization',
-            'archived',
-        ];
-        // Loop through the valid options and if we have them, add them to the request data
-        foreach ($validOptions as $option) {
-            if (isset($options[$option])) {
-                $data[$option] = $options[$option];
-            }
-        }
-        // Set the license if present
+        // Check the license if present.
         if (isset($options['license'])) {
             $this->checkLicense($options['license']);
-            $data['license'] = $options['license'];
         }
+
+        $data = $this->addOptions(
+            $options,
+            [
+                'long_description',
+                'private',
+                'homepage',
+                'trans_instructions',
+                'tags',
+                'maintainers',
+                'team',
+                'auto_join',
+                'license',
+                'fill_up_resources',
+                'repository_url',
+                'organization',
+                'archived',
+            ],
+            $data
+        );
+
         return $data;
     }
 

@@ -86,23 +86,20 @@ class Resource extends AbstractApi
     public function create($project, $name, $slug, $fileType, array $options = [])
     {
         // Build the required request data.
-        $data = [
-            'name'      => $name,
-            'slug'      => $slug,
-            'i18n_type' => $fileType,
-        ];
-        // Valid options to check
-        $validOptions = [
-            'accept_translations',
-            'category',
-            'priority',
-        ];
-        // Loop through the valid options and if we have them, add them to the request data
-        foreach ($validOptions as $option) {
-            if (isset($options[$option])) {
-                $data[$option] = $options[$option];
-            }
-        }
+        $data = $this->addOptions(
+            $options,
+            [
+                'accept_translations',
+                'category',
+                'priority',
+            ],
+            [
+                'name'      => $name,
+                'slug'      => $slug,
+                'i18n_type' => $fileType,
+            ]
+        );
+
         // Attach the resource data - it should be in the content key if this is a string or the file key if it's a file
         if (isset($options['content'])) {
             $data['content'] = $options['content'];
@@ -144,13 +141,10 @@ class Resource extends AbstractApi
             }
             $content = file_get_contents($content);
         }
-        $data = [
-            'content' => $content,
-        ];
 
         return $this->put(
             '/api/2/project/' . rawurlencode($project) . '/resource/' . rawurlencode($resource) . '/content/',
-            $data
+            ['content' => $content]
         );
     }
 

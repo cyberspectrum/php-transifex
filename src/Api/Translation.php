@@ -81,15 +81,12 @@ class Translation extends AbstractApi
             }
             $content = file_get_contents($content);
         }
-        $data = [
-            'content' => $content,
-        ];
 
         return $this->put(
             '/api/2/project/' . rawurlencode($project) .
             '/resource/' . rawurlencode($resource) .
             '/translation/' . rawurlencode($lang),
-            $data
+            ['content' => $content]
         );
     }
 }
