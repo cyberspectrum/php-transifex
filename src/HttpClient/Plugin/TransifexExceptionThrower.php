@@ -20,10 +20,11 @@
 namespace CyberSpectrum\PhpTransifex\HttpClient\Plugin;
 
 use CyberSpectrum\PhpTransifex\HttpClient\Message\ResponseMediator;
+use Http\Client\Common\Exception\ClientErrorException;
+use Http\Client\Common\Exception\ServerErrorException;
 use Http\Client\Common\Plugin;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use RuntimeException;
 
 /**
  * Creates exceptions from failed requests.
@@ -36,16 +37,18 @@ class TransifexExceptionThrower implements Plugin
     public function handleRequest(RequestInterface $request, callable $next, callable $first)
     {
         return $next($request)->then(function (ResponseInterface $response) use ($request) {
-            if ($response->getStatusCode() < 400 || $response->getStatusCode() > 600) {
+            if ($response->getStatusCode() < 400 || $response->getStatusCode() >= 600) {
                 return $response;
             }
 
             $content = ResponseMediator::getContent($response);
+            $message = isset($content['message']) ? $content['message'] : $content;
 
-            throw new RuntimeException(
-                isset($content['message']) ? $content['message'] : $content,
-                $response->getStatusCode()
-            );
+            if ($response->getStatusCode() < 500) {
+                throw new ClientErrorException($message, $request, $response);
+            }
+
+            throw new ServerErrorException($message, $request, $response);
         });
     }
 }
