@@ -147,6 +147,8 @@ class Project extends AbstractApi
                 'repository_url',
                 'organization',
                 'archived',
+                'name',
+                'description',
             ],
             $data
         );
