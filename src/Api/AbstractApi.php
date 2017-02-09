@@ -104,6 +104,7 @@ abstract class AbstractApi implements ApiInterface
      */
     protected function post($path, array $parameters = [], array $requestHeaders = [])
     {
+        $requestHeaders = $this->jsonHeader($requestHeaders);
         return $this->postRaw($path, $this->createJsonBody($parameters), $requestHeaders);
     }
 
@@ -134,6 +135,8 @@ abstract class AbstractApi implements ApiInterface
      */
     protected function patch($path, array $parameters = [], array $requestHeaders = [])
     {
+        $requestHeaders = $this->jsonHeader($requestHeaders);
+
         $response = $this->getHttpClient()->patch($path, $requestHeaders, $this->createJsonBody($parameters));
 
         return ResponseMediator::getContent($response);
@@ -150,6 +153,8 @@ abstract class AbstractApi implements ApiInterface
      */
     protected function put($path, array $parameters = [], array $requestHeaders = [])
     {
+        $requestHeaders = $this->jsonHeader($requestHeaders);
+
         $response = $this->getHttpClient()->put($path, $requestHeaders, $this->createJsonBody($parameters));
 
         return ResponseMediator::getContent($response);
@@ -166,6 +171,8 @@ abstract class AbstractApi implements ApiInterface
      */
     protected function delete($path, array $parameters = [], array $requestHeaders = [])
     {
+        $requestHeaders = $this->jsonHeader($requestHeaders);
+
         $response = $this->getHttpClient()->delete($path, $requestHeaders, $this->createJsonBody($parameters));
 
         return ResponseMediator::getContent($response);
@@ -204,6 +211,25 @@ abstract class AbstractApi implements ApiInterface
         return (count($parameters) === 0)
             ? null
             : json_encode($parameters, empty($parameters) ? JSON_FORCE_OBJECT : 0);
+    }
+
+    /**
+     * Add the content type json to the headers.
+     *
+     * @param array $requestHeaders The current headers.
+     *
+     * @return array
+     *
+     * @throws \RuntimeException When the content type has already been set.
+     */
+    private function jsonHeader($requestHeaders)
+    {
+        if (isset($requestHeaders['Content-Type']) && 'application/json' !== $requestHeaders['Content-Type']) {
+            throw new \RuntimeException('Content type header already set to non json.');
+        }
+        $requestHeaders['Content-Type'] = 'application/json';
+
+        return $requestHeaders;
     }
 
     /**
