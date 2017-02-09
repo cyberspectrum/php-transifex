@@ -112,7 +112,7 @@ class Project extends AbstractApi
      */
     public function update($slug, array $options)
     {
-        return $this->post('/api/2/project/' . $slug . '/', $this->filterData($options));
+        return $this->put('/api/2/project/' . $slug . '/', $this->filterData($options));
     }
 
     /**
