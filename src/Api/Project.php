@@ -27,6 +27,47 @@ namespace CyberSpectrum\PhpTransifex\Api;
 class Project extends AbstractApi
 {
     /**
+     * Fields allowed in create.
+     */
+    const ALLOWED_CREATE = [
+        'slug',
+        'source_language_code',
+        'long_description',
+        'private',
+        'homepage',
+        'trans_instructions',
+        'tags',
+        'maintainers',
+        'team',
+        'auto_join',
+        'license',
+        'fill_up_resources',
+        'repository_url',
+        'organization',
+        'archived',
+        'name',
+        'description',
+    ];
+
+    const ALLOWED_UPDATE = [
+        'long_description',
+        'private',
+        'homepage',
+        'trans_instructions',
+        'tags',
+        'maintainers',
+        'team',
+        'auto_join',
+        'license',
+        'fill_up_resources',
+        'repository_url',
+        'organization',
+        'archived',
+        'name',
+        'description',
+    ];
+
+    /**
      * Method to get information about a project.
      *
      * @param string  $project The project to retrieve details for.
@@ -42,6 +83,22 @@ class Project extends AbstractApi
     /**
      * Method to create a project.
      *
+     * @param array $options The params to send with the request.
+     *
+     * @return array|string
+     */
+    public function create(array $options = [])
+    {
+        // Build the request data.
+        $data = $this->filterData($options, self::ALLOWED_CREATE);
+
+        // Send the request.
+        return $this->post('/api/2/projects/', $data);
+    }
+
+    /**
+     * Method to create a project.
+     *
      * @param string $name           The name of the project.
      * @param string $slug           The slug for the project.
      * @param string $description    A description of the project.
@@ -52,32 +109,20 @@ class Project extends AbstractApi
      *
      * @throws \InvalidArgumentException If no project URL given but marked as open source.
      */
-    public function create($name, $slug, $description, $sourceLanguage, array $options = [])
+    public function createProject($name, $slug, $description, $sourceLanguage, array $options = [])
     {
-        // Build the request data.
-        $data = $this->filterData(
-            $options,
-            [
-                'name'                 => $name,
-                'slug'                 => $slug,
-                'description'          => $description,
-                'source_language_code' => $sourceLanguage
-            ]
-        );
-
-        // Check mandatory fields.
-        if (!isset($data['license']) || in_array($data['license'], ['permissive_open_source', 'other_open_source'])) {
-            if (!isset($data['repository_url'])) {
-                throw new \InvalidArgumentException(
-                    'If a project is denoted either as permissive_open_source or other_open_source, ' .
-                    'the field repository_url is mandatory and should contain a link to the public repository ' .
-                    'of the project to be created.'
-                );
-            }
-        }
-
         // Send the request.
-        return $this->post('/api/2/projects/', $data);
+        return $this->create(
+            array_merge(
+                $options,
+                [
+                    'name'                 => $name,
+                    'slug'                 => $slug,
+                    'description'          => $description,
+                    'source_language_code' => $sourceLanguage
+                ]
+            )
+        );
     }
 
     /**
@@ -112,46 +157,24 @@ class Project extends AbstractApi
      */
     public function update($slug, array $options)
     {
-        return $this->put('/api/2/project/' . $slug . '/', $this->filterData($options));
+        return $this->put('/api/2/project/' . $slug . '/', $this->filterData($options, self::ALLOWED_UPDATE));
     }
 
     /**
      * Build the data array to send with create and update requests.
      *
-     * @param array $options Optional additional params to send with the request.
+     * @param array $options      The params to send with the request.
      *
-     * @param array $data    The data to add the options to.
+     * @param array $validOptions The allowed option names.
      *
      * @return array
      */
-    private function filterData(array $options, array $data = [])
+    private function filterData(array $options, array $validOptions = [])
     {
-        // Check the license if present.
-        if (isset($options['license'])) {
-            $this->checkLicense($options['license']);
-        }
+        $data = $this->addOptions($options, $validOptions);
 
-        $data = $this->addOptions(
-            $options,
-            [
-                'long_description',
-                'private',
-                'homepage',
-                'trans_instructions',
-                'tags',
-                'maintainers',
-                'team',
-                'auto_join',
-                'license',
-                'fill_up_resources',
-                'repository_url',
-                'organization',
-                'archived',
-                'name',
-                'description',
-            ],
-            $data
-        );
+        // Check the license if present.
+        $this->checkLicense($data);
 
         return $data;
     }
@@ -159,23 +182,38 @@ class Project extends AbstractApi
     /**
      * Checks that a license is an accepted value.
      *
-     * @param string $license The license to check.
+     * @param array $data The data to check.
      *
      * @return void
      *
      * @throws \InvalidArgumentException When the license is invalid.
      */
-    private function checkLicense($license)
+    private function checkLicense($data)
     {
-        $accepted = ['proprietary', 'permissive_open_source', 'other_open_source'];
-        // Ensure the license option is an allowed value
-        if (!in_array($license, $accepted)) {
+        if (isset($data['license'])) {
+            // Ensure the license option is an allowed value
+            $accepted = ['proprietary', 'permissive_open_source', 'other_open_source'];
+            if (!in_array($data['license'], $accepted)) {
+                throw new \InvalidArgumentException(
+                    sprintf(
+                        'The license %s is not valid, accepted license values are %s',
+                        $data['license'],
+                        implode(', ', $accepted)
+                    )
+                );
+            }
+        }
+
+        // Check mandatory fields.
+        if (!isset($data['license']) || 'proprietary' === $data['license']) {
+            return;
+        }
+
+        if (!isset($data['repository_url'])) {
             throw new \InvalidArgumentException(
-                sprintf(
-                    'The license %s is not valid, accepted license values are %s',
-                    $license,
-                    implode(', ', $accepted)
-                )
+                'If a project is denoted either as permissive_open_source or other_open_source, ' .
+                'the field repository_url is mandatory and should contain a link to the public repository ' .
+                'of the project to be created.'
             );
         }
     }
