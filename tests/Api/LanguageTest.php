@@ -156,6 +156,30 @@ class LanguageTest extends ApiTestCase
      *
      * @covers \CyberSpectrum\PhpTransifex\Api\Language::update()
      */
+    public function testUpdateWithEmptyCoordinators()
+    {
+        /** @var Language $api */
+        $api = $this
+            ->getMockBuilder(static::$APICLASS)
+            ->setMethods(null)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $this->setExpectedException(
+            'InvalidArgumentException',
+            'The coordinators array must contain at least one username.'
+        );
+
+        $api->update('foo bar', 'de-DE', []);
+    }
+
+    /**
+     * Test the update() method
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Api\Language::update()
+     */
     public function testUpdateWithTranslators()
     {
         /** @var Language $api */
