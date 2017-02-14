@@ -23,9 +23,16 @@ use CyberSpectrum\PhpTransifex\Api\Language;
 
 /**
  * This tests the language API.
+ *
+ * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
 class LanguageTest extends ApiTestCase
 {
+    /**
+     * The API class to instantiate.
+     *
+     * @var string
+     */
     public static $APICLASS = Language::class;
 
     /**

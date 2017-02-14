@@ -26,6 +26,11 @@ use CyberSpectrum\PhpTransifex\Api\Format;
  */
 class FormatTest extends ApiTestCase
 {
+    /**
+     * The API class to instantiate.
+     *
+     * @var string
+     */
     public static $APICLASS = Format::class;
 
     /**

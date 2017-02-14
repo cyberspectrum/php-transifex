@@ -27,6 +27,11 @@ use Psr\Http\Message\UriInterface;
  */
 abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * The API class to instantiate.
+     *
+     * @var string
+     */
     public static $APICLASS;
 
     /**
@@ -116,8 +121,8 @@ abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
     /**
      * Mock an API instance expecting a certain method to be called with the passed parameters.
      *
-     * @param $func
-     * @param $args
+     * @param string $func The function to expect.
+     * @param array  $args The arguments.
      *
      * @return \PHPUnit_Framework_MockObject_MockObject
      */
