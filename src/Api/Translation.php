@@ -32,11 +32,11 @@ class Translation extends AbstractApi
      * @param string $project  The slug for the project to pull from.
      * @param string $resource The slug for the resource to pull from.
      * @param string $lang     The language to return the translation for.
-     * @param string $mode     The mode of the downloaded file (default, reviewed, translated).
+     * @param string $mode     The mode of the downloaded file (default, reviewed, translator).
      *
      * @return array
      */
-    public function show($project, $resource, $lang, $mode = '')
+    public function show($project, $resource, $lang, $mode = 'default')
     {
         $parameters = [];
         if (!empty($mode)) {
