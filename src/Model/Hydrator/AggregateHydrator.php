@@ -39,28 +39,16 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
      *
      * @var HydratorInterface[]
      */
-    private $hydrators;
-
-    /**
-     * The list of hydrators to be deleted.
-     *
-     * @var HydratorInterface[]
-     */
-    private $hydratorsToDelete = [];
+    protected $hydrators;
 
     /**
      * Create a new instance.
      *
-     * @param Client $api         The API client to use.
-     * @param array  $initialData The initial data for the pending attributes.
+     * @param Client $api The API client to use.
      */
-    public function __construct(Client $api, array $initialData = [])
+    public function __construct(Client $api)
     {
         $this->api = $api;
-
-        foreach ($initialData as $name => $data) {
-            $this->add($name, $data);
-        }
     }
 
     /**
@@ -70,15 +58,8 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
     {
         if (is_array($this->hydrators)) {
             foreach ($this->hydrators as $hydrator) {
-                if (!$hydrator->exists()) {
-                    $hydrator->create();
-                    continue;
-                }
                 $hydrator->save();
             }
-        }
-        foreach ($this->hydratorsToDelete as $hydrator) {
-            $hydrator->delete();
         }
     }
 
@@ -87,9 +68,7 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
      */
     public function hydrators()
     {
-        if (null === $this->hydrators) {
-            $this->load();
-        }
+        $this->load();
 
         return array_keys($this->hydrators);
     }
@@ -99,9 +78,7 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
      */
     public function has($name)
     {
-        if (null === $this->hydrators) {
-            $this->load();
-        }
+        $this->load();
 
         return array_key_exists($name, $this->hydrators);
     }
@@ -113,9 +90,7 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
      */
     public function get($name)
     {
-        if (null === $this->hydrators) {
-            $this->load();
-        }
+        $this->load();
 
         if (array_key_exists($name, $this->hydrators)) {
             return $this->hydrators[$name];
@@ -125,36 +100,17 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
     }
 
     /**
-     * {@inheritDoc}
-     */
-    public function add($name, $initialData = [])
-    {
-        if (null === $this->hydrators) {
-            $this->load();
-        }
-
-        return $this->hydrators[$name] = $this->createHydrator($name, $initialData);
-    }
-
-    /**
-     * {@inheritDoc}
+     * Add an hydrator to the list and return it.
      *
-     * @throws RuntimeException When an unknown hydrator is to be removed.
+     * @param string $name        The name of the hydrator to add.
+     *
+     * @param array  $initialData The initial data for the hydrator.
+     *
+     * @return HydratorInterface
      */
-    public function remove($name)
+    protected function doAdd($name, $initialData = [])
     {
-        if (null === $this->hydrators) {
-            $this->load();
-        }
-
-        if (array_key_exists($name, $this->hydrators)) {
-            $this->hydratorsToDelete[$name] = $this->hydrators[$name];
-            unset($this->hydrators[$name]);
-
-            return;
-        }
-
-        throw new RuntimeException('Hydrator ' . $name . ' is not registered.');
+        return $this->hydrators[$name] = $this->createHydrator($name, $initialData);
     }
 
     /**
@@ -164,8 +120,10 @@ abstract class AggregateHydrator implements AggregateHydratorInterface
      */
     final protected function load()
     {
-        $this->hydrators = [];
-        $this->doLoad();
+        if (null === $this->hydrators) {
+            $this->hydrators = [];
+            $this->doLoad();
+        }
     }
 
     /**

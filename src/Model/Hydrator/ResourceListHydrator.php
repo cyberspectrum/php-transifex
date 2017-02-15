@@ -24,7 +24,7 @@ use CyberSpectrum\PhpTransifex\Client;
 /**
  * This class hydrates a resource list.
  */
-class ResourceListHydrator extends AggregateHydrator
+class ResourceListHydrator extends WritableAggregateHydrator
 {
     /**
      * The project slug.

@@ -20,39 +20,27 @@
 namespace CyberSpectrum\PhpTransifex\Model\Hydrator;
 
 /**
- * This interface describes an aggregate of hydrators.
+ * This interface describes an aggregate of hydrators that may be manipulated.
  */
-interface AggregateHydratorInterface
+interface WritableAggregateHydratorInterface extends AggregateHydratorInterface
 {
     /**
-     * Save all hydrators.
+     * Add an hydrator.
      *
-     * @return mixed
-     */
-    public function save();
-
-    /**
-     * Return the hydrator names.
+     * @param string $name        The name of the hydrator to add.
      *
-     * @return string[]
-     */
-    public function hydrators();
-
-    /**
-     * Check if an hydrator with the given name is registered.
-     *
-     * @param string $name The name of the hydrator to retrieve.
-     *
-     * @return bool
-     */
-    public function has($name);
-
-    /**
-     * Retrieve an hydrator by name.
-     *
-     * @param string $name The name of the hydrator to retrieve.
+     * @param array  $initialData The initial data for the hydrator.
      *
      * @return HydratorInterface
      */
-    public function get($name);
+    public function add($name, $initialData = []);
+
+    /**
+     * Remove an hydrator by name.
+     *
+     * @param string $name The name of the hydrator to remove.
+     *
+     * @return void
+     */
+    public function remove($name);
 }

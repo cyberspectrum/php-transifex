@@ -24,7 +24,7 @@ use CyberSpectrum\PhpTransifex\Client;
 /**
  * This class hydrates a language list.
  */
-class LanguageListHydrator extends AggregateHydrator
+class LanguageListHydrator extends WritableAggregateHydrator
 {
     /**
      * The project slug.
