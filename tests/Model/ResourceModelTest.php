@@ -147,15 +147,60 @@ class ResourceModelTest extends \PHPUnit_Framework_TestCase
     {
         $hydrator = $this
             ->getMockBuilder(ResourceHydrator::class)
-            ->setMethods(['download'])
+            ->setMethods(['has', 'download'])
             ->disableOriginalConstructor()
             ->getMock();
+        $hydrator->expects($this->once())->method('has')->with('content')->willReturn(false);
         $hydrator->expects($this->once())->method('download')->willReturn('file content');
 
         /** @var ResourceHydrator $hydrator */
         $model = new ResourceModel($hydrator);
 
         $this->assertEquals('file content', $model->content());
+    }
+
+    /**
+     * Test the content method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\ResourceModel::content()
+     */
+    public function testContentForChanged()
+    {
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['has', 'get', 'download'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $hydrator->expects($this->once())->method('has')->with('content')->willReturn(true);
+        $hydrator->expects($this->once())->method('get')->with('content')->willReturn('fooo bar');
+        $hydrator->expects($this->never())->method('download');
+
+        /** @var ResourceHydrator $hydrator */
+        $model = new ResourceModel($hydrator);
+
+        $this->assertEquals('fooo bar', $model->content());
+    }
+
+    /**
+     * Test the setContent method.
+     *
+     * @return void
+     */
+    public function testSetContent()
+    {
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['set'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $hydrator->expects($this->once())->method('set')->with('content', 'foobar');
+
+        /** @var ResourceHydrator $hydrator */
+        $model = new ResourceModel($hydrator);
+
+        $this->assertSame($model, $model->setContent('foobar'));
     }
 
     /**
