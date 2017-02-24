@@ -136,7 +136,6 @@ class ResourceHydratorTest extends HydratorTestCase
             ->with('project-slug', 'resource-slug');
         $client = $this->mockClient(['resource' => $languageApi]);
 
-        /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
         $hydrator = new ResourceHydrator($client, 'project-slug', 'resource-slug');
 
         $hydrator->delete();
