@@ -60,19 +60,21 @@ class ResourceListModel extends AbstractListModel
     /**
      * Add a new resource.
      *
-     * @param string $langCode The name.
+     * @param string $slug     The resource slug.
+     * @param string $name     The name.
+     * @param string $i18nType The internationalization type.
      *
      * @return ResourceModel
      *
      * @throws InvalidArgumentException When the resource is already in the list.
      */
-    public function add($langCode)
+    public function add($slug, $name, $i18nType)
     {
-        if ($this->has($langCode)) {
-            throw new InvalidArgumentException('Resource already in list: ' . $langCode);
+        if ($this->has($slug)) {
+            throw new InvalidArgumentException('Resource already in list: ' . $slug);
         }
 
-        return new ResourceModel($this->hydrator->add($langCode));
+        return new ResourceModel($this->hydrator->add($slug, ['name' => $name, 'i18n_type' => $i18nType]));
     }
 
     /**

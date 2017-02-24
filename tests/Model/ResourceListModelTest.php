@@ -146,7 +146,7 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test the add() method for known resource slug.
+     * Test the add() method for unknown resource slug.
      *
      * @return void
      *
@@ -163,12 +163,16 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
             ->setMethods(['has', 'add'])
             ->getMock();
         $hydrator->expects($this->once())->method('has')->with('slug')->willReturn(false);
-        $hydrator->expects($this->once())->method('add')->with('slug')->willReturn($subHydrator);
+        $hydrator
+            ->expects($this->once())
+            ->method('add')
+            ->with('slug', ['name' => 'resource name', 'i18n_type' => 'XLIFF'])
+            ->willReturn($subHydrator);
 
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $result = $model->add('slug');
+        $result = $model->add('slug', 'resource name', 'XLIFF');
         $this->assertInstanceOf(ResourceModel::class, $result);
         $this->assertSame('slug', $result->slug());
     }
@@ -194,7 +198,7 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
 
         $this->setExpectedException('InvalidArgumentException', 'Resource already in list: slug');
 
-        $model->add('slug');
+        $model->add('slug', 'resource name', 'XLIFF');
     }
 
     /**
