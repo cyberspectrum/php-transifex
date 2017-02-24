@@ -186,4 +186,64 @@ class ResourceModelTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf(TranslationListModel::class, $translations);
         $this->assertSame($translationHydrator, $translations->hydrator());
     }
+
+    /**
+     * Test the saving method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\ResourceModel::save()
+     */
+    public function testSaveNonExistent()
+    {
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists', 'create', 'save'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $hydrator
+            ->expects($this->once())
+            ->method('exists')->willReturn(false);
+        $hydrator
+            ->expects($this->once())
+            ->method('create');
+        $hydrator
+            ->expects($this->once())
+            ->method('save');
+
+        /** @var ResourceHydrator $hydrator */
+        $model = new ResourceModel($hydrator);
+
+        $model->save();
+    }
+
+    /**
+     * Test the saving method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\ResourceModel::save()
+     */
+    public function testSaveExisting()
+    {
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists', 'create', 'save'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $hydrator
+            ->expects($this->once())
+            ->method('exists')->willReturn(true);
+        $hydrator
+            ->expects($this->never())
+            ->method('create');
+        $hydrator
+            ->expects($this->once())
+            ->method('save');
+
+        /** @var ResourceHydrator $hydrator */
+        $model = new ResourceModel($hydrator);
+
+        $model->save();
+    }
 }

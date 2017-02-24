@@ -95,7 +95,25 @@ class ResourceModel extends AbstractModel
      */
     public function content()
     {
+        if ($this->hydrator->has('content')) {
+            return $this->hydrator->get('content');
+        }
+
         return $this->hydrator->download();
+    }
+
+    /**
+     * Update the content of the resource.
+     *
+     * @param string $content The file contents.
+     *
+     * @return ResourceModel
+     */
+    public function setContent($content)
+    {
+        $this->hydrator->set('content', $content);
+
+        return $this;
     }
 
     /**
@@ -175,5 +193,19 @@ class ResourceModel extends AbstractModel
     public function translations()
     {
         return new TranslationListModel($this->hydrator->translationListHydrator());
+    }
+
+    /**
+     * Save the model.
+     *
+     * @return void
+     */
+    public function save()
+    {
+        if (!$this->hydrator->exists()) {
+            $this->hydrator->create();
+        }
+
+        $this->hydrator->save();
     }
 }
