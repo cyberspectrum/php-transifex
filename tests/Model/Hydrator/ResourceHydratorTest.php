@@ -20,6 +20,7 @@
 namespace CyberSpectrum\PhpTransifex\Tests\Model\Hydrator;
 
 use CyberSpectrum\PhpTransifex\Api\Resource;
+use CyberSpectrum\PhpTransifex\Model\Hydrator\AggregateHydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\TranslationListHydrator;
 
@@ -125,6 +126,55 @@ class ResourceHydratorTest extends HydratorTestCase
 
     /**
      * Test the doSave method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator::doSave()
+     */
+    public function testDoSaveOnlySavesPending()
+    {
+        $languageApi = $this
+            ->getMockBuilder(Resource::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['upload'])
+            ->getMock();
+        $languageApi
+            ->expects($this->never())
+            ->method('upload');
+        $client = $this->mockClient(['resource' => $languageApi]);
+
+        /** @var ResourceHydrator $hydrator */
+        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+
+        $hydrator->save();
+    }
+
+    /**
+     * Test the doSave method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator::doSave()
+     */
+    public function testDoSaveAlsoSavesTranslations()
+    {
+        $client = $this->mockClient();
+
+        $translationList = $this->getMockForAbstractClass(AggregateHydratorInterface::class);
+        $translationList->expects($this->once())->method('save');
+
+        /** @var ResourceHydrator $hydrator */
+        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+
+        $reflection = new \ReflectionProperty(ResourceHydrator::class, 'translationListHydrator');
+        $reflection->setAccessible(true);
+        $reflection->setValue($hydrator, $translationList);
+
+        $hydrator->save();
+    }
+
+    /**
+     * Test the doCreate method.
      *
      * @return void
      *

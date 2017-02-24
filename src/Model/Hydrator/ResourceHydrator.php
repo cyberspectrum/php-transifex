@@ -102,7 +102,6 @@ class ResourceHydrator extends AbstractHydrator
         );
     }
 
-
     /**
      * {@inheritDoc}
      */
@@ -130,11 +129,17 @@ class ResourceHydrator extends AbstractHydrator
      */
     protected function doSave(ValueStore $pending)
     {
-        $this->api->resource()->upload(
-            $this->projectSlug,
-            $this->resourceSlug,
-            $pending->get('content')
-        );
+        if ([] !== $pending->values()) {
+            $this->api->resource()->upload(
+                $this->projectSlug,
+                $this->resourceSlug,
+                $pending->get('content')
+            );
+        }
+
+        if (null !== $this->translationListHydrator) {
+            $this->translationListHydrator->save();
+        }
     }
 
     /**
