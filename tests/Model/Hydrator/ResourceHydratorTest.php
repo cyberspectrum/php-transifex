@@ -21,12 +21,52 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model\Hydrator;
 
 use CyberSpectrum\PhpTransifex\Api\Resource;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator;
+use CyberSpectrum\PhpTransifex\Model\Hydrator\TranslationListHydrator;
 
 /**
  * This tests the ResourceHydrator.
  */
 class ResourceHydratorTest extends HydratorTestCase
 {
+    /**
+     * Test the translationListHydrator method.
+     *
+     * @return void
+     */
+    public function testTranslationListHydrator()
+    {
+        /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
+        $hydrator = $this->getMock(
+            ResourceHydrator::class,
+            ['exists'],
+            [$this->mockClient(), 'project-slug', 'resource-slug']
+        );
+        $hydrator->expects($this->once())->method('exists')->willReturn(true);
+
+        $translations = $hydrator->translationListHydrator();
+        $this->assertInstanceOf(TranslationListHydrator::class, $translations);
+        $this->assertSame($translations, $hydrator->translationListHydrator());
+    }
+
+    /**
+     * Test the translationListHydrator method.
+     *
+     * @return void
+     */
+    public function testTranslationListHydratorForNonexistent()
+    {
+        /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
+        $hydrator = $this->getMock(
+            ResourceHydrator::class,
+            ['exists'],
+            [$this->mockClient(), 'project-slug', 'resource-slug']
+        );
+        $hydrator->expects($this->once())->method('exists')->willReturn(false);
+
+        $this->setExpectedException('RuntimeException', 'Resource must be created before accessing the translations');
+        $hydrator->translationListHydrator();
+    }
+
     /**
      * Test the doLoad method.
      *

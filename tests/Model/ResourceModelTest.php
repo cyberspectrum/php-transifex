@@ -19,8 +19,10 @@
 
 namespace CyberSpectrum\PhpTransifex\Tests\Model;
 
+use CyberSpectrum\PhpTransifex\Model\Hydrator\AggregateHydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator;
 use CyberSpectrum\PhpTransifex\Model\ResourceModel;
+use CyberSpectrum\PhpTransifex\Model\TranslationListModel;
 
 /**
  * This tests the ResourceModel.
@@ -154,5 +156,34 @@ class ResourceModelTest extends \PHPUnit_Framework_TestCase
         $model = new ResourceModel($hydrator);
 
         $this->assertEquals('file content', $model->content());
+    }
+
+    /**
+     * Test the translations method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\ResourceModel::translations()
+     */
+    public function testTranslations()
+    {
+        $translationHydrator = $this->getMockForAbstractClass(AggregateHydratorInterface::class);
+
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['translationListHydrator'])
+            ->disableOriginalConstructor()
+            ->getMock();
+        $hydrator
+            ->expects($this->once())
+            ->method('translationListHydrator')
+            ->willReturn($translationHydrator);
+
+        /** @var ResourceHydrator $hydrator */
+        $model = new ResourceModel($hydrator);
+
+        $translations = $model->translations();
+        $this->assertInstanceOf(TranslationListModel::class, $translations);
+        $this->assertSame($translationHydrator, $translations->hydrator());
     }
 }
