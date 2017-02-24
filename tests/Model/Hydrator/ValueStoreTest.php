@@ -103,7 +103,6 @@ class ValueStoreTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(['foo' => 'bar'], $store->values());
     }
 
-
     /**
      * Test the remove() method.
      *
@@ -119,4 +118,19 @@ class ValueStoreTest extends \PHPUnit_Framework_TestCase
         $this->assertEmpty($store->values());
     }
 
+    /**
+     * Test the remove() method for unknown keys.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\Hydrator\ValueStore::remove()
+     */
+    public function testRemoveThrowsForUnknown()
+    {
+        $store = new ValueStore(['foo' => 'bar']);
+
+        $this->setExpectedException('RuntimeException', 'Key foobar is not set.');
+
+        $store->remove('foobar');
+    }
 }
