@@ -63,6 +63,13 @@ class TranslationHydrator implements HydratorInterface
     private $data;
 
     /**
+     * The statistic hydrator.
+     *
+     * @var StatisticHydrator
+     */
+    private $statisticHydrator;
+
+    /**
      * Create a new instance.
      *
      * @param Client $api          The API client to use.
@@ -165,5 +172,24 @@ class TranslationHydrator implements HydratorInterface
     public function keys()
     {
         return ['default', 'reviewed', 'translator'];
+    }
+
+    /**
+     * Obtain the language statistic.
+     *
+     * @return StatisticHydrator
+     */
+    public function statisticHydrator()
+    {
+        if (null !== $this->statisticHydrator) {
+            return $this->statisticHydrator;
+        }
+
+        return $this->statisticHydrator = new StatisticHydrator(
+            $this->api,
+            $this->projectSlug,
+            $this->resourceSlug,
+            $this->languageCode
+        );
     }
 }

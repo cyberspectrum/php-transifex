@@ -35,4 +35,14 @@ class TranslationModel extends AbstractModel
     {
         return $this->hydrator->get($mode);
     }
+
+    /**
+     * Retrieve the statistic for this language.
+     *
+     * @return StatisticModel
+     */
+    public function statistic()
+    {
+        return new StatisticModel($this->hydrator->statisticHydrator());
+    }
 }
