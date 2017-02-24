@@ -111,7 +111,16 @@ class ResourceModel extends AbstractModel
     /**
      * List of available languages (read only).
      *
-     * @return string[]
+     * Returns:
+     * [
+     *     {
+     *       "code_aliases": string,
+     *       "code":         string,
+     *       "name":         string
+     *     }
+     * ]
+     *
+     * @return array
      */
     public function availableLanguages()
     {

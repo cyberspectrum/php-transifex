@@ -29,6 +29,29 @@ class Resource extends AbstractApi
     /**
      * Get information about a resource within a project.
      *
+     * Returns:
+     * {
+     *   "source_language_code": string,
+     *   "name":                 string,
+     *   "created":              datetime,
+     *   "wordcount":            int,
+     *   "i18n_type":            string,
+     *   "project_slug":         string,
+     *   "accept_translations":  bool,
+     *   "last_update":          datetime,
+     *   "priority":             string,
+     *   "available_languages":  [
+     *     {
+     *       "code_aliases":     string,
+     *       "code":             string,
+     *       "name":             string
+     *     }
+     *   ],
+     *   "total_entities":       int,
+     *   "slug":                 string,
+     *   "categories":           null
+     * }
+     *
      * @param string $project  The slug for the project the resource is part of.
      * @param string $resource The resource slug within the project.
      * @param bool   $details  True to retrieve additional project details.
@@ -60,6 +83,18 @@ class Resource extends AbstractApi
 
     /**
      * Get information about a project's resources.
+     *
+     * Returns:
+     * [
+     *   {
+     *     "source_language_code": string,
+     *     "name":                 string,
+     *     "i18n_type":            string,
+     *     "priority":             string,
+     *     "slug":                 string,
+     *     "categories":           null
+     *   }
+     * ]
      *
      * @param string $project The slug for the project to retrieve details for.
      *

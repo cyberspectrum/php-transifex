@@ -70,6 +70,43 @@ class Project extends AbstractApi
     /**
      * Method to get information about a project.
      *
+     * Returns:
+     * {
+     *   "archived":             bool,
+     *   "last_updated":         datetime,
+     *   "description":          string,
+     *   "tags":                 string,
+     *   "trans_instructions":   string,
+     *   "private":              bool,
+     *   "slug":                 string,
+     *   "source_language_code": string,
+     *   "auto_join":            bool,
+     *   "maintainers":          [
+     *     {
+     *       "username":         string
+     *     }
+     *   ],
+     *   "fill_up_resources":    false,
+     *   "team": {
+     *     "id":                 int,
+     *     "name":               string
+     *   },
+     *   "organization": {
+     *     "slug":               string
+     *   },
+     *   "teams": [
+     *                           string
+     *   ],
+     *   "homepage":             string,
+     *   "long_description":     string,
+     *   "resources":            [
+     *     {
+     *     "slug":               string,
+     *     "name":               string
+     *   ],
+     *   "name":                 string
+     *   }
+     *
      * @param string  $project The project to retrieve details for.
      * @param boolean $details True to retrieve additional project details.
      *
