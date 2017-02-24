@@ -141,4 +141,60 @@ class ResourceHydratorTest extends HydratorTestCase
 
         $hydrator->delete();
     }
+
+    /**
+     * Test the download method.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator::download()
+     */
+    public function testDownload()
+    {
+        $languageApi = $this
+            ->getMockBuilder(Resource::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['download'])
+            ->getMock();
+        $languageApi
+            ->expects($this->once())
+            ->method('download')
+            ->with('project-slug', 'resource-slug')
+            ->willReturn('file contents');
+        $client = $this->mockClient(['resource' => $languageApi]);
+
+        /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
+        $hydrator = $this->getMock(ResourceHydrator::class, ['exists'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator->expects($this->once())->method('exists')->willReturn(true);
+
+        $this->assertSame('file contents', $hydrator->download());
+    }
+
+    /**
+     * Test the download method throws an exception when the resource has not been created yet.
+     *
+     * @return void
+     *
+     * @covers \CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator::download()
+     */
+    public function testDownloadThrowsExceptionForNonexistent()
+    {
+        $languageApi = $this
+            ->getMockBuilder(Resource::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['download'])
+            ->getMock();
+        $languageApi
+            ->expects($this->never())
+            ->method('download');
+        $client = $this->mockClient(['resource' => $languageApi]);
+
+        /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
+        $hydrator = $this->getMock(ResourceHydrator::class, ['exists'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator->expects($this->once())->method('exists')->willReturn(false);
+
+        $this->setExpectedException('RuntimeException', 'Resource must be created before downloading');
+
+        $hydrator->download();
+    }
 }

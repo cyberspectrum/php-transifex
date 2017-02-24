@@ -20,6 +20,7 @@
 namespace CyberSpectrum\PhpTransifex\Model\Hydrator;
 
 use CyberSpectrum\PhpTransifex\Client;
+use RuntimeException;
 
 /**
  * This class hydrates a project resource.
@@ -53,6 +54,21 @@ class ResourceHydrator extends AbstractHydrator
         parent::__construct($api, $initialData);
         $this->projectSlug  = $projectSlug;
         $this->resourceSlug = $resourceSlug;
+    }
+
+    /**
+     * Download the contents from transifex.
+     *
+     * @return string
+     *
+     * @throws RuntimeException When the resource has not been created on transifex yet.
+     */
+    public function download()
+    {
+        if ((!$this->exists())) {
+            throw new RuntimeException('Resource must be created before downloading');
+        }
+        return $this->api->resource()->download($this->projectSlug, $this->resourceSlug);
     }
 
     /**
