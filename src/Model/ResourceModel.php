@@ -157,4 +157,14 @@ class ResourceModel extends AbstractModel
     {
         return new DateTime($this->hydrator->get('last_update'));
     }
+
+    /**
+     * Retrieve the translation list.
+     *
+     * @return TranslationListModel
+     */
+    public function translations()
+    {
+        return new TranslationListModel($this->hydrator->translationListHydrator());
+    }
 }

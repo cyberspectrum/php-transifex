@@ -42,6 +42,13 @@ class ResourceHydrator extends AbstractHydrator
     private $resourceSlug;
 
     /**
+     * The translation list hydrator.
+     *
+     * @var TranslationListHydrator
+     */
+    private $translationListHydrator;
+
+    /**
      * Create a new instance.
      *
      * @param Client $api          The API client to use.
@@ -70,6 +77,31 @@ class ResourceHydrator extends AbstractHydrator
         }
         return $this->api->resource()->download($this->projectSlug, $this->resourceSlug);
     }
+
+    /**
+     * Derive a translation list hydrator.
+     *
+     * @return TranslationListHydrator
+     *
+     * @throws RuntimeException When the resource does not exist yet.
+     */
+    public function translationListHydrator()
+    {
+        if (null !== $this->translationListHydrator) {
+            return $this->translationListHydrator;
+        }
+
+        if (!$this->exists()) {
+            throw new RuntimeException('Resource must be created before accessing the translations');
+        }
+
+        return $this->translationListHydrator = new TranslationListHydrator(
+            $this->api,
+            $this->projectSlug,
+            $this->resourceSlug
+        );
+    }
+
 
     /**
      * {@inheritDoc}
