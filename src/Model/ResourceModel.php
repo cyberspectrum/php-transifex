@@ -26,7 +26,7 @@ use DateTime;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  */
-class ResourceModel extends AbstractModel
+class ResourceModel extends AbstractModel implements SaveAbleModelInterface
 {
     /**
      * Retrieve the name.
@@ -196,9 +196,7 @@ class ResourceModel extends AbstractModel
     }
 
     /**
-     * Save the model.
-     *
-     * @return void
+     * {@inheritDoc}
      */
     public function save()
     {
