@@ -20,11 +20,12 @@
 namespace CyberSpectrum\PhpTransifex\Model;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\AggregateHydratorInterface;
+use IteratorAggregate;
 
 /**
  * This class is the abstract base for list models.
  */
-abstract class AbstractListModel implements ModelInterface
+abstract class AbstractListModel implements ModelInterface, ModelListInterface, IteratorAggregate
 {
     /**
      * Hydrator class.
@@ -51,5 +52,15 @@ abstract class AbstractListModel implements ModelInterface
     public function hydrator()
     {
         return $this->hydrator;
+    }
+
+    /**
+     * Retrieve the iterator.
+     *
+     * @return ModelListIterator
+     */
+    public function getIterator()
+    {
+        return new ModelListIterator($this, $this->hydrator->hydrators());
     }
 }
