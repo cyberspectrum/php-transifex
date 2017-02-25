@@ -77,9 +77,12 @@ class Client
      */
     public function __construct(Builder $httpClientBuilder = null, UriFactory $uriFactory = null)
     {
+        if (null === $uriFactory) {
+            $uriFactory = UriFactoryDiscovery::find();
+        }
         $this->responseHistory   = new History();
         $this->httpClientBuilder = $builder = $httpClientBuilder ?: new Builder();
-        $uri                     = ($uriFactory ?: UriFactoryDiscovery::find())->createUri(static::API_URI);
+        $uri                     = $uriFactory->createUri(static::API_URI);
 
         $builder->addPlugin(new TransifexExceptionThrower());
         $builder->addPlugin(new Plugin\HistoryPlugin($this->responseHistory));
