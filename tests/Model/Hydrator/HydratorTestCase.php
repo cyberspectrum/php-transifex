@@ -20,11 +20,12 @@
 namespace CyberSpectrum\PhpTransifex\Tests\Model\Hydrator;
 
 use CyberSpectrum\PhpTransifex\Client;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This is the abstract base for Entity tests.
  */
-abstract class HydratorTestCase extends \PHPUnit_Framework_TestCase
+abstract class HydratorTestCase extends TestCase
 {
     /**
      * Mock an "offline" API client.

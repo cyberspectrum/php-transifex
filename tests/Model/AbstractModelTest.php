@@ -21,11 +21,12 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\HydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\AbstractModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the AbstractModel.
  */
-class AbstractModelTest extends \PHPUnit_Framework_TestCase
+class AbstractModelTest extends TestCase
 {
     /**
      * Test that the constructor sets the hydrator.
@@ -37,8 +38,13 @@ class AbstractModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAbstractModel()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
-        $mock     = $this->getMockForAbstractClass(AbstractModel::class, [$hydrator]);
+        $hydrator = $this
+            ->getMockBuilder(HydratorInterface::class)
+            ->getMockForAbstractClass();
+        $mock     = $this
+            ->getMockBuilder(AbstractModel::class)
+            ->setConstructorArgs([$hydrator])
+            ->getMockForAbstractClass();
         /** @var AbstractModel $mock */
         $this->assertSame($hydrator, $mock->hydrator());
     }

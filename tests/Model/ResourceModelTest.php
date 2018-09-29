@@ -23,11 +23,12 @@ use CyberSpectrum\PhpTransifex\Model\Hydrator\AggregateHydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceHydrator;
 use CyberSpectrum\PhpTransifex\Model\ResourceModel;
 use CyberSpectrum\PhpTransifex\Model\TranslationListModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the ResourceModel.
  */
-class ResourceModelTest extends \PHPUnit_Framework_TestCase
+class ResourceModelTest extends TestCase
 {
     /**
      * Data provider for the value getter test.

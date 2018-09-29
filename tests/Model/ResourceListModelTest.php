@@ -23,11 +23,12 @@ use CyberSpectrum\PhpTransifex\Model\Hydrator\HydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceListHydrator;
 use CyberSpectrum\PhpTransifex\Model\ResourceListModel;
 use CyberSpectrum\PhpTransifex\Model\ResourceModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the ResourceListModel.
  */
-class ResourceListModelTest extends \PHPUnit_Framework_TestCase
+class ResourceListModelTest extends TestCase
 {
     /**
      * Test that the constructor sets the hydrator.
@@ -68,7 +69,12 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->setExpectedException('OutOfBoundsException', 'Resource not in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\OutOfBoundsException::class);
+            $this->expectExceptionMessage('Resource not in list: slug');
+        } else {
+            $this->setExpectedException(\OutOfBoundsException::class, 'Resource not in list: slug');
+        }
 
         $model->get('slug');
     }
@@ -82,7 +88,7 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetForKnown()
     {
-        $subHydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $subHydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $subHydrator->expects($this->once())->method('get')->with('slug')->willReturn('slug');
 
         $hydrator = $this
@@ -154,7 +160,7 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddForUnknown()
     {
-        $subHydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $subHydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $subHydrator->expects($this->once())->method('get')->with('slug')->willReturn('slug');
 
         $hydrator = $this
@@ -196,7 +202,12 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->setExpectedException('InvalidArgumentException', 'Resource already in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Resource already in list: slug');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Resource already in list: slug');
+        }
 
         $model->add('slug', 'resource name', 'XLIFF');
     }
@@ -220,7 +231,12 @@ class ResourceListModelTest extends \PHPUnit_Framework_TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->setExpectedException('InvalidArgumentException', 'Resource not in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Resource not in list: slug');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Resource not in list: slug');
+        }
 
         $model->remove('slug');
     }

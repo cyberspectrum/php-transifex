@@ -25,11 +25,12 @@ use CyberSpectrum\PhpTransifex\Model\Hydrator\ResourceListHydrator;
 use CyberSpectrum\PhpTransifex\Model\LanguageListModel;
 use CyberSpectrum\PhpTransifex\Model\ProjectModel;
 use CyberSpectrum\PhpTransifex\Model\ResourceListModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the ProjectModel.
  */
-class ProjectModelTest extends \PHPUnit_Framework_TestCase
+class ProjectModelTest extends TestCase
 {
     /**
      * Data provider for the value getter test.

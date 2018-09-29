@@ -20,11 +20,12 @@
 namespace CyberSpectrum\PhpTransifex\Tests\Model\Hydrator;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\ValueStore;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the ValueStore.
  */
-class ValueStoreTest extends \PHPUnit_Framework_TestCase
+class ValueStoreTest extends TestCase
 {
     /**
      * Test that it can be created with initial data.
@@ -55,7 +56,12 @@ class ValueStoreTest extends \PHPUnit_Framework_TestCase
      */
     public function testExceptionForGetUnknownKey()
     {
-        $this->setExpectedException('RuntimeException', 'Key foo is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key foo is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key foo is not set.');
+        }
 
         $store = new ValueStore();
         $store->get('foo');
@@ -129,7 +135,12 @@ class ValueStoreTest extends \PHPUnit_Framework_TestCase
     {
         $store = new ValueStore(['foo' => 'bar']);
 
-        $this->setExpectedException('RuntimeException', 'Key foobar is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key foobar is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key foobar is not set.');
+        }
 
         $store->remove('foobar');
     }

@@ -21,11 +21,12 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\AggregateHydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\AbstractListModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the AbstractListModel.
  */
-class AbstractListModelTest extends \PHPUnit_Framework_TestCase
+class AbstractListModelTest extends TestCase
 {
     /**
      * Test that the constructor sets the hydrator.

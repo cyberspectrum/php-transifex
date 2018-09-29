@@ -20,12 +20,13 @@
 namespace CyberSpectrum\PhpTransifex\Tests\Api;
 
 use CyberSpectrum\PhpTransifex\Client;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\UriInterface;
 
 /**
  * This is the abstract base for API tests.
  */
-abstract class ApiTestCase extends \PHPUnit_Framework_TestCase
+abstract class ApiTestCase extends TestCase
 {
     /**
      * The API class to instantiate.
