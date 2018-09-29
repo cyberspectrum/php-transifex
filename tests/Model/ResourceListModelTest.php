@@ -231,8 +231,12 @@ class ResourceListModelTest extends TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Resource not in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Resource not in list: slug');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Resource not in list: slug');
+        }
 
         $model->remove('slug');
     }
