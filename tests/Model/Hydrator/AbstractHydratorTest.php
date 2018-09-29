@@ -40,7 +40,10 @@ class AbstractHydratorTest extends HydratorTestCase
     {
         $mockApi = $this->mockClient();
 
-        return $this->getMockForAbstractClass(AbstractHydrator::class, [$mockApi, $data]);
+        return $this
+            ->getMockBuilder(AbstractHydrator::class)
+            ->setConstructorArgs([$mockApi, $data])
+            ->getMockForAbstractClass();
     }
 
     /**
@@ -106,8 +109,8 @@ class AbstractHydratorTest extends HydratorTestCase
      */
     public function testLoadWith404()
     {
-        $request  = $this->getMockForAbstractClass(RequestInterface::class);
-        $response = $this->getMockForAbstractClass(ResponseInterface::class);
+        $request  = $this->getMockBuilder(RequestInterface::class)->getMockForAbstractClass();
+        $response = $this->getMockBuilder(ResponseInterface::class)->getMockForAbstractClass();
         $response->expects($this->once())->method('getStatusCode')->willReturn(404);
 
         $exception = new ClientErrorException('Not found', $request, $response);
@@ -127,8 +130,8 @@ class AbstractHydratorTest extends HydratorTestCase
      */
     public function testLoadRethrows()
     {
-        $request  = $this->getMockForAbstractClass(RequestInterface::class);
-        $response = $this->getMockForAbstractClass(ResponseInterface::class);
+        $request  = $this->getMockBuilder(RequestInterface::class)->getMockForAbstractClass();
+        $response = $this->getMockBuilder(ResponseInterface::class)->getMockForAbstractClass();
         $response->method('getStatusCode')->willReturn(500);
 
         $exception = new ClientErrorException('Moep!', $request, $response);
@@ -194,15 +197,16 @@ class AbstractHydratorTest extends HydratorTestCase
      */
     public function testGetUnknownKey()
     {
-        $request  = $this->getMockForAbstractClass(RequestInterface::class);
-        $response = $this->getMockForAbstractClass(ResponseInterface::class);
+        $request  = $this->getMockBuilder(RequestInterface::class)->getMockForAbstractClass();
+        $response = $this->getMockBuilder(ResponseInterface::class)->getMockForAbstractClass();
         $response->method('getStatusCode')->willReturn(404);
         $exception = new ClientErrorException('Not found', $request, $response);
 
         $mock = $this->mockHydrator();
         $mock->expects($this->once())->method('doLoad')->willThrowException($exception);
 
-        $this->setExpectedException('RuntimeException', 'Key foo is not set.');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Key foo is not set.');
 
         $this->assertFalse($mock->has('foo'));
         $mock->get('foo');

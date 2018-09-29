@@ -21,11 +21,12 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\HydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\UserListModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the UserListModel.
  */
-class UserListModelTest extends \PHPUnit_Framework_TestCase
+class UserListModelTest extends TestCase
 {
     /**
      * Test that the constructor sets the hydrator.
@@ -36,7 +37,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstructor()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $model    = new UserListModel($hydrator, 'test');
 
         $this->assertSame($hydrator, $model->hydrator());
@@ -52,7 +53,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testHas()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->exactly(2))
             ->method('get')
@@ -74,7 +75,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testNames()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->once())
             ->method('get')
@@ -95,7 +96,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAdd()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->exactly(2))
             ->method('get')
@@ -120,7 +121,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddAlreadyExisting()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->once())
             ->method('get')
@@ -129,7 +130,8 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
 
         $model = new UserListModel($hydrator, 'name');
 
-        $this->setExpectedException('InvalidArgumentException', 'User already in list: user1');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User already in list: user1');
 
         $model->add('user1');
     }
@@ -143,7 +145,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testRemove()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->exactly(2))
             ->method('get')
@@ -168,7 +170,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testRemoveUnknown()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $hydrator
             ->expects($this->once())
             ->method('get')
@@ -177,7 +179,8 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
 
         $model = new UserListModel($hydrator, 'name');
 
-        $this->setExpectedException('InvalidArgumentException', 'User not in list: user4');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('User not in list: user4');
 
         $model->remove('user4');
     }
@@ -189,7 +192,7 @@ class UserListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testName()
     {
-        $hydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $hydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
 
         $model = new UserListModel($hydrator, 'name');
         $this->assertSame('name', $model->name());

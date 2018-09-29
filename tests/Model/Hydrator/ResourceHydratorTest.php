@@ -37,11 +37,11 @@ class ResourceHydratorTest extends HydratorTestCase
     public function testTranslationListHydrator()
     {
         /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(
-            ResourceHydrator::class,
-            ['exists'],
-            [$this->mockClient(), 'project-slug', 'resource-slug']
-        );
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists'])
+            ->setConstructorArgs([$this->mockClient(), 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(true);
 
         $translations = $hydrator->translationListHydrator();
@@ -57,14 +57,15 @@ class ResourceHydratorTest extends HydratorTestCase
     public function testTranslationListHydratorForNonexistent()
     {
         /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(
-            ResourceHydrator::class,
-            ['exists'],
-            [$this->mockClient(), 'project-slug', 'resource-slug']
-        );
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists'])
+            ->setConstructorArgs([$this->mockClient(), 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(false);
 
-        $this->setExpectedException('RuntimeException', 'Resource must be created before accessing the translations');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Resource must be created before accessing the translations');
         $hydrator->translationListHydrator();
     }
 
@@ -118,7 +119,11 @@ class ResourceHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['resource' => $languageApi]);
 
         /** @var ResourceHydrator $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->set('content', 'foo');
 
         $hydrator->save();
@@ -144,7 +149,11 @@ class ResourceHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['resource' => $languageApi]);
 
         /** @var ResourceHydrator $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
 
         $hydrator->save();
     }
@@ -164,7 +173,11 @@ class ResourceHydratorTest extends HydratorTestCase
         $translationList->expects($this->once())->method('save');
 
         /** @var ResourceHydrator $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
 
         $reflection = new \ReflectionProperty(ResourceHydrator::class, 'translationListHydrator');
         $reflection->setAccessible(true);
@@ -199,7 +212,11 @@ class ResourceHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['resource' => $languageApi]);
 
         /** @var ResourceHydrator $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['load'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->set('name', 'Test resource');
         $hydrator->set('i18n_type', 'XLIFF');
 
@@ -253,7 +270,11 @@ class ResourceHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['resource' => $languageApi]);
 
         /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['exists'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(true);
 
         $this->assertSame('file contents', $hydrator->download());
@@ -279,10 +300,15 @@ class ResourceHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['resource' => $languageApi]);
 
         /** @var ResourceHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(ResourceHydrator::class, ['exists'], [$client, 'project-slug', 'resource-slug']);
+        $hydrator = $this
+            ->getMockBuilder(ResourceHydrator::class)
+            ->setMethods(['exists'])
+            ->setConstructorArgs([$client, 'project-slug', 'resource-slug'])
+            ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(false);
 
-        $this->setExpectedException('RuntimeException', 'Resource must be created before downloading');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Resource must be created before downloading');
 
         $hydrator->download();
     }

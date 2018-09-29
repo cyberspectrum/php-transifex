@@ -21,13 +21,14 @@ namespace CyberSpectrum\PhpTransifex\Tests\HttpClient\Plugin;
 
 use Http\Client\Exception;
 use CyberSpectrum\PhpTransifex\HttpClient\Plugin\History;
+use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * This tests the history.
  */
-class HistoryTest extends \PHPUnit_Framework_TestCase
+class HistoryTest extends TestCase
 {
     /**
      * Test that successful responses are added.

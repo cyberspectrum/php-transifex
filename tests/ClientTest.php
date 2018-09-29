@@ -26,12 +26,13 @@ use CyberSpectrum\PhpTransifex\HttpClient\Builder;
 use CyberSpectrum\PhpTransifex\HttpClient\Plugin\Authentication;
 use Http\Client\HttpClient;
 use InvalidArgumentException;
+use PHPUnit\Framework\TestCase;
 use Psr\Cache\CacheItemPoolInterface;
 
 /**
  * This tests the transifex client class.
  */
-class ClientTest extends \PHPUnit_Framework_TestCase
+class ClientTest extends TestCase
 {
     /**
      * Test that the HTTP client is optional.
@@ -93,7 +94,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(['getHttpClientBuilder'])
             ->getMock();
-        $client->expects($this->any())
+        $client->expects($this->exactly(2))
             ->method('getHttpClientBuilder')
             ->willReturn($builder);
 
@@ -124,7 +125,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
             ->disableOriginalConstructor()
             ->setMethods(['getHttpClientBuilder'])
             ->getMock();
-        $client->expects($this->any())
+        $client->expects($this->exactly(2))
             ->method('getHttpClientBuilder')
             ->willReturn($builder);
 
@@ -266,9 +267,9 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testCacheAdding()
     {
-        $pool = $this->getMockForAbstractClass(CacheItemPoolInterface::class);
+        $pool = $this->getMockBuilder(CacheItemPoolInterface::class)->getMockForAbstractClass();
 
-        $builder = $this->getMock(Builder::class, ['addCache']);
+        $builder = $this->getMockBuilder(Builder::class)->setMethods(['addCache'])->getMock();
         $builder->expects($this->once())->method('addCache')->with($pool, ['config' => 'value']);
 
         $client = new Client($builder);
@@ -284,7 +285,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
      */
     public function testCacheRemove()
     {
-        $builder = $this->getMock(Builder::class, ['removeCache']);
+        $builder = $this->getMockBuilder(Builder::class)->setMethods(['removeCache'])->getMock();
         $builder->expects($this->once())->method('removeCache');
 
         $client = new Client($builder);

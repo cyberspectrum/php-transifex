@@ -21,11 +21,12 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model;
 
 use CyberSpectrum\PhpTransifex\Model\Hydrator\TranslationHydrator;
 use CyberSpectrum\PhpTransifex\Model\TranslationModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the TranslationModel.
  */
-class TranslationModelTest extends \PHPUnit_Framework_TestCase
+class TranslationModelTest extends TestCase
 {
     /**
      * Provide data for the contents method.

@@ -121,7 +121,11 @@ class LanguageHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['language' => $languageApi]);
 
         /** @var LanguageHydrator $hydrator */
-        $hydrator = $this->getMock(LanguageHydrator::class, ['doLoad'], [$client, 'project-slug', 'language-slug']);
+        $hydrator = $this
+            ->getMockBuilder(LanguageHydrator::class)
+            ->setMethods(['doLoad'])
+            ->setConstructorArgs([$client, 'project-slug', 'language-slug'])
+            ->getMock();
         $hydrator->set('coordinators', ['user1']);
 
         $hydrator->save();
@@ -148,7 +152,11 @@ class LanguageHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['language' => $languageApi]);
 
         /** @var LanguageHydrator $hydrator */
-        $hydrator = $this->getMock(LanguageHydrator::class, ['load'], [$client, 'project-slug', 'language-slug']);
+        $hydrator = $this
+            ->getMockBuilder(LanguageHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, 'project-slug', 'language-slug'])
+            ->getMock();
         $hydrator->set('coordinators', ['user1']);
 
         $hydrator->create();

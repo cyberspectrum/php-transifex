@@ -23,11 +23,12 @@ use CyberSpectrum\PhpTransifex\Model\Hydrator\HydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\LanguageListHydrator;
 use CyberSpectrum\PhpTransifex\Model\LanguageListModel;
 use CyberSpectrum\PhpTransifex\Model\LanguageModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the LanguageListModel.
  */
-class LanguageListModelTest extends \PHPUnit_Framework_TestCase
+class LanguageListModelTest extends TestCase
 {
     /**
      * Test that the constructor sets the hydrator.
@@ -68,7 +69,8 @@ class LanguageListModelTest extends \PHPUnit_Framework_TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->setExpectedException('OutOfBoundsException', 'Language not in list: en');
+        $this->expectException(\OutOfBoundsException::class);
+        $this->expectExceptionMessage('Language not in list: en');
 
         $model->get('en');
     }
@@ -82,7 +84,7 @@ class LanguageListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetForKnown()
     {
-        $subHydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $subHydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $subHydrator->expects($this->once())->method('get')->with('language_code')->willReturn('en');
 
         $hydrator = $this
@@ -154,7 +156,7 @@ class LanguageListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddForUnknown()
     {
-        $subHydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $subHydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
         $subHydrator->expects($this->once())->method('get')->with('language_code')->willReturn('en');
 
         $hydrator = $this
@@ -192,7 +194,8 @@ class LanguageListModelTest extends \PHPUnit_Framework_TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->setExpectedException('InvalidArgumentException', 'Language already in list: en');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Language already in list: en');
 
         $model->add('en');
     }
@@ -216,7 +219,8 @@ class LanguageListModelTest extends \PHPUnit_Framework_TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->setExpectedException('InvalidArgumentException', 'Language not in list: en');
+        $this->expectException(\InvalidArgumentException::class);
+        $this->expectExceptionMessage('Language not in list: en');
 
         $model->remove('en');
     }

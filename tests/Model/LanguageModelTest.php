@@ -22,11 +22,12 @@ namespace CyberSpectrum\PhpTransifex\Tests\Model;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\LanguageHydrator;
 use CyberSpectrum\PhpTransifex\Model\LanguageModel;
 use CyberSpectrum\PhpTransifex\Model\UserListModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the LanguageModel.
  */
-class LanguageModelTest extends \PHPUnit_Framework_TestCase
+class LanguageModelTest extends TestCase
 {
     /**
      * Test the languageCode() method.

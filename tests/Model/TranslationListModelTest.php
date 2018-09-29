@@ -23,11 +23,12 @@ use CyberSpectrum\PhpTransifex\Model\Hydrator\HydratorInterface;
 use CyberSpectrum\PhpTransifex\Model\Hydrator\TranslationListHydrator;
 use CyberSpectrum\PhpTransifex\Model\TranslationListModel;
 use CyberSpectrum\PhpTransifex\Model\TranslationModel;
+use PHPUnit\Framework\TestCase;
 
 /**
  * This tests the TranslationListModel.
  */
-class TranslationListModelTest extends \PHPUnit_Framework_TestCase
+class TranslationListModelTest extends TestCase
 {
     /**
      * Test the get() method for unknown language code.
@@ -48,7 +49,8 @@ class TranslationListModelTest extends \PHPUnit_Framework_TestCase
         /** @var TranslationListHydrator $hydrator */
         $model = new TranslationListModel($hydrator);
 
-        $this->setExpectedException('OutOfBoundsException', 'Language not in list: langcode');
+        $this->expectException(\OutOfBoundsException::class);
+        $this->expectExceptionMessage('Language not in list: langcode');
 
         $model->get('langcode');
     }
@@ -62,7 +64,7 @@ class TranslationListModelTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetForKnown()
     {
-        $subHydrator = $this->getMockForAbstractClass(HydratorInterface::class);
+        $subHydrator = $this->getMockBuilder(HydratorInterface::class)->getMockForAbstractClass();
 
         $hydrator = $this
             ->getMockBuilder(TranslationListHydrator::class)

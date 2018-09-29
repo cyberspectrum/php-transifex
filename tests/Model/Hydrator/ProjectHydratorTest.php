@@ -70,7 +70,8 @@ class ProjectHydratorTest extends HydratorTestCase
 
         $hydrator->method('exists')->willReturn(false);
 
-        $this->setExpectedException('RuntimeException', 'Project must be created before accessing the languages');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Project must be created before accessing the languages');
 
         $hydrator->languageListHydrator();
     }
@@ -116,7 +117,8 @@ class ProjectHydratorTest extends HydratorTestCase
 
         $hydrator->method('exists')->willReturn(false);
 
-        $this->setExpectedException('RuntimeException', 'Project must be created before accessing the languages');
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Project must be created before accessing the languages');
 
         $hydrator->resourceListHydrator();
     }
@@ -173,7 +175,11 @@ class ProjectHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['project' => $projectApi]);
 
         /** @var ProjectHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(ProjectHydrator::class, ['load'], [$client, ['slug' => 'project-slug']]);
+        $hydrator = $this
+            ->getMockBuilder(ProjectHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs([$client, ['slug' => 'project-slug']])
+            ->getMock();
         $hydrator->set('test', 'value');
         $hydrator->set('foo', 'bar');
 
@@ -209,17 +215,19 @@ class ProjectHydratorTest extends HydratorTestCase
         $client = $this->mockClient(['project' => $projectApi]);
 
         /** @var ProjectHydrator|\PHPUnit_Framework_MockObject_MockObject $hydrator */
-        $hydrator = $this->getMock(
-            ProjectHydrator::class,
-            ['load'],
-            [$client, [
+        $hydrator = $this
+            ->getMockBuilder(ProjectHydrator::class)
+            ->setMethods(['load'])
+            ->setConstructorArgs(
+                [$client, [
                 'slug' => 'project-slug',
                 'name' => 'project name',
                 'description' => 'description text',
                 'source_language_code' => 'language code',
                 'pending' => 'attribute'
-            ]]
-        );
+                ]]
+            )
+            ->getMock();
 
         $hydrator->create();
     }
