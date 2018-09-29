@@ -2,7 +2,6 @@
 [![Latest Version tagged](http://img.shields.io/github/tag/cyberspectrum/php-transifex.svg)](https://github.com/cyberspectrum/php-transifex/tags)
 [![Latest Version on Packagist](http://img.shields.io/packagist/v/cyberspectrum/php-transifex.svg)](https://packagist.org/packages/cyberspectrum/php-transifex)
 [![Installations via composer per month](http://img.shields.io/packagist/dm/cyberspectrum/php-transifex.svg)](https://packagist.org/packages/cyberspectrum/php-transifex)
-[![Dependency Status](https://www.versioneye.com/php/cyberspectrum:php-transifex/badge.svg)](https://www.versioneye.com/php/cyberspectrum:php-transifex)
 
 # Transifex client written in PHP.
 
