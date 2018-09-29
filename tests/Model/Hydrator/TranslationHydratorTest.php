@@ -49,8 +49,12 @@ class TranslationHydratorTest extends HydratorTestCase
     {
         $hydrator = new TranslationHydrator($this->mockClient(), 'project-slug', 'resource-slug', 'language-slug');
 
-        $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Translations can not be created, you must add them as project languages.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\LogicException::class);
+            $this->expectExceptionMessage('Translations can not be created, you must add them as project languages.');
+        } else {
+            $this->setExpectedException(\LogicException::class, 'Translations can not be created, you must add them as project languages.');
+        }
 
         $hydrator->create();
     }
@@ -66,8 +70,12 @@ class TranslationHydratorTest extends HydratorTestCase
     {
         $hydrator = new TranslationHydrator($this->mockClient(), 'project-slug', 'resource-slug', 'language-slug');
 
-        $this->expectException(\LogicException::class);
-        $this->expectExceptionMessage('Translations can not be deleted, you must remove them from project languages.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\LogicException::class);
+            $this->expectExceptionMessage('Translations can not be deleted, you must remove them from project languages.');
+        } else {
+            $this->setExpectedException(\LogicException::class, 'Translations can not be deleted, you must remove them from project languages.');
+        }
 
         $hydrator->delete();
     }
@@ -83,8 +91,12 @@ class TranslationHydratorTest extends HydratorTestCase
     {
         $hydrator = new TranslationHydrator($this->mockClient(), 'project-slug', 'resource-slug', 'language-slug');
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Uploading of translations is not yet implemented.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Uploading of translations is not yet implemented.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Uploading of translations is not yet implemented.');
+        }
 
         $hydrator->save();
     }
@@ -100,8 +112,12 @@ class TranslationHydratorTest extends HydratorTestCase
     {
         $hydrator = new TranslationHydrator($this->mockClient(), 'project-slug', 'resource-slug', 'language-slug');
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Key invalid-key is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key invalid-key is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key invalid-key is not set.');
+        }
 
         $hydrator->get('invalid-key');
     }
@@ -159,8 +175,12 @@ class TranslationHydratorTest extends HydratorTestCase
     {
         $hydrator = new TranslationHydrator($this->mockClient(), 'project-slug', 'resource-slug', 'language-slug');
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Uploading of translations is not yet implemented.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Uploading of translations is not yet implemented.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Uploading of translations is not yet implemented.');
+        }
 
         $hydrator->set('translator', 'contents');
     }

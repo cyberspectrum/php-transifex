@@ -69,8 +69,12 @@ class ResourceListModelTest extends TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->expectException('OutOfBoundsException');
-        $this->expectExceptionMessage('Resource not in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\OutOfBoundsException::class);
+            $this->expectExceptionMessage('Resource not in list: slug');
+        } else {
+            $this->setExpectedException(\OutOfBoundsException::class, 'Resource not in list: slug');
+        }
 
         $model->get('slug');
     }
@@ -198,8 +202,12 @@ class ResourceListModelTest extends TestCase
         /** @var ResourceListHydrator $hydrator */
         $model = new ResourceListModel($hydrator);
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Resource already in list: slug');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Resource already in list: slug');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Resource already in list: slug');
+        }
 
         $model->add('slug', 'resource name', 'XLIFF');
     }

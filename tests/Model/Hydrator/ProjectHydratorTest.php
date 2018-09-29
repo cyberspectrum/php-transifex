@@ -70,8 +70,12 @@ class ProjectHydratorTest extends HydratorTestCase
 
         $hydrator->method('exists')->willReturn(false);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Project must be created before accessing the languages');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Project must be created before accessing the languages');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Project must be created before accessing the languages');
+        }
 
         $hydrator->languageListHydrator();
     }
@@ -117,8 +121,12 @@ class ProjectHydratorTest extends HydratorTestCase
 
         $hydrator->method('exists')->willReturn(false);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Project must be created before accessing the languages');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Project must be created before accessing the languages');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Project must be created before accessing the languages');
+        }
 
         $hydrator->resourceListHydrator();
     }

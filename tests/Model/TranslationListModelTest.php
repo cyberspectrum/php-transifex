@@ -49,8 +49,12 @@ class TranslationListModelTest extends TestCase
         /** @var TranslationListHydrator $hydrator */
         $model = new TranslationListModel($hydrator);
 
-        $this->expectException(\OutOfBoundsException::class);
-        $this->expectExceptionMessage('Language not in list: langcode');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\OutOfBoundsException::class);
+            $this->expectExceptionMessage('Language not in list: langcode');
+        } else {
+            $this->setExpectedException(\OutOfBoundsException::class, 'Language not in list: langcode');
+        }
 
         $model->get('langcode');
     }

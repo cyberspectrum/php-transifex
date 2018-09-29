@@ -165,8 +165,12 @@ class LanguageTest extends ApiTestCase
             ->disableOriginalConstructor()
             ->getMock();
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('The coordinators array must contain at least one username.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('The coordinators array must contain at least one username.');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'The coordinators array must contain at least one username.');
+        }
 
         $api->update('foo bar', 'de-DE', []);
     }

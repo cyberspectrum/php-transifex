@@ -56,8 +56,12 @@ class ValueStoreTest extends TestCase
      */
     public function testExceptionForGetUnknownKey()
     {
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Key foo is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key foo is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key foo is not set.');
+        }
 
         $store = new ValueStore();
         $store->get('foo');
@@ -131,8 +135,12 @@ class ValueStoreTest extends TestCase
     {
         $store = new ValueStore(['foo' => 'bar']);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Key foobar is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key foobar is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key foobar is not set.');
+        }
 
         $store->remove('foobar');
     }

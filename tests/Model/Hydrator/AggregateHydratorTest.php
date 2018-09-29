@@ -143,8 +143,12 @@ class AggregateHydratorTest extends HydratorTestCase
                 )
             );
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Hydrator agg1 is not registered.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Hydrator agg1 is not registered.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Hydrator agg1 is not registered.');
+        }
 
         /** @var AggregateHydrator $hydrator */
         $hydrator->get('agg1');

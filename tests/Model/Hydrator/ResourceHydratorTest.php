@@ -64,8 +64,12 @@ class ResourceHydratorTest extends HydratorTestCase
             ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(false);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Resource must be created before accessing the translations');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Resource must be created before accessing the translations');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Resource must be created before accessing the translations');
+        }
         $hydrator->translationListHydrator();
     }
 
@@ -307,8 +311,12 @@ class ResourceHydratorTest extends HydratorTestCase
             ->getMock();
         $hydrator->expects($this->once())->method('exists')->willReturn(false);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Resource must be created before downloading');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Resource must be created before downloading');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Resource must be created before downloading');
+        }
 
         $hydrator->download();
     }

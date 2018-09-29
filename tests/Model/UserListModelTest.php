@@ -130,8 +130,12 @@ class UserListModelTest extends TestCase
 
         $model = new UserListModel($hydrator, 'name');
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('User already in list: user1');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('User already in list: user1');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'User already in list: user1');
+        }
 
         $model->add('user1');
     }
@@ -179,8 +183,12 @@ class UserListModelTest extends TestCase
 
         $model = new UserListModel($hydrator, 'name');
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('User not in list: user4');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('User not in list: user4');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'User not in list: user4');
+        }
 
         $model->remove('user4');
     }

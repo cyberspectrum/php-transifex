@@ -205,8 +205,12 @@ class AbstractHydratorTest extends HydratorTestCase
         $mock = $this->mockHydrator();
         $mock->expects($this->once())->method('doLoad')->willThrowException($exception);
 
-        $this->expectException(\RuntimeException::class);
-        $this->expectExceptionMessage('Key foo is not set.');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\RuntimeException::class);
+            $this->expectExceptionMessage('Key foo is not set.');
+        } else {
+            $this->setExpectedException(\RuntimeException::class, 'Key foo is not set.');
+        }
 
         $this->assertFalse($mock->has('foo'));
         $mock->get('foo');

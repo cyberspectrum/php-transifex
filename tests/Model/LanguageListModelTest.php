@@ -69,8 +69,12 @@ class LanguageListModelTest extends TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->expectException(\OutOfBoundsException::class);
-        $this->expectExceptionMessage('Language not in list: en');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\OutOfBoundsException::class);
+            $this->expectExceptionMessage('Language not in list: en');
+        } else {
+            $this->setExpectedException(\OutOfBoundsException::class, 'Language not in list: en');
+        }
 
         $model->get('en');
     }
@@ -194,8 +198,12 @@ class LanguageListModelTest extends TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language already in list: en');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Language already in list: en');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Language already in list: en');
+        }
 
         $model->add('en');
     }
@@ -219,8 +227,12 @@ class LanguageListModelTest extends TestCase
         /** @var LanguageListHydrator $hydrator */
         $model = new LanguageListModel($hydrator);
 
-        $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Language not in list: en');
+        if (method_exists($this, 'expectException')) {
+            $this->expectException(\InvalidArgumentException::class);
+            $this->expectExceptionMessage('Language not in list: en');
+        } else {
+            $this->setExpectedException(\InvalidArgumentException::class, 'Language not in list: en');
+        }
 
         $model->remove('en');
     }
