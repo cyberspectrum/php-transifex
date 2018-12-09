@@ -77,7 +77,8 @@ class Resource extends AbstractApi
     public function download($project, $resource)
     {
         return $this->get(
-            '/api/2/project/' . rawurlencode($project) . '/resource/' . rawurlencode($resource) . '/content/'
+            '/api/2/project/' . rawurlencode($project) . '/resource/' . rawurlencode($resource) . '/content/',
+            ['file' => null]
         );
     }
 
