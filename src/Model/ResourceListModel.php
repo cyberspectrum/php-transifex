@@ -24,6 +24,8 @@ use OutOfBoundsException;
 
 /**
  * This class wraps the resource list.
+ *
+ * @property Hydrator\ResourceListHydrator $hydrator
  */
 class ResourceListModel extends AbstractListModel
 {

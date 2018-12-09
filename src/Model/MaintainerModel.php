@@ -33,7 +33,7 @@ class MaintainerModel extends AbstractModel
      */
     public function has($user)
     {
-        return in_array($user, $this->hydrator->get('maintainers'));
+        return in_array($user, $this->hydrator->get('maintainers'), true);
     }
 
     /**

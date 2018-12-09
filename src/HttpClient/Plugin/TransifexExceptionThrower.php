@@ -37,14 +37,15 @@ class TransifexExceptionThrower implements Plugin
     public function handleRequest(RequestInterface $request, callable $next, callable $first)
     {
         return $next($request)->then(function (ResponseInterface $response) use ($request) {
-            if ($response->getStatusCode() < 400 || $response->getStatusCode() >= 600) {
+            $statusCode = $response->getStatusCode();
+            if ($statusCode < 400 || $statusCode >= 600) {
                 return $response;
             }
 
             $content = ResponseMediator::getContent($response);
             $message = isset($content['message']) ? $content['message'] : $content;
 
-            if ($response->getStatusCode() < 500) {
+            if ($statusCode < 500) {
                 throw new ClientErrorException($message, $request, $response);
             }
 

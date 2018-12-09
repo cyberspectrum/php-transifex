@@ -208,7 +208,7 @@ abstract class AbstractApi implements ApiInterface
      */
     private function createJsonBody(array $parameters)
     {
-        return (count($parameters) === 0)
+        return (0 === count($parameters))
             ? null
             : json_encode($parameters, empty($parameters) ? JSON_FORCE_OBJECT : 0);
     }
@@ -246,7 +246,7 @@ abstract class AbstractApi implements ApiInterface
         if (count($parameters) > 0) {
             $pieces = [];
             foreach ($parameters as $name => $parameter) {
-                if ($parameter !== null) {
+                if (null !== $parameter) {
                     $pieces[] = $name . '=' . $parameter;
                 } else {
                     $pieces[] = $name;

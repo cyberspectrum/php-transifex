@@ -24,6 +24,8 @@ use OutOfBoundsException;
 
 /**
  * This class wraps the language list.
+ *
+ * @property Hydrator\LanguageListHydrator $hydrator
  */
 class LanguageListModel extends AbstractListModel
 {

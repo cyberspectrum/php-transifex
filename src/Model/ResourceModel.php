@@ -25,6 +25,8 @@ use DateTime;
  * This class represents a project language.
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ *
+ * @property Hydrator\ResourceHydrator $hydrator
  */
 class ResourceModel extends AbstractModel implements SaveAbleModelInterface
 {

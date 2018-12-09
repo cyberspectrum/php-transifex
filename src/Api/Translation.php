@@ -73,7 +73,7 @@ class Translation extends AbstractApi
         if (!in_array($type, ['string', 'file'])) {
             throw new \InvalidArgumentException('The content type must be specified as file or string.');
         }
-        if ($type == 'file') {
+        if ('file' === $type) {
             if (!file_exists($content)) {
                 throw new \InvalidArgumentException(
                     sprintf('The specified file, "%s", does not exist.', $content)

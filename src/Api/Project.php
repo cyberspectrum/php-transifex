@@ -230,7 +230,7 @@ class Project extends AbstractApi
         if (isset($data['license'])) {
             // Ensure the license option is an allowed value
             $accepted = ['proprietary', 'permissive_open_source', 'other_open_source'];
-            if (!in_array($data['license'], $accepted)) {
+            if (!in_array($data['license'], $accepted, true)) {
                 throw new \InvalidArgumentException(
                     sprintf(
                         'The license %s is not valid, accepted license values are %s',

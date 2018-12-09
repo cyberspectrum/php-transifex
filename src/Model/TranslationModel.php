@@ -21,6 +21,8 @@ namespace CyberSpectrum\PhpTransifex\Model;
 
 /**
  * This class represents a resource translation.
+ *
+ * @property Hydrator\TranslationHydrator $hydrator
  */
 class TranslationModel extends AbstractModel
 {

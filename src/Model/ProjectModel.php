@@ -25,6 +25,8 @@ use DateTime;
  * This represents a project on transifex.
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
+ *
+ * @property Hydrator\ProjectHydrator $hydrator
  */
 class ProjectModel extends AbstractModel implements DeletableModelInterface, SaveAbleModelInterface
 {
