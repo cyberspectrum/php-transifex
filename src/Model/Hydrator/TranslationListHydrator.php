@@ -59,7 +59,7 @@ class TranslationListHydrator extends AggregateHydrator
      */
     protected function createHydrator($name, array $initialData)
     {
-        return new TranslationHydrator($this->api, $this->projectSlug, $this->resourceSlug, $name, $initialData);
+        return new TranslationHydrator($this->api, $this->projectSlug, $this->resourceSlug, $name);
     }
 
     /**
