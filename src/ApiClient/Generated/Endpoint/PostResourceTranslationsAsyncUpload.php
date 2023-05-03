@@ -18,6 +18,7 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceTransla
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceTranslationsAsyncUploadTooManyRequestsException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceTranslationsAsyncUploadUnauthorizedException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\UnexpectedStatusCodeException;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsAsyncUploadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared400Response;
@@ -40,8 +41,10 @@ class PostResourceTranslationsAsyncUpload extends BaseEndpoint implements Endpoi
 
     /**
      * Upload a new resource translation file for a specific language.
+     *
+     * @param PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody|PostResourceTranslationsAsyncUploadsRequestBody $requestBody
      */
-    public function __construct(PostResourceTranslationsAsyncUploadsRequestBody $requestBody)
+    public function __construct($requestBody)
     {
         $this->body = $requestBody;
     }
@@ -61,7 +64,7 @@ class PostResourceTranslationsAsyncUpload extends BaseEndpoint implements Endpoi
         if ($this->body instanceof PostResourceTranslationsAsyncUploadsRequestBody) {
             return [['Content-Type' => ['application/vnd.api+json']], $serializer->serialize($this->body, 'json')];
         }
-        if ($this->body instanceof PostResourceTranslationsAsyncUploadsRequestBody) {
+        if ($this->body instanceof PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody) {
             $bodyBuilder = new MultipartStreamBuilder($streamFactory);
             $formParameters = $serializer->normalize($this->body, 'json');
             foreach ($formParameters as $key => $value) {

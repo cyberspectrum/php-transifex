@@ -32,6 +32,7 @@ use DateTimeInterface;
  *
  * @SuppressWarnings(PHPMD.TooManyPublicMethods)
  * @SuppressWarnings(PHPMD.LongVariable)
+ * @SuppressWarnings(PHPMD.ExcessiveClassComplexity)
  */
 final class Project
 {
@@ -310,6 +311,10 @@ final class Project
 
     public function save(): void
     {
+        if (!$this->hasPending()) {
+            return;
+        }
+
         $this->client->patchProjectByProjectId(
             $this->projectId,
             (new PatchProjectsProjectIdRequestBody())

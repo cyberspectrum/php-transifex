@@ -12,6 +12,7 @@ namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsRequestBodyData;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -54,22 +55,8 @@ class PostTmxAsyncUploadsRequestBodyNormalizer implements DenormalizerInterface,
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('callback_url', $data) && null !== $data['callback_url']) {
-            $object->setCallbackUrl($data['callback_url']);
-        } elseif (array_key_exists('callback_url', $data) && null === $data['callback_url']) {
-            $object->setCallbackUrl(null);
-        }
-        if (array_key_exists('content', $data)) {
-            $object->setContent($data['content']);
-        }
-        if (array_key_exists('language_id', $data)) {
-            $object->setLanguageId($data['language_id']);
-        }
-        if (array_key_exists('override', $data)) {
-            $object->setOverride($data['override']);
-        }
-        if (array_key_exists('project_id', $data)) {
-            $object->setProjectId($data['project_id']);
+        if (array_key_exists('data', $data)) {
+            $object->setData($this->denormalizer->denormalize($data['data'], PostTmxAsyncUploadsRequestBodyData::class, 'json', $context));
         }
 
         return $object;
@@ -81,20 +68,8 @@ class PostTmxAsyncUploadsRequestBodyNormalizer implements DenormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if ($object->isInitialized('callbackUrl') && null !== $object->getCallbackUrl()) {
-            $data['callback_url'] = $object->getCallbackUrl();
-        }
-        if (null !== $object->getContent()) {
-            $data['content'] = $object->getContent();
-        }
-        if ($object->isInitialized('languageId') && null !== $object->getLanguageId()) {
-            $data['language_id'] = $object->getLanguageId();
-        }
-        if ($object->isInitialized('override') && null !== $object->getOverride()) {
-            $data['override'] = $object->getOverride();
-        }
-        if (null !== $object->getProjectId()) {
-            $data['project_id'] = $object->getProjectId();
+        if (null !== $object->getData()) {
+            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
 
         return $data;

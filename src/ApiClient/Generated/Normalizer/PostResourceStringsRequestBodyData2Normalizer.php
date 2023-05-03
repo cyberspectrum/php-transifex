@@ -11,8 +11,9 @@ declare(strict_types=1);
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyData2;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyDataAttributes1;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyDataRelationships1;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -26,7 +27,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use function array_key_exists;
 use function is_array;
 
-class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class PostResourceStringsRequestBodyData2Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -35,12 +36,12 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
 
     public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
-        return PostResourceStringsRequestBody::class === $type;
+        return PostResourceStringsRequestBodyData2::class === $type;
     }
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && PostResourceStringsRequestBody::class === get_class($data);
+        return is_object($data) && PostResourceStringsRequestBodyData2::class === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = []): mixed
@@ -51,12 +52,18 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new PostResourceStringsRequestBody();
+        $object = new PostResourceStringsRequestBodyData2();
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('data', $data)) {
-            $object->setData($this->denormalizer->denormalize($data['data'], PostResourceStringsRequestBodyData2::class, 'json', $context));
+        if (array_key_exists('attributes', $data)) {
+            $object->setAttributes($this->denormalizer->denormalize($data['attributes'], PostResourceStringsRequestBodyDataAttributes1::class, 'json', $context));
+        }
+        if (array_key_exists('relationships', $data)) {
+            $object->setRelationships($this->denormalizer->denormalize($data['relationships'], PostResourceStringsRequestBodyDataRelationships1::class, 'json', $context));
+        }
+        if (array_key_exists('type', $data)) {
+            $object->setType($data['type']);
         }
 
         return $object;
@@ -68,8 +75,14 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if (null !== $object->getData()) {
-            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
+        if (null !== $object->getAttributes()) {
+            $data['attributes'] = $this->normalizer->normalize($object->getAttributes(), 'json', $context);
+        }
+        if (null !== $object->getRelationships()) {
+            $data['relationships'] = $this->normalizer->normalize($object->getRelationships(), 'json', $context);
+        }
+        if (null !== $object->getType()) {
+            $data['type'] = $object->getType();
         }
 
         return $data;

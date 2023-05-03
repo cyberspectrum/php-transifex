@@ -56,11 +56,7 @@ class PostResourceStrings201ResponseNormalizer implements DenormalizerInterface,
             return $object;
         }
         if (array_key_exists('data', $data)) {
-            $values = [];
-            foreach ($data['data'] as $value) {
-                $values[] = $this->denormalizer->denormalize($value, ResourceResponse::class, 'json', $context);
-            }
-            $object->setData($values);
+            $object->setData($this->denormalizer->denormalize($data['data'], ResourceResponse::class, 'json', $context));
         }
 
         return $object;
@@ -73,11 +69,7 @@ class PostResourceStrings201ResponseNormalizer implements DenormalizerInterface,
     {
         $data = [];
         if ($object->isInitialized('data') && null !== $object->getData()) {
-            $values = [];
-            foreach ($object->getData() as $value) {
-                $values[] = $this->normalizer->normalize($value, 'json', $context);
-            }
-            $data['data'] = $values;
+            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
 
         return $data;

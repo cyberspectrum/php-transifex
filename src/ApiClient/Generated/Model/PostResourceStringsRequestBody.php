@@ -17,7 +17,9 @@ class PostResourceStringsRequestBody
      */
     protected array $initialized = [];
     /**
-     * @var PostResourceStringsRequestBodyDataItems[]
+     * Create resource string body request details.
+     *
+     * @var PostResourceStringsRequestBodyData2
      */
     protected $data;
 
@@ -27,17 +29,17 @@ class PostResourceStringsRequestBody
     }
 
     /**
-     * @return PostResourceStringsRequestBodyDataItems[]
+     * Create resource string body request details.
      */
-    public function getData(): array
+    public function getData(): PostResourceStringsRequestBodyData2
     {
         return $this->data;
     }
 
     /**
-     * @param PostResourceStringsRequestBodyDataItems[] $data
+     * Create resource string body request details.
      */
-    public function setData(array $data): self
+    public function setData(PostResourceStringsRequestBodyData2 $data): self
     {
         $this->initialized['data'] = true;
         $this->data = $data;

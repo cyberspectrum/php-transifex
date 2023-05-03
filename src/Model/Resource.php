@@ -33,6 +33,10 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyn
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncDownloadsRequestBodyDataRelationships;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncDownloadsRequestBodyDataRelationshipsResource;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBodyData;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBodyDataAttributes;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBodyDataRelationships;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBodyDataRelationshipsResource;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceStringsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Model\DownloadFile;
@@ -328,9 +332,27 @@ final class Resource
         // TODO: uploading content here, however we do not know if the media type is the same, do we need to bother?
         $this->client->postResourceStringsAsyncUpload(
             (new PostResourceStringsAsyncUploadsRequestBody())
-                ->setResource($this->resourceId)
-                ->setContent(base64_encode($content))
-                ->setReplaceEditedStrings(false)
+                ->setData(
+                    (new PostResourceStringsAsyncUploadsRequestBodyData())
+                        ->setType('resource_strings_async_uploads')
+                        ->setAttributes(
+                            (new PostResourceStringsAsyncUploadsRequestBodyDataAttributes())
+                                ->setContent(base64_encode($content))
+                                ->setContentEncoding('base64')
+                                ->setReplaceEditedStrings(false)
+                        )
+                        ->setRelationships(
+                            (new PostResourceStringsAsyncUploadsRequestBodyDataRelationships())
+                            ->setResource(
+                                (new PostResourceStringsAsyncUploadsRequestBodyDataRelationshipsResource())
+                                    ->setData(
+                                        (new DataRelationshipsData2())
+                                            ->setId($this->resourceId)
+                                            ->setType('resources')
+                                    )
+                            )
+                        )
+                )
         );
         // TODO: do we need to check the result here and update our values / replace the resource values?
 
@@ -344,6 +366,10 @@ final class Resource
 
     public function save(): void
     {
+        if (!$this->hasPending()) {
+            return;
+        }
+
         $this->client->patchResourceByResourceId(
             $this->resourceId,
             (new PatchResourcesResourceIdRequestBody())

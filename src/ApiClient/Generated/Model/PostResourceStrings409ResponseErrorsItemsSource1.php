@@ -10,31 +10,31 @@ declare(strict_types=1);
 
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Model;
 
-class PostResourceStrings201Response
+class PostResourceStrings409ResponseErrorsItemsSource1
 {
     /**
      * @var array<string, bool>
      */
     protected array $initialized = [];
     /**
-     * @var ResourceResponse
+     * @var string
      */
-    protected $data;
+    protected $pointer;
 
     public function isInitialized($property): bool
     {
         return array_key_exists($property, $this->initialized);
     }
 
-    public function getData(): ResourceResponse
+    public function getPointer(): string
     {
-        return $this->data;
+        return $this->pointer;
     }
 
-    public function setData(ResourceResponse $data): self
+    public function setPointer(string $pointer): self
     {
-        $this->initialized['data'] = true;
-        $this->data = $data;
+        $this->initialized['pointer'] = true;
+        $this->pointer = $pointer;
 
         return $this;
     }

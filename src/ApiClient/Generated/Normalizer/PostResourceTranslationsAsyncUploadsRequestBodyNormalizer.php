@@ -12,6 +12,7 @@ namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsRequestBodyData;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -54,22 +55,8 @@ class PostResourceTranslationsAsyncUploadsRequestBodyNormalizer implements Denor
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('callback_url', $data) && null !== $data['callback_url']) {
-            $object->setCallbackUrl($data['callback_url']);
-        } elseif (array_key_exists('callback_url', $data) && null === $data['callback_url']) {
-            $object->setCallbackUrl(null);
-        }
-        if (array_key_exists('content', $data)) {
-            $object->setContent($data['content']);
-        }
-        if (array_key_exists('file_type', $data)) {
-            $object->setFileType($data['file_type']);
-        }
-        if (array_key_exists('language', $data)) {
-            $object->setLanguage($data['language']);
-        }
-        if (array_key_exists('resource', $data)) {
-            $object->setResource($data['resource']);
+        if (array_key_exists('data', $data)) {
+            $object->setData($this->denormalizer->denormalize($data['data'], PostResourceTranslationsAsyncUploadsRequestBodyData::class, 'json', $context));
         }
 
         return $object;
@@ -81,20 +68,8 @@ class PostResourceTranslationsAsyncUploadsRequestBodyNormalizer implements Denor
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if ($object->isInitialized('callbackUrl') && null !== $object->getCallbackUrl()) {
-            $data['callback_url'] = $object->getCallbackUrl();
-        }
-        if (null !== $object->getContent()) {
-            $data['content'] = $object->getContent();
-        }
-        if ($object->isInitialized('fileType') && null !== $object->getFileType()) {
-            $data['file_type'] = $object->getFileType();
-        }
-        if (null !== $object->getLanguage()) {
-            $data['language'] = $object->getLanguage();
-        }
-        if (null !== $object->getResource()) {
-            $data['resource'] = $object->getResource();
+        if (null !== $object->getData()) {
+            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
 
         return $data;

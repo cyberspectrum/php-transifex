@@ -11,8 +11,7 @@ declare(strict_types=1);
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyData2;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStrings409ResponseErrorsItemsSource1;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -26,7 +25,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use function array_key_exists;
 use function is_array;
 
-class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class PostResourceStrings409ResponseErrorsItemsSource1Normalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -35,12 +34,12 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
 
     public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
-        return PostResourceStringsRequestBody::class === $type;
+        return PostResourceStrings409ResponseErrorsItemsSource1::class === $type;
     }
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && PostResourceStringsRequestBody::class === get_class($data);
+        return is_object($data) && PostResourceStrings409ResponseErrorsItemsSource1::class === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = []): mixed
@@ -51,12 +50,12 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new PostResourceStringsRequestBody();
+        $object = new PostResourceStrings409ResponseErrorsItemsSource1();
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('data', $data)) {
-            $object->setData($this->denormalizer->denormalize($data['data'], PostResourceStringsRequestBodyData2::class, 'json', $context));
+        if (array_key_exists('pointer', $data)) {
+            $object->setPointer($data['pointer']);
         }
 
         return $object;
@@ -68,8 +67,8 @@ class PostResourceStringsRequestBodyNormalizer implements DenormalizerInterface,
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if (null !== $object->getData()) {
-            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
+        if ($object->isInitialized('pointer') && null !== $object->getPointer()) {
+            $data['pointer'] = $object->getPointer();
         }
 
         return $data;

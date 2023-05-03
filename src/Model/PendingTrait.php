@@ -40,4 +40,9 @@ trait PendingTrait
     {
         return $this->pending[$property] ?? false;
     }
+
+    private function hasPending(): bool
+    {
+        return [] !== $this->pending;
+    }
 }
