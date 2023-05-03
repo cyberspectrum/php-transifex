@@ -12,6 +12,7 @@ namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBodyData;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -54,19 +55,8 @@ class PostResourceStringsAsyncUploadsRequestBodyNormalizer implements Denormaliz
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('callback_url', $data) && null !== $data['callback_url']) {
-            $object->setCallbackUrl($data['callback_url']);
-        } elseif (array_key_exists('callback_url', $data) && null === $data['callback_url']) {
-            $object->setCallbackUrl(null);
-        }
-        if (array_key_exists('content', $data)) {
-            $object->setContent($data['content']);
-        }
-        if (array_key_exists('replace_edited_strings', $data)) {
-            $object->setReplaceEditedStrings($data['replace_edited_strings']);
-        }
-        if (array_key_exists('resource', $data)) {
-            $object->setResource($data['resource']);
+        if (array_key_exists('data', $data)) {
+            $object->setData($this->denormalizer->denormalize($data['data'], PostResourceStringsAsyncUploadsRequestBodyData::class, 'json', $context));
         }
 
         return $object;
@@ -78,17 +68,8 @@ class PostResourceStringsAsyncUploadsRequestBodyNormalizer implements Denormaliz
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if ($object->isInitialized('callbackUrl') && null !== $object->getCallbackUrl()) {
-            $data['callback_url'] = $object->getCallbackUrl();
-        }
-        if (null !== $object->getContent()) {
-            $data['content'] = $object->getContent();
-        }
-        if ($object->isInitialized('replaceEditedStrings') && null !== $object->getReplaceEditedStrings()) {
-            $data['replace_edited_strings'] = $object->getReplaceEditedStrings();
-        }
-        if (null !== $object->getResource()) {
-            $data['resource'] = $object->getResource();
+        if (null !== $object->getData()) {
+            $data['data'] = $this->normalizer->normalize($object->getData(), 'json', $context);
         }
 
         return $data;

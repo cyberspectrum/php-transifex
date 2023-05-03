@@ -17,29 +17,11 @@ class PostResourceStringsAsyncUploadsRequestBody
      */
     protected array $initialized = [];
     /**
-     * The url that will be called when the processing is completed.
+     * Create source upload body request details.
      *
-     * @var string|null
+     * @var PostResourceStringsAsyncUploadsRequestBodyData
      */
-    protected $callbackUrl;
-    /**
-     * The file to upload.
-     *
-     * @var string
-     */
-    protected $content;
-    /**
-     * Option to replace edited strings.
-     *
-     * @var bool
-     */
-    protected $replaceEditedStrings = false;
-    /**
-     * Resource identifier.
-     *
-     * @var string
-     */
-    protected $resource;
+    protected $data;
 
     public function isInitialized($property): bool
     {
@@ -47,81 +29,20 @@ class PostResourceStringsAsyncUploadsRequestBody
     }
 
     /**
-     * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * Create source upload body request details.
      */
-    public function getCallbackUrl(): ?string
+    public function getData(): PostResourceStringsAsyncUploadsRequestBodyData
     {
-        return $this->callbackUrl;
+        return $this->data;
     }
 
     /**
-     * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * Create source upload body request details.
      */
-    public function setCallbackUrl(?string $callbackUrl): self
+    public function setData(PostResourceStringsAsyncUploadsRequestBodyData $data): self
     {
-        $this->initialized['callbackUrl'] = true;
-        $this->callbackUrl = $callbackUrl;
-
-        return $this;
-    }
-
-    /**
-     * The file to upload.
-     */
-    public function getContent(): string
-    {
-        return $this->content;
-    }
-
-    /**
-     * The file to upload.
-     */
-    public function setContent(string $content): self
-    {
-        $this->initialized['content'] = true;
-        $this->content = $content;
-
-        return $this;
-    }
-
-    /**
-     * Option to replace edited strings.
-    If true, updated strings modified in the editor will be overwritten.
-     */
-    public function getReplaceEditedStrings(): bool
-    {
-        return $this->replaceEditedStrings;
-    }
-
-    /**
-     * Option to replace edited strings.
-    If true, updated strings modified in the editor will be overwritten.
-     */
-    public function setReplaceEditedStrings(bool $replaceEditedStrings): self
-    {
-        $this->initialized['replaceEditedStrings'] = true;
-        $this->replaceEditedStrings = $replaceEditedStrings;
-
-        return $this;
-    }
-
-    /**
-     * Resource identifier.
-     */
-    public function getResource(): string
-    {
-        return $this->resource;
-    }
-
-    /**
-     * Resource identifier.
-     */
-    public function setResource(string $resource): self
-    {
-        $this->initialized['resource'] = true;
-        $this->resource = $resource;
+        $this->initialized['data'] = true;
+        $this->data = $data;
 
         return $this;
     }

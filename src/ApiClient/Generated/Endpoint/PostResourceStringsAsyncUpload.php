@@ -18,6 +18,7 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceStrings
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceStringsAsyncUploadTooManyRequestsException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostResourceStringsAsyncUploadUnauthorizedException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\UnexpectedStatusCodeException;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceStringsAsyncUploadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared400Response;
@@ -40,9 +41,10 @@ class PostResourceStringsAsyncUpload extends BaseEndpoint implements Endpoint
 
     /**
      * For more details about File uploads you can refer to [File Uploads](#section/File-Uploads) section.
-    endpoint.
+     *
+     * @param PostResourceStringsAsyncUploadsMultipartFormDataRequestBody|PostResourceStringsAsyncUploadsRequestBody $requestBody
      */
-    public function __construct(PostResourceStringsAsyncUploadsRequestBody $requestBody)
+    public function __construct($requestBody)
     {
         $this->body = $requestBody;
     }
@@ -62,7 +64,7 @@ class PostResourceStringsAsyncUpload extends BaseEndpoint implements Endpoint
         if ($this->body instanceof PostResourceStringsAsyncUploadsRequestBody) {
             return [['Content-Type' => ['application/vnd.api+json']], $serializer->serialize($this->body, 'json')];
         }
-        if ($this->body instanceof PostResourceStringsAsyncUploadsRequestBody) {
+        if ($this->body instanceof PostResourceStringsAsyncUploadsMultipartFormDataRequestBody) {
             $bodyBuilder = new MultipartStreamBuilder($streamFactory);
             $formParameters = $serializer->normalize($this->body, 'json');
             foreach ($formParameters as $key => $value) {

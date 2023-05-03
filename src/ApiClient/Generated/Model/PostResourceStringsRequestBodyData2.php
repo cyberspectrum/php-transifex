@@ -10,7 +10,7 @@ declare(strict_types=1);
 
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Model;
 
-class PostResourceStringsRequestBodyDataItems
+class PostResourceStringsRequestBodyData2
 {
     /**
      * @var array<string, bool>

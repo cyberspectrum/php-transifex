@@ -10,16 +10,14 @@ declare(strict_types=1);
 
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Model;
 
-class PostResourceTranslationsAsyncUploadsRequestBody
+class PostResourceStringsRequestBody1
 {
     /**
      * @var array<string, bool>
      */
     protected array $initialized = [];
     /**
-     * Create resource translation upload body request details.
-     *
-     * @var PostResourceTranslationsAsyncUploadsRequestBodyData
+     * @var PostResourceStringsRequestBodyData2[]
      */
     protected $data;
 
@@ -29,17 +27,17 @@ class PostResourceTranslationsAsyncUploadsRequestBody
     }
 
     /**
-     * Create resource translation upload body request details.
+     * @return PostResourceStringsRequestBodyData2[]
      */
-    public function getData(): PostResourceTranslationsAsyncUploadsRequestBodyData
+    public function getData(): array
     {
         return $this->data;
     }
 
     /**
-     * Create resource translation upload body request details.
+     * @param PostResourceStringsRequestBodyData2[] $data
      */
-    public function setData(PostResourceTranslationsAsyncUploadsRequestBodyData $data): self
+    public function setData(array $data): self
     {
         $this->initialized['data'] = true;
         $this->data = $data;

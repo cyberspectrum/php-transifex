@@ -11,9 +11,7 @@ declare(strict_types=1);
 namespace CyberSpectrum\PhpTransifex\ApiClient\Generated\Normalizer;
 
 use ArrayObject;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyDataAttributes1;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyDataItems;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBodyDataRelationships1;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\CheckArray;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Runtime\Normalizer\ValidatorTrait;
 use Jane\Component\JsonSchemaRuntime\Reference;
@@ -27,7 +25,7 @@ use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 use function array_key_exists;
 use function is_array;
 
-class PostResourceStringsRequestBodyDataItemsNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
+class PostTmxAsyncUploadsMultipartFormDataRequestBodyNormalizer implements DenormalizerInterface, NormalizerInterface, DenormalizerAwareInterface, NormalizerAwareInterface
 {
     use DenormalizerAwareTrait;
     use NormalizerAwareTrait;
@@ -36,12 +34,12 @@ class PostResourceStringsRequestBodyDataItemsNormalizer implements DenormalizerI
 
     public function supportsDenormalization($data, $type, $format = null, array $context = []): bool
     {
-        return PostResourceStringsRequestBodyDataItems::class === $type;
+        return PostTmxAsyncUploadsMultipartFormDataRequestBody::class === $type;
     }
 
     public function supportsNormalization($data, $format = null, array $context = []): bool
     {
-        return is_object($data) && PostResourceStringsRequestBodyDataItems::class === get_class($data);
+        return is_object($data) && PostTmxAsyncUploadsMultipartFormDataRequestBody::class === get_class($data);
     }
 
     public function denormalize($data, $class, $format = null, array $context = []): mixed
@@ -52,18 +50,26 @@ class PostResourceStringsRequestBodyDataItemsNormalizer implements DenormalizerI
         if (isset($data['$recursiveRef'])) {
             return new Reference($data['$recursiveRef'], $context['document-origin']);
         }
-        $object = new PostResourceStringsRequestBodyDataItems();
+        $object = new PostTmxAsyncUploadsMultipartFormDataRequestBody();
         if (null === $data || false === is_array($data)) {
             return $object;
         }
-        if (array_key_exists('attributes', $data)) {
-            $object->setAttributes($this->denormalizer->denormalize($data['attributes'], PostResourceStringsRequestBodyDataAttributes1::class, 'json', $context));
+        if (array_key_exists('callback_url', $data) && null !== $data['callback_url']) {
+            $object->setCallbackUrl($data['callback_url']);
+        } elseif (array_key_exists('callback_url', $data) && null === $data['callback_url']) {
+            $object->setCallbackUrl(null);
         }
-        if (array_key_exists('relationships', $data)) {
-            $object->setRelationships($this->denormalizer->denormalize($data['relationships'], PostResourceStringsRequestBodyDataRelationships1::class, 'json', $context));
+        if (array_key_exists('content', $data)) {
+            $object->setContent($data['content']);
         }
-        if (array_key_exists('type', $data)) {
-            $object->setType($data['type']);
+        if (array_key_exists('language_id', $data)) {
+            $object->setLanguageId($data['language_id']);
+        }
+        if (array_key_exists('override', $data)) {
+            $object->setOverride($data['override']);
+        }
+        if (array_key_exists('project_id', $data)) {
+            $object->setProjectId($data['project_id']);
         }
 
         return $object;
@@ -75,14 +81,20 @@ class PostResourceStringsRequestBodyDataItemsNormalizer implements DenormalizerI
     public function normalize($object, $format = null, array $context = [])
     {
         $data = [];
-        if (null !== $object->getAttributes()) {
-            $data['attributes'] = $this->normalizer->normalize($object->getAttributes(), 'json', $context);
+        if ($object->isInitialized('callbackUrl') && null !== $object->getCallbackUrl()) {
+            $data['callback_url'] = $object->getCallbackUrl();
         }
-        if (null !== $object->getRelationships()) {
-            $data['relationships'] = $this->normalizer->normalize($object->getRelationships(), 'json', $context);
+        if (null !== $object->getContent()) {
+            $data['content'] = $object->getContent();
         }
-        if (null !== $object->getType()) {
-            $data['type'] = $object->getType();
+        if ($object->isInitialized('languageId') && null !== $object->getLanguageId()) {
+            $data['language_id'] = $object->getLanguageId();
+        }
+        if ($object->isInitialized('override') && null !== $object->getOverride()) {
+            $data['override'] = $object->getOverride();
+        }
+        if (null !== $object->getProjectId()) {
+            $data['project_id'] = $object->getProjectId();
         }
 
         return $data;

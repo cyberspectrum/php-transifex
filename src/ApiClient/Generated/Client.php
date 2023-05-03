@@ -675,15 +675,19 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringComme
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringCommentsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStrings201Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncDownloadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody1;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTeamActivityReportsAsyncDownloadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTeamMembershipsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTeamsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncDownloadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploads202Response;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ProjectActivityReportsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ProjectsProjectIdRelationshipsLanguagesRequestBody;
@@ -1828,8 +1832,9 @@ class Client extends ClientBase
     /**
      * Create a new resource string. This path is valid only for file-less.
      *
-     * @param string $fetch  Fetch mode to use (can be OBJECT or RESPONSE)
-     * @param array  $accept Accept content header application/vnd.api+json|application/vnd.api+json;profile="bulk"
+     * @param PostResourceStringsRequestBody|PostResourceStringsRequestBody1 $requestBody
+     * @param string                                                         $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
+     * @param array                                                          $accept      Accept content header application/vnd.api+json|application/vnd.api+json;profile="bulk"
      *
      * @return PostResourceStrings201Response|ResponseInterface
      *
@@ -1842,7 +1847,7 @@ class Client extends ClientBase
      * @throws PostResourceStringInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function postResourceString(PostResourceStringsRequestBody $requestBody, string $fetch = self::FETCH_OBJECT, array $accept = [])
+    public function postResourceString($requestBody, string $fetch = self::FETCH_OBJECT, array $accept = [])
     {
         return $this->executeEndpoint(new PostResourceString($requestBody, $accept), $fetch);
     }
@@ -1952,7 +1957,8 @@ class Client extends ClientBase
     /**
      * For more details about File uploads you can refer to [File Uploads](#section/File-Uploads) section.
      *
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @param PostResourceStringsAsyncUploadsMultipartFormDataRequestBody|PostResourceStringsAsyncUploadsRequestBody $requestBody
+     * @param string                                                                                                 $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ResourceStringsAsyncUploadsResponse|ResponseInterface
      *
@@ -1965,7 +1971,7 @@ class Client extends ClientBase
      * @throws PostResourceStringsAsyncUploadInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function postResourceStringsAsyncUpload(PostResourceStringsAsyncUploadsRequestBody $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function postResourceStringsAsyncUpload($requestBody, string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new PostResourceStringsAsyncUpload($requestBody), $fetch);
     }
@@ -2168,7 +2174,8 @@ class Client extends ClientBase
     /**
      * Upload a new resource translation file for a specific language.
      *
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @param PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody|PostResourceTranslationsAsyncUploadsRequestBody $requestBody
+     * @param string                                                                                                           $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ResourceTranslationsAsyncUploadsResponse|ResponseInterface
      *
@@ -2181,7 +2188,7 @@ class Client extends ClientBase
      * @throws PostResourceTranslationsAsyncUploadInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function postResourceTranslationsAsyncUpload(PostResourceTranslationsAsyncUploadsRequestBody $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function postResourceTranslationsAsyncUpload($requestBody, string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new PostResourceTranslationsAsyncUpload($requestBody), $fetch);
     }
@@ -2711,7 +2718,8 @@ class Client extends ClientBase
     /**
      * Upload a new TMX file for a project.
      *
-     * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
+     * @param PostTmxAsyncUploadsMultipartFormDataRequestBody|PostTmxAsyncUploadsRequestBody $requestBody
+     * @param string                                                                         $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return PostTmxAsyncUploads202Response|ResponseInterface
      *
@@ -2723,7 +2731,7 @@ class Client extends ClientBase
      * @throws PostTmxAsyncUploadInternalServerErrorException
      * @throws UnexpectedStatusCodeException
      */
-    public function postTmxAsyncUpload(PostTmxAsyncUploadsRequestBody $requestBody, string $fetch = self::FETCH_OBJECT)
+    public function postTmxAsyncUpload($requestBody, string $fetch = self::FETCH_OBJECT)
     {
         return $this->executeEndpoint(new PostTmxAsyncUpload($requestBody), $fetch);
     }

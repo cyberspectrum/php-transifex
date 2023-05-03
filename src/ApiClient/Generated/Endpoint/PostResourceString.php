@@ -21,6 +21,7 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\UnexpectedStatusCod
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStrings201Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStrings409Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceStringsRequestBody1;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared400Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared401Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared403Response;
@@ -41,9 +42,10 @@ class PostResourceString extends BaseEndpoint implements Endpoint
     /**
      * Create a new resource string. This path is valid only for file-less.
      *
-     * @param array $accept Accept content header application/vnd.api+json|application/vnd.api+json;profile="bulk"
+     * @param PostResourceStringsRequestBody|PostResourceStringsRequestBody1 $requestBody
+     * @param array                                                          $accept      Accept content header application/vnd.api+json|application/vnd.api+json;profile="bulk"
      */
-    public function __construct(PostResourceStringsRequestBody $requestBody, array $accept = [])
+    public function __construct($requestBody, array $accept = [])
     {
         $this->body = $requestBody;
         $this->accept = $accept;
@@ -64,7 +66,7 @@ class PostResourceString extends BaseEndpoint implements Endpoint
         if ($this->body instanceof PostResourceStringsRequestBody) {
             return [['Content-Type' => ['application/vnd.api+json']], $serializer->serialize($this->body, 'json')];
         }
-        if ($this->body instanceof PostResourceStringsRequestBody) {
+        if ($this->body instanceof PostResourceStringsRequestBody1) {
             return [['Content-Type' => ['application/vnd.api+json;profile="bulk"']], $this->body];
         }
 

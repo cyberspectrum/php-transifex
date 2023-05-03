@@ -18,6 +18,7 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostTmxAsyncUploadN
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\PostTmxAsyncUploadUnauthorizedException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Exception\UnexpectedStatusCodeException;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploads202Response;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsMultipartFormDataRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostTmxAsyncUploadsRequestBody;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared400Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResponseShared401Response;
@@ -38,9 +39,10 @@ class PostTmxAsyncUpload extends BaseEndpoint implements Endpoint
 
     /**
      * Upload a new TMX file for a project.
-    The response represents the file upload job. Check the job's status to determine it's completion.
+     *
+     * @param PostTmxAsyncUploadsMultipartFormDataRequestBody|PostTmxAsyncUploadsRequestBody $requestBody
      */
-    public function __construct(PostTmxAsyncUploadsRequestBody $requestBody)
+    public function __construct($requestBody)
     {
         $this->body = $requestBody;
     }
@@ -60,7 +62,7 @@ class PostTmxAsyncUpload extends BaseEndpoint implements Endpoint
         if ($this->body instanceof PostTmxAsyncUploadsRequestBody) {
             return [['Content-Type' => ['application/vnd.api+json']], $serializer->serialize($this->body, 'json')];
         }
-        if ($this->body instanceof PostTmxAsyncUploadsRequestBody) {
+        if ($this->body instanceof PostTmxAsyncUploadsMultipartFormDataRequestBody) {
             $bodyBuilder = new MultipartStreamBuilder($streamFactory);
             $formParameters = $serializer->normalize($this->body, 'json');
             foreach ($formParameters as $key => $value) {
