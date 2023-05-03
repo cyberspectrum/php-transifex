@@ -1,5 +1,6 @@
 /phpunit.xml
 /vendor/
 /.idea
-/.build
-composer.lock
+/.phpcq/*
+/composer.lock
+/.phpunit.result.cache
