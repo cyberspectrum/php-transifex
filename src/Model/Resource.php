@@ -366,6 +366,10 @@ final class Resource
 
     public function save(): void
     {
+        if (!$this->hasPending()) {
+            return;
+        }
+
         $this->client->patchResourceByResourceId(
             $this->resourceId,
             (new PatchResourcesResourceIdRequestBody())
