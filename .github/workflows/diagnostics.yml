@@ -1,4 +1,4 @@
-name: cyberspectrum/i18n
+name: cyberspectrum/php-transifex
 
 on:
   push:
