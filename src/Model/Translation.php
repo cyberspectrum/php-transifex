@@ -31,7 +31,6 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslation
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationships;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationshipsLanguage;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationshipsResource;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceStringsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Model\DownloadFile;
 use CyberSpectrum\PhpTransifex\Client;
@@ -130,7 +129,7 @@ class Translation
             }
 
             $data = $this->client->parseEndpoint($endpoint, $response);
-            assert($data instanceof ResourceStringsAsyncDownloadsResponse);
+            assert($data instanceof ResourceTranslationsAsyncDownloadsResponse);
             $attributes = $data->getData()->getAttributes();
             if (!in_array($attributes->getStatus(), ['pending', 'processing'])) {
                 $errors = [];
