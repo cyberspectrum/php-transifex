@@ -141,7 +141,7 @@ class Translation
             }
 
             // FIXME: sleeping is not that cool here :(
-            sleep(3);
+            usleep(250000);
         } while (true);
     }
 
