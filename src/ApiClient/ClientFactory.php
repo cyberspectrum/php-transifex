@@ -62,6 +62,9 @@ class ClientFactory
     public function __construct(LoggerInterface $logger, array $auth)
     {
         $this->logger = $logger;
+        if (!empty($auth)) {
+            $this->basePlugins[] = new AuthenticationRegistry($auth);
+        }
 
         $this->basePlugins[] = new HeaderDefaultsPlugin([
             'User-Agent' => 'php-transifex-api (https://github.com/cyberspectrum/php-transifex)',
@@ -91,9 +94,6 @@ class ClientFactory
             'avg: {res_header_X-Duration-Avg} ms]'
         );
         $this->basePlugins[] = new RequestTiming();
-        if (!empty($auth)) {
-            $this->basePlugins[] = new AuthenticationRegistry($auth);
-        }
     }
 
     /** @param list<Plugin> $additionalPlugins */
