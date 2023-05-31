@@ -45,8 +45,8 @@ final class MembershipList implements IteratorAggregate
     public function getIterator(): Traversable
     {
         $this->load();
-        foreach ($this->memberships as $team) {
-            yield $team;
+        foreach ($this->memberships as $membership) {
+            yield $membership;
         }
     }
 
@@ -71,8 +71,8 @@ final class MembershipList implements IteratorAggregate
                 $organization,
                 $data->getAttributes()->getRole(),
                 $relationShips->getLanguage()->getData()->getId(),
-                $relationShips->getTeam()->getData()->getId(),
-                $relationShips->getUser()->getData()->getId(),
+                $this->team,
+                new User($this->client, $relationShips->getUser()->getData()->getId()),
             );
         }
     }
