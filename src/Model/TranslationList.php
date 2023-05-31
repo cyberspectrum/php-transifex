@@ -21,8 +21,11 @@ declare(strict_types=1);
 
 namespace CyberSpectrum\PhpTransifex\Model;
 
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\DataRelationshipsData1;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\GetResourceTranslations200Response;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsResponseDataAttributes;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsResponseDataRelationships;
+use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsResponseDataRelationships1;
 use CyberSpectrum\PhpTransifex\Client;
 use IteratorAggregate;
 use OutOfBoundsException;
@@ -37,7 +40,7 @@ use function in_array;
  *
  * @implements IteratorAggregate<int, Translation>
  */
-class TranslationList implements IteratorAggregate
+final class TranslationList implements IteratorAggregate
 {
     /** @var list<Translation> */
     private array $translations = [];
@@ -47,7 +50,6 @@ class TranslationList implements IteratorAggregate
      */
     public function __construct(
         private readonly Client $client,
-        private readonly Project $project,
         private readonly Resource $resource,
     ) {
     }
@@ -112,31 +114,19 @@ class TranslationList implements IteratorAggregate
             return;
         }
 
-        $languages = $this->project->languages()->getIterator();
+        $languages = $this->resource->getProject()->languages()->getIterator();
         foreach ($languages as $language) {
-            $result = $this->client->getResourceTranslation([
-                'filter[resource]' => $this->resource->getResourceId(),
-                'filter[language]' => $language->getLanguageId(),
-            ]);
-            assert($result instanceof GetResourceTranslations200Response);
-            foreach ($result->getData() as $resourceData) {
-                $this->translations[] = $this->translationModel(
-                    $resourceData->getId(),
-                    $language,
-                );
-            }
+            $this->translations[] = $this->translationModel($language);
         }
     }
 
     private function translationModel(
-        string $translationId,
         Language $language,
     ): Translation {
         return new Translation(
             $this->client,
             $this->resource,
             $language,
-            $translationId,
         );
     }
 }
