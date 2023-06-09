@@ -22,6 +22,9 @@ declare(strict_types=1);
 namespace CyberSpectrum\PhpTransifex\Model;
 
 use CyberSpectrum\PhpTransifex\Client;
+use InvalidArgumentException;
+
+use function in_array;
 
 final class Membership
 {
@@ -39,11 +42,11 @@ final class Membership
         private readonly Organization $organization,
         private readonly string $role,
         private readonly string $languageId,
-        private readonly string $teamId,
-        private readonly string $userId,
+        private readonly Team $team,
+        private readonly User $user,
     ) {
-        if (!\in_array($this->role, self::VALID_ROLES, true)) {
-            throw new \InvalidArgumentException('Invalid role passed: ' . $this->role);
+        if (!in_array($this->role, self::VALID_ROLES, true)) {
+            throw new InvalidArgumentException('Invalid role passed: ' . $this->role);
         }
     }
 
@@ -57,13 +60,13 @@ final class Membership
         return $this->languageId;
     }
 
-    public function getTeamId(): string
+    public function getTeam(): Team
     {
-        return $this->teamId;
+        return $this->team;
     }
 
-    public function getUserId(): string
+    public function getUser(): User
     {
-        return $this->userId;
+        return $this->user;
     }
 }

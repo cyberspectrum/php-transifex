@@ -106,11 +106,7 @@ final class Resource
         if (!in_array($this->priority, self::RESOURCE_PRIORITY, true)) {
             throw new InvalidArgumentException('Unknown priority passed: ' . $this->priority);
         }
-        $this->translationList = new TranslationList(
-            $this->client,
-            $this->projectModel,
-            $this
-        );
+        $this->translationList = new TranslationList($this->client, $this);
     }
 
     public function getProject(): Project
@@ -318,7 +314,7 @@ final class Resource
             }
 
             // FIXME: sleeping is not that cool here :(
-            sleep(3);
+            usleep(250000);
         } while (true);
     }
 

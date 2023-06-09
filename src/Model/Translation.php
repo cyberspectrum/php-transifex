@@ -31,10 +31,10 @@ use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslation
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationships;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationshipsLanguage;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\PostResourceTranslationsAsyncDownloadsRequestBodyDataRelationshipsResource;
-use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceStringsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Generated\Model\ResourceTranslationsAsyncDownloadsResponse;
 use CyberSpectrum\PhpTransifex\ApiClient\Model\DownloadFile;
 use CyberSpectrum\PhpTransifex\Client;
+use DateTimeInterface;
 use RuntimeException;
 // @codingStandardsIgnoreEnd
 
@@ -51,6 +51,8 @@ class Translation
 
     private ?string $contents = null;
 
+    private readonly TranslationStringList $strings;
+
     /**
      * Create a new instance.
      */
@@ -58,19 +60,14 @@ class Translation
         private readonly Client $client,
         private readonly Resource $resource,
         private readonly Language $language,
-        private readonly string $translationId,
     ) {
         $this->statistic = new Statistic($this->client, $this);
+        $this->strings   = new TranslationStringList($this->client, $this);
     }
 
     public function getResource(): Resource
     {
         return $this->resource;
-    }
-
-    public function getTranslationId(): string
-    {
-        return $this->translationId;
     }
 
     public function getLanguage(): Language
@@ -130,7 +127,7 @@ class Translation
             }
 
             $data = $this->client->parseEndpoint($endpoint, $response);
-            assert($data instanceof ResourceStringsAsyncDownloadsResponse);
+            assert($data instanceof ResourceTranslationsAsyncDownloadsResponse);
             $attributes = $data->getData()->getAttributes();
             if (!in_array($attributes->getStatus(), ['pending', 'processing'])) {
                 $errors = [];
@@ -142,15 +139,17 @@ class Translation
             }
 
             // FIXME: sleeping is not that cool here :(
-            sleep(3);
+            usleep(250000);
         } while (true);
     }
 
-    /**
-     * Retrieve the statistic for this language.
-     */
-    public function getStatistic(): Statistic
+    public function statistic(): Statistic
     {
         return $this->statistic;
+    }
+
+    public function strings(): TranslationStringList
+    {
+        return $this->strings;
     }
 }
