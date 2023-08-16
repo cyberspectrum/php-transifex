@@ -74,4 +74,9 @@ class ResourceStringsAsyncUploadsResponseNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncUploadsResponse::class => false];
+    }
 }

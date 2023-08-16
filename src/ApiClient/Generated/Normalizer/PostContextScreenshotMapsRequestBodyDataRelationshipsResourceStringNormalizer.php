@@ -74,4 +74,9 @@ class PostContextScreenshotMapsRequestBodyDataRelationshipsResourceStringNormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostContextScreenshotMapsRequestBodyDataRelationshipsResourceString::class => false];
+    }
 }

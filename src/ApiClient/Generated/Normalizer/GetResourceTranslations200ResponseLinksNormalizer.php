@@ -89,4 +89,9 @@ class GetResourceTranslations200ResponseLinksNormalizer implements DenormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceTranslations200ResponseLinks::class => false];
+    }
 }

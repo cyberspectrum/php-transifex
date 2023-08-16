@@ -73,4 +73,9 @@ class PostResourceStringComments201ResponseDatarelationshipsAuthorLinksNormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringComments201ResponseDatarelationshipsAuthorLinks::class => false];
+    }
 }

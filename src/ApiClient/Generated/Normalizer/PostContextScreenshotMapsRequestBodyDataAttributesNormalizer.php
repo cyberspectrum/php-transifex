@@ -112,4 +112,9 @@ class PostContextScreenshotMapsRequestBodyDataAttributesNormalizer implements De
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostContextScreenshotMapsRequestBodyDataAttributes::class => false];
+    }
 }

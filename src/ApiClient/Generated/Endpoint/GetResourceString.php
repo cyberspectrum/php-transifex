@@ -39,14 +39,14 @@ class GetResourceString extends BaseEndpoint implements Endpoint
     /**
      * @param array $queryParameters {
      *
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[strings_date_modified][gte]
-     *     @var string $filter[strings_date_modified][lte]
-     *     @var string $filter[key] Exact match for the key of the resource string. This filter is case sensitive.
-     *     @var array $filter[tags][all] Retrieve source strings containing all of the query tags
-     *     @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
-     * }
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[strings_date_modified][gte]
+     * @var string $filter[strings_date_modified][lte]
+     * @var string $filter[key] Exact match for the key of the resource string. This filter is case sensitive.
+     * @var array  $filter[tags][all] Retrieve source strings containing all of the query tags
+     * @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

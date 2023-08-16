@@ -74,4 +74,9 @@ class PostResourceStringComments201ResponseNormalizer implements DenormalizerInt
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringComments201Response::class => false];
+    }
 }

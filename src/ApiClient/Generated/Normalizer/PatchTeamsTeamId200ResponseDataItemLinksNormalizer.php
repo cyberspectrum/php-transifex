@@ -73,4 +73,9 @@ class PatchTeamsTeamId200ResponseDataItemLinksNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamsTeamId200ResponseDataItemLinks::class => false];
+    }
 }

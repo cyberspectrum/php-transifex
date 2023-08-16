@@ -81,4 +81,9 @@ class ProjectResponseRelationshipsProjectNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectResponseRelationshipsProject::class => false];
+    }
 }

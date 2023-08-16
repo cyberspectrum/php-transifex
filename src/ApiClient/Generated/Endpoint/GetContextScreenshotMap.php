@@ -38,12 +38,12 @@ class GetContextScreenshotMap extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[resource_string]
-     *     @var string $filter[context_screenshot] Retrieve maps related to a specific context screenshot
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $filter[project] Filter results by a project
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[resource_string]
+     * @var string $filter[context_screenshot] Retrieve maps related to a specific context screenshot
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

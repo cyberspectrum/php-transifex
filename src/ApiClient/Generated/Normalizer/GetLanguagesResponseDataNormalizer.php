@@ -93,4 +93,9 @@ class GetLanguagesResponseDataNormalizer implements DenormalizerInterface, Norma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetLanguagesResponseData::class => false];
+    }
 }

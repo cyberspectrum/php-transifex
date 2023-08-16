@@ -86,4 +86,9 @@ class PatchResourceStringCommentsCommentIdRequestBodyDataNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentIdRequestBodyData::class => false];
+    }
 }

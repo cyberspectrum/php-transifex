@@ -74,4 +74,9 @@ class PostTmxAsyncDownloadsRequestBodyDataRelationshipsProjectNormalizer impleme
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTmxAsyncDownloadsRequestBodyDataRelationshipsProject::class => false];
+    }
 }

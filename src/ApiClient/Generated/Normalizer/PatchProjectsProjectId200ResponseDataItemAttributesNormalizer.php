@@ -178,4 +178,9 @@ class PatchProjectsProjectId200ResponseDataItemAttributesNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItemAttributes::class => false];
+    }
 }

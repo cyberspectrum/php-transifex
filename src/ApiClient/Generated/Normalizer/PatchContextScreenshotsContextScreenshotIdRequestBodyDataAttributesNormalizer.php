@@ -73,4 +73,9 @@ class PatchContextScreenshotsContextScreenshotIdRequestBodyDataAttributesNormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchContextScreenshotsContextScreenshotIdRequestBodyDataAttributes::class => false];
+    }
 }

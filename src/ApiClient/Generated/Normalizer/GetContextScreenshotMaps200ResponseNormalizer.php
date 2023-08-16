@@ -89,4 +89,9 @@ class GetContextScreenshotMaps200ResponseNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetContextScreenshotMaps200Response::class => false];
+    }
 }

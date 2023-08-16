@@ -104,4 +104,9 @@ class PatchResourceStringsRequestBodyDataAttributesNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringsRequestBodyDataAttributes::class => false];
+    }
 }

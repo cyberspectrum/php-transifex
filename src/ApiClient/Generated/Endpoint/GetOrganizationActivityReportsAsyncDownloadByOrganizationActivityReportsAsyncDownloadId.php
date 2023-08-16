@@ -32,10 +32,19 @@ class GetOrganizationActivityReportsAsyncDownloadByOrganizationActivityReportsAs
     protected $organization_activity_reports_async_download_id;
 
     /**
-     * With this endpoint, you can inquire about the status of an organization.
+     * With this endpoint, you can inquire about the status of an organization
+     * activity report download job.
      *
-     * @param string $organizationActivityReportsAsyncDownloadId Format of the organization_activity_reports_async_download_id should be
-    a UUID.
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the report has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to
+     * [download the file](#tag/File-Downloads/paths/get) that have been
+     * extracted from your file.
+     *
+     * @param string $organizationActivityReportsAsyncDownloadId format of the organization_activity_reports_async_download_id should be
+     *                                                           a UUID
      */
     public function __construct(string $organizationActivityReportsAsyncDownloadId)
     {

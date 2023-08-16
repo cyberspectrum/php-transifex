@@ -23,7 +23,8 @@ class PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationships
      */
     protected $language;
     /**
-     * The `organization` whose translation activity you.
+     * The `organization` whose translation activity you
+     * want to make a report for.
      *
      * @var PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationshipsOrganization
      */
@@ -60,8 +61,8 @@ class PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `organization` whose translation activity you.
-    want to make a report for.
+     * The `organization` whose translation activity you
+     * want to make a report for.
      */
     public function getOrganization(): PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationshipsOrganization
     {
@@ -69,8 +70,8 @@ class PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `organization` whose translation activity you.
-    want to make a report for.
+     * The `organization` whose translation activity you
+     * want to make a report for.
      */
     public function setOrganization(PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationshipsOrganization $organization): self
     {

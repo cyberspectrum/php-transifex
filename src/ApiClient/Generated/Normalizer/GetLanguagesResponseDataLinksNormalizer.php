@@ -73,4 +73,9 @@ class GetLanguagesResponseDataLinksNormalizer implements DenormalizerInterface, 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetLanguagesResponseDataLinks::class => false];
+    }
 }

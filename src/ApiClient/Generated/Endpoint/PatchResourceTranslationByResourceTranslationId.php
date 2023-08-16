@@ -39,7 +39,14 @@ class PatchResourceTranslationByResourceTranslationId extends BaseEndpoint imple
     protected $resource_translation_id;
 
     /**
-     * Allows to add/update/remove content for Resource Translations as well as.
+     * Allows to add/update/remove content for Resource Translations as well as
+     * reviewing/unreviewing existing work.
+     *
+     * When not all of the attributes are supplied in the request, these are interpreted as
+     * if they were included with their current value.
+     * The only exception in this rule is when `strings` are modified,
+     * the resource translation is by default unreviewed unless otherwise specified
+     * (with the `reviewed`/`proofread` attributes on the request body).
      *
      * @param string $resourceTranslationId Format of the Resource Translation id. Should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash:l:language_code`.
      */

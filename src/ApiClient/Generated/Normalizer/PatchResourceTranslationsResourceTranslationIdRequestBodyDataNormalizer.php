@@ -86,4 +86,9 @@ class PatchResourceTranslationsResourceTranslationIdRequestBodyDataNormalizer im
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceTranslationsResourceTranslationIdRequestBodyData::class => false];
+    }
 }

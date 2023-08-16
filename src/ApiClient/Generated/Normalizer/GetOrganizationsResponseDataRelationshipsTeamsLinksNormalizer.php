@@ -73,4 +73,9 @@ class GetOrganizationsResponseDataRelationshipsTeamsLinksNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetOrganizationsResponseDataRelationshipsTeamsLinks::class => false];
+    }
 }

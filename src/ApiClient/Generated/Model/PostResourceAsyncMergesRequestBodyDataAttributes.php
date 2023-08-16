@@ -18,6 +18,7 @@ class PostResourceAsyncMergesRequestBodyDataAttributes
     protected array $initialized = [];
     /**
      * The url that will be called when the processing is completed.
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      *
      * @var string|null
      */
@@ -40,7 +41,7 @@ class PostResourceAsyncMergesRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function getCallbackUrl(): ?string
     {
@@ -49,7 +50,7 @@ class PostResourceAsyncMergesRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function setCallbackUrl(?string $callbackUrl): self
     {

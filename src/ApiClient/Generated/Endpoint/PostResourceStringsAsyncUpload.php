@@ -42,6 +42,13 @@ class PostResourceStringsAsyncUpload extends BaseEndpoint implements Endpoint
     /**
      * For more details about File uploads you can refer to [File Uploads](#section/File-Uploads) section.
      *
+     * The response represents the file upload job. Look into the 'status'
+     * attribute to verify that the upload has completed successfuly. If the
+     * status is 'pending' or 'processing', then you will need to periodically
+     * inquire about its status. Use the 'self' link, which will get you to the
+     * [/resource_strings_async_uploads/{resource_strings_async_upload_id}](#tag/Resource-Strings/paths/~1resource_strings_async_uploads~1{resource_strings_async_upload_id}/get)
+     * endpoint.
+     *
      * @param PostResourceStringsAsyncUploadsMultipartFormDataRequestBody|PostResourceStringsAsyncUploadsRequestBody $requestBody
      */
     public function __construct($requestBody)

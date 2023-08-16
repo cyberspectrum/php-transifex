@@ -74,4 +74,9 @@ class PostProjectsRequestBodyDataRelationshipsSourceLanguageNormalizer implement
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectsRequestBodyDataRelationshipsSourceLanguage::class => false];
+    }
 }

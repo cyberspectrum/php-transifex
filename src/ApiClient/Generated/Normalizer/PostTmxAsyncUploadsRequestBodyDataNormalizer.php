@@ -87,4 +87,9 @@ class PostTmxAsyncUploadsRequestBodyDataNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTmxAsyncUploadsRequestBodyData::class => false];
+    }
 }

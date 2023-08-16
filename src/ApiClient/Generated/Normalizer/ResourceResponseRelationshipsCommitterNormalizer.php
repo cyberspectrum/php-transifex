@@ -81,4 +81,9 @@ class ResourceResponseRelationshipsCommitterNormalizer implements DenormalizerIn
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceResponseRelationshipsCommitter::class => false];
+    }
 }

@@ -82,4 +82,9 @@ class IdRelationshipsRequestBodyNormalizer implements DenormalizerInterface, Nor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [IdRelationshipsRequestBody::class => false];
+    }
 }

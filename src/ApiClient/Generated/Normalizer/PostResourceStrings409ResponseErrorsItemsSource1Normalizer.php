@@ -73,4 +73,9 @@ class PostResourceStrings409ResponseErrorsItemsSource1Normalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStrings409ResponseErrorsItemsSource1::class => false];
+    }
 }

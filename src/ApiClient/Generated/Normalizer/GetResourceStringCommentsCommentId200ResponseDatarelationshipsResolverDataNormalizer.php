@@ -91,4 +91,9 @@ class GetResourceStringCommentsCommentId200ResponseDatarelationshipsResolverData
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringCommentsCommentId200ResponseDatarelationshipsResolverData::class => false];
+    }
 }

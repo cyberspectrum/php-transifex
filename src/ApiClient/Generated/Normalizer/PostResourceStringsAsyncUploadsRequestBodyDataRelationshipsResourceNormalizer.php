@@ -74,4 +74,9 @@ class PostResourceStringsAsyncUploadsRequestBodyDataRelationshipsResourceNormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsAsyncUploadsRequestBodyDataRelationshipsResource::class => false];
+    }
 }

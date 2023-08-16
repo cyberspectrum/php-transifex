@@ -86,4 +86,9 @@ class GetI18nFormats200ResponseDataItemsNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetI18nFormats200ResponseDataItems::class => false];
+    }
 }

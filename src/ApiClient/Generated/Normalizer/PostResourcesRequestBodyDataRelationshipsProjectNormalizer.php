@@ -74,4 +74,9 @@ class PostResourcesRequestBodyDataRelationshipsProjectNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourcesRequestBodyDataRelationshipsProject::class => false];
+    }
 }

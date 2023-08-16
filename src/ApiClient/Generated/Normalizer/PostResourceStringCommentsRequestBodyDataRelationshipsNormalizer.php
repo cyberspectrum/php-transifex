@@ -81,4 +81,9 @@ class PostResourceStringCommentsRequestBodyDataRelationshipsNormalizer implement
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringCommentsRequestBodyDataRelationships::class => false];
+    }
 }

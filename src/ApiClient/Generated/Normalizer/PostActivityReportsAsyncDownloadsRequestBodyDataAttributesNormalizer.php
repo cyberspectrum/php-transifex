@@ -80,4 +80,9 @@ class PostActivityReportsAsyncDownloadsRequestBodyDataAttributesNormalizer imple
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostActivityReportsAsyncDownloadsRequestBodyDataAttributes::class => false];
+    }
 }

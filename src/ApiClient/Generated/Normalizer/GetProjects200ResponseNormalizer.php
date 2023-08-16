@@ -89,4 +89,9 @@ class GetProjects200ResponseNormalizer implements DenormalizerInterface, Normali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjects200Response::class => false];
+    }
 }

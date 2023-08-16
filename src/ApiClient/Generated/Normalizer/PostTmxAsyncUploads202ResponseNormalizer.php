@@ -74,4 +74,9 @@ class PostTmxAsyncUploads202ResponseNormalizer implements DenormalizerInterface,
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTmxAsyncUploads202Response::class => false];
+    }
 }

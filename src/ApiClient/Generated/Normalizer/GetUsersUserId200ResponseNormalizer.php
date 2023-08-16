@@ -74,4 +74,9 @@ class GetUsersUserId200ResponseNormalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetUsersUserId200Response::class => false];
+    }
 }

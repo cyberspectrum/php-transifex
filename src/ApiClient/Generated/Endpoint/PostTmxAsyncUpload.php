@@ -39,6 +39,7 @@ class PostTmxAsyncUpload extends BaseEndpoint implements Endpoint
 
     /**
      * Upload a new TMX file for a project.
+     * The response represents the file upload job. Check the job's status to determine it's completion.
      *
      * @param PostTmxAsyncUploadsMultipartFormDataRequestBody|PostTmxAsyncUploadsRequestBody $requestBody
      */

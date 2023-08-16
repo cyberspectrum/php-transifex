@@ -93,4 +93,9 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributesNormalizer impleme
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsAsyncUploadsRequestBodyDataAttributes::class => false];
+    }
 }

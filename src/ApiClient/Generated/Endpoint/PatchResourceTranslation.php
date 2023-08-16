@@ -39,6 +39,8 @@ class PatchResourceTranslation extends BaseEndpoint implements Endpoint
 
     /**
      * Allows for bulk updating of translations up to 150 at a time.
+     * All resource strings should belong to the same resource
+     * and target the same translation language.
      *
      * @param array $accept Accept content header application/vnd.api+json;profile="bulk"|application/vnd.api+json
      */

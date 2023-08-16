@@ -74,4 +74,9 @@ class PostResourceAsyncMergesRequestBodyDataRelationshipsResourceNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceAsyncMergesRequestBodyDataRelationshipsResource::class => false];
+    }
 }

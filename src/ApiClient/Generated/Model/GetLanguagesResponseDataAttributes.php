@@ -37,7 +37,7 @@ class GetLanguagesResponseDataAttributes
     /**
      * Object of plural rules for Language as defined in CLDR.
      *
-     * @var mixed[]
+     * @var array<string, mixed>
      */
     protected $pluralRules;
     /**
@@ -112,7 +112,7 @@ class GetLanguagesResponseDataAttributes
     /**
      * Object of plural rules for Language as defined in CLDR.
      *
-     * @return mixed[]
+     * @return array<string, mixed>
      */
     public function getPluralRules(): iterable
     {
@@ -122,7 +122,7 @@ class GetLanguagesResponseDataAttributes
     /**
      * Object of plural rules for Language as defined in CLDR.
      *
-     * @param mixed[] $pluralRules
+     * @param array<string, mixed> $pluralRules
      */
     public function setPluralRules(iterable $pluralRules): self
     {

@@ -213,4 +213,9 @@ class GetResourceLanguageStats200ResponseDataItemattributesNormalizer implements
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200ResponseDataItemattributes::class => false];
+    }
 }

@@ -107,4 +107,9 @@ class GetUsersUserId200ResponseDataNormalizer implements DenormalizerInterface, 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetUsersUserId200ResponseData::class => false];
+    }
 }

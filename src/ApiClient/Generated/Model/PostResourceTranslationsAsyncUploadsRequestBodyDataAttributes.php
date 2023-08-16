@@ -18,6 +18,7 @@ class PostResourceTranslationsAsyncUploadsRequestBodyDataAttributes
     protected array $initialized = [];
     /**
      * The url that will be called when the processing is completed.
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      *
      * @var string|null
      */
@@ -48,7 +49,7 @@ class PostResourceTranslationsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function getCallbackUrl(): ?string
     {
@@ -57,7 +58,7 @@ class PostResourceTranslationsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function setCallbackUrl(?string $callbackUrl): self
     {

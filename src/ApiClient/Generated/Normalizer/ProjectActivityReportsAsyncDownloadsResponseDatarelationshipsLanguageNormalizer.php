@@ -93,4 +93,9 @@ class ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsLanguageNorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsLanguage::class => false];
+    }
 }

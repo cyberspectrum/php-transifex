@@ -95,4 +95,9 @@ class PostResourceStringCommentsRequestBodyDataAttributesNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringCommentsRequestBodyDataAttributes::class => false];
+    }
 }

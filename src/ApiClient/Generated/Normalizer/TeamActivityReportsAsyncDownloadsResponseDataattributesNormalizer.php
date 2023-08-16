@@ -101,4 +101,9 @@ class TeamActivityReportsAsyncDownloadsResponseDataattributesNormalizer implemen
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamActivityReportsAsyncDownloadsResponseDataattributes::class => false];
+    }
 }

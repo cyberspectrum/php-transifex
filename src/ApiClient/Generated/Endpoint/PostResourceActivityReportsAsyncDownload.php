@@ -36,8 +36,8 @@ class PostResourceActivityReportsAsyncDownload extends BaseEndpoint implements E
     use EndpointTrait;
 
     /**
-     * The response represents the resource activity report download job. Check.
-    the job's status and download the file itself once that is completed.
+     * The response represents the resource activity report download job. Check
+     * the job's status and download the file itself once that is completed.
      */
     public function __construct(PostResourceActivityReportsAsyncDownloadsRequestBody $requestBody)
     {

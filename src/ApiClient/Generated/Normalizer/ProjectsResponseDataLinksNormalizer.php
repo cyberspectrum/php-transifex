@@ -73,4 +73,9 @@ class ProjectsResponseDataLinksNormalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsResponseDataLinks::class => false];
+    }
 }

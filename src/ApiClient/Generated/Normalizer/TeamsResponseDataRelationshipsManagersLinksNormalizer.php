@@ -79,4 +79,9 @@ class TeamsResponseDataRelationshipsManagersLinksNormalizer implements Denormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamsResponseDataRelationshipsManagersLinks::class => false];
+    }
 }

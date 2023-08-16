@@ -88,4 +88,9 @@ class PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationshipsNorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationships::class => false];
+    }
 }

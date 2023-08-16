@@ -84,4 +84,9 @@ class ResourcesAttributesI18nOptionsNormalizer implements DenormalizerInterface,
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourcesAttributesI18nOptions::class => false];
+    }
 }

@@ -89,4 +89,9 @@ class GetTeamsTeamIdRelationshipsManagers200ResponseNormalizer implements Denorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTeamsTeamIdRelationshipsManagers200Response::class => false];
+    }
 }

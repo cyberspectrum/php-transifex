@@ -33,7 +33,14 @@ class GetResourceStringsAsyncUploadByResourceStringsAsyncUploadId extends BaseEn
 
     /**
      * With this endpoint, you can inquire about the status of a source upload job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the content has failed to be uploaded to the
+     * resource.
+     * - If the 'status' is 'succeeded', you can get more details about the number
+     * of strings created, deleted, skipped and updated in the `details` attribute
+     * of the response.
      *
      * @param string $resourceStringsAsyncUploadId format of the resource_strings_async_upload_id should be a UUID
      */

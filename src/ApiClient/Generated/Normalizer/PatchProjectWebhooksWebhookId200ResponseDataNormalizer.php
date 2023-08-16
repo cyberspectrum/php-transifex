@@ -100,4 +100,9 @@ class PatchProjectWebhooksWebhookId200ResponseDataNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectWebhooksWebhookId200ResponseData::class => false];
+    }
 }

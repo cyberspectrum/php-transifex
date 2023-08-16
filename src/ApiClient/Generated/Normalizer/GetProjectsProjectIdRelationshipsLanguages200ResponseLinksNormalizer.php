@@ -73,4 +73,9 @@ class GetProjectsProjectIdRelationshipsLanguages200ResponseLinksNormalizer imple
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdRelationshipsLanguages200ResponseLinks::class => false];
+    }
 }

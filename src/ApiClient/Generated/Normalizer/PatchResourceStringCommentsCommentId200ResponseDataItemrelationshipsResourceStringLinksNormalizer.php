@@ -73,4 +73,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsResour
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsResourceStringLinks::class => false];
+    }
 }

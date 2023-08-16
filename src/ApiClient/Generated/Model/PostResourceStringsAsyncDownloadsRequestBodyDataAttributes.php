@@ -18,6 +18,7 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
     protected array $initialized = [];
     /**
      * The url that will be called when the processing is completed.
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      *
      * @var string|null
      */
@@ -35,13 +36,15 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
      */
     protected $fileType = 'default';
     /**
-     * Generate mock string translations with a ~20% default length increase in characters.<br>.
+     * Generate mock string translations with a ~20% default length increase in characters.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.
      *
      * @var bool
      */
     protected $pseudo = false;
     /**
-     * Length increase percentage of mock string translations.<br>.
+     * Length increase percentage of mock string translations.<br>
+     * Applied only when <i>pseudo</i> flag is True. Overrides default pseudo length.
      *
      * @var int|null
      */
@@ -54,7 +57,7 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function getCallbackUrl(): ?string
     {
@@ -63,7 +66,7 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function setCallbackUrl(?string $callbackUrl): self
     {
@@ -112,8 +115,8 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Generate mock string translations with a ~20% default length increase in characters.<br>.
-    More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.
+     * Generate mock string translations with a ~20% default length increase in characters.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.
      */
     public function getPseudo(): bool
     {
@@ -121,8 +124,8 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Generate mock string translations with a ~20% default length increase in characters.<br>.
-    More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.
+     * Generate mock string translations with a ~20% default length increase in characters.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.
      */
     public function setPseudo(bool $pseudo): self
     {
@@ -133,8 +136,8 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Length increase percentage of mock string translations.<br>.
-    Applied only when <i>pseudo</i> flag is True. Overrides default pseudo length.
+     * Length increase percentage of mock string translations.<br>
+     * Applied only when <i>pseudo</i> flag is True. Overrides default pseudo length.
      */
     public function getPseudoLengthIncrease(): ?int
     {
@@ -142,8 +145,8 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Length increase percentage of mock string translations.<br>.
-    Applied only when <i>pseudo</i> flag is True. Overrides default pseudo length.
+     * Length increase percentage of mock string translations.<br>
+     * Applied only when <i>pseudo</i> flag is True. Overrides default pseudo length.
      */
     public function setPseudoLengthIncrease(?int $pseudoLengthIncrease): self
     {

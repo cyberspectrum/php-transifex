@@ -37,8 +37,8 @@ class PatchProjectsByProjectIdRelationshipsMaintainer extends BaseEndpoint imple
 
     /**
      * Completely replace project maintainers.
-
-    _**Warning**: This is a highly destructive operation._.
+     *
+     * _**Warning**: This is a highly destructive operation._
      *
      * @param string $projectId format of composite id should be `o:organization_slug:p:project_slug`
      */

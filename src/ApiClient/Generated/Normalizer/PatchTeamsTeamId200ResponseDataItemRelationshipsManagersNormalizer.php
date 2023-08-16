@@ -74,4 +74,9 @@ class PatchTeamsTeamId200ResponseDataItemRelationshipsManagersNormalizer impleme
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamsTeamId200ResponseDataItemRelationshipsManagers::class => false];
+    }
 }

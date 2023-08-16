@@ -73,4 +73,9 @@ class GetProjectsProjectIdLanguages200ResponseLinksNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdLanguages200ResponseLinks::class => false];
+    }
 }

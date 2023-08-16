@@ -74,4 +74,9 @@ class PostResourceActivityReportsAsyncDownloadsRequestBodyNormalizer implements 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceActivityReportsAsyncDownloadsRequestBody::class => false];
+    }
 }

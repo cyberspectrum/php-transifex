@@ -101,4 +101,9 @@ class OrganizationActivityReportsAsyncDownloadsResponseDatarelationshipsNormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [OrganizationActivityReportsAsyncDownloadsResponseDatarelationships::class => false];
+    }
 }

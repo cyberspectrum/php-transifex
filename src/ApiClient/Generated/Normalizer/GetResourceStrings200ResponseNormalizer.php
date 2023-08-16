@@ -89,4 +89,9 @@ class GetResourceStrings200ResponseNormalizer implements DenormalizerInterface, 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStrings200Response::class => false];
+    }
 }

@@ -76,4 +76,9 @@ class PatchResourcesResourceIdRequestBodyDataRelationshipsNormalizer implements 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourcesResourceIdRequestBodyDataRelationships::class => false];
+    }
 }

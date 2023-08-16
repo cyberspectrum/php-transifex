@@ -18,6 +18,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
     protected array $initialized = [];
     /**
      * The url that will be called when the processing is completed.
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      *
      * @var string|null
      */
@@ -36,6 +37,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
     protected $contentEncoding;
     /**
      * Option to replace edited strings.
+     * If true, updated strings modified in the editor will be overwritten.
      *
      * @var bool
      */
@@ -48,7 +50,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function getCallbackUrl(): ?string
     {
@@ -57,7 +59,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function setCallbackUrl(?string $callbackUrl): self
     {
@@ -107,7 +109,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * Option to replace edited strings.
-    If true, updated strings modified in the editor will be overwritten.
+     * If true, updated strings modified in the editor will be overwritten.
      */
     public function getReplaceEditedStrings(): bool
     {
@@ -116,7 +118,7 @@ class PostResourceStringsAsyncUploadsRequestBodyDataAttributes
 
     /**
      * Option to replace edited strings.
-    If true, updated strings modified in the editor will be overwritten.
+     * If true, updated strings modified in the editor will be overwritten.
      */
     public function setReplaceEditedStrings(bool $replaceEditedStrings): self
     {

@@ -32,9 +32,9 @@ class GetOrganization extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug] The slug of the organization to get details
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug] The slug of the organization to get details
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

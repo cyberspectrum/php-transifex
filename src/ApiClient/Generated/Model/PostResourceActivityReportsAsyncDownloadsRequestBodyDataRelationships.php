@@ -23,7 +23,8 @@ class PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationships
      */
     protected $language;
     /**
-     * The `resource` whose translation activity you want.
+     * The `resource` whose translation activity you want
+     * to make a report for.
      *
      * @var PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationshipsResource
      */
@@ -60,8 +61,8 @@ class PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `resource` whose translation activity you want.
-    to make a report for.
+     * The `resource` whose translation activity you want
+     * to make a report for.
      */
     public function getResource(): PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationshipsResource
     {
@@ -69,8 +70,8 @@ class PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `resource` whose translation activity you want.
-    to make a report for.
+     * The `resource` whose translation activity you want
+     * to make a report for.
      */
     public function setResource(PostResourceActivityReportsAsyncDownloadsRequestBodyDataRelationshipsResource $resource): self
     {

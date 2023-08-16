@@ -91,4 +91,9 @@ class ResponseShared429ResponseErrorsItemNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseShared429ResponseErrorsItem::class => false];
+    }
 }

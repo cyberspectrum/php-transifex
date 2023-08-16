@@ -74,4 +74,9 @@ class GetTmxAsyncUploadsTmxAsyncUploadId200ResponseNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTmxAsyncUploadsTmxAsyncUploadId200Response::class => false];
+    }
 }

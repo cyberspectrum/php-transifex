@@ -79,4 +79,9 @@ class PatchProjectsProjectId200ResponseDataItemRelationshipsSourceLanguageDataNo
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItemRelationshipsSourceLanguageData::class => false];
+    }
 }

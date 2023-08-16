@@ -74,4 +74,9 @@ class PostResourcesRequestBodyDataRelationshipsI18nFormatNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourcesRequestBodyDataRelationshipsI18nFormat::class => false];
+    }
 }

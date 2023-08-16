@@ -104,4 +104,9 @@ class PatchTeamsTeamId200ResponseDataItemAttributesNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamsTeamId200ResponseDataItemAttributes::class => false];
+    }
 }

@@ -81,4 +81,9 @@ class PatchTeamsTeamId200ResponseDataItemRelationshipsNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamsTeamId200ResponseDataItemRelationships::class => false];
+    }
 }

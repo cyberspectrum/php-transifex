@@ -35,7 +35,13 @@ class GetResourceStringsAsyncDownloadByResourceStringsAsyncDownloadId extends Ba
 
     /**
      * With this endpoint, you can inquire about the status of a resource strings download job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the source file has failed to be compiled.
+     * - In case the download job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to [download the file](#tag/File-Downloads/paths/get)
+     * that have been extracted from your file.
      *
      * @param string $resourceStringsAsyncDownloadId format of the resource_strings_async_download_id should be `o:organization_slug:p:project_slug:r:resource_slug`
      */

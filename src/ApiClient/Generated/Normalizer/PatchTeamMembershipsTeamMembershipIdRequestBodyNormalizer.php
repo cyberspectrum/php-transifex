@@ -74,4 +74,9 @@ class PatchTeamMembershipsTeamMembershipIdRequestBodyNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamMembershipsTeamMembershipIdRequestBody::class => false];
+    }
 }

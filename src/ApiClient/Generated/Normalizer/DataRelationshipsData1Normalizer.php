@@ -91,4 +91,9 @@ class DataRelationshipsData1Normalizer implements DenormalizerInterface, Normali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [DataRelationshipsData1::class => false];
+    }
 }

@@ -101,4 +101,9 @@ class ResourceActivityReportsAsyncDownloadsResponseDataattributesNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceActivityReportsAsyncDownloadsResponseDataattributes::class => false];
+    }
 }

@@ -39,8 +39,8 @@ class GetTeamMembershipByTeamMembershipId extends BaseEndpoint implements Endpoi
      *
      * @param array $queryParameters {
      *
-     *     @var string $include
-     * }
+     * @var string $include
+     *             }
      */
     public function __construct(string $teamMembershipId, array $queryParameters = [])
     {

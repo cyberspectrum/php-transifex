@@ -87,4 +87,9 @@ class PostResourceStringsRequestBodyData2Normalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsRequestBodyData2::class => false];
+    }
 }

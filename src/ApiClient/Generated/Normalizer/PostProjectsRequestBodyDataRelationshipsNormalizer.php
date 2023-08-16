@@ -88,4 +88,9 @@ class PostProjectsRequestBodyDataRelationshipsNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectsRequestBodyDataRelationships::class => false];
+    }
 }

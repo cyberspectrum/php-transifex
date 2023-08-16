@@ -81,4 +81,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsAuthor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsAuthor::class => false];
+    }
 }

@@ -94,4 +94,9 @@ class ResourceAsyncMergesResponseDataAttributesNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceAsyncMergesResponseDataAttributes::class => false];
+    }
 }

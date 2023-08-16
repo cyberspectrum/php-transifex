@@ -79,4 +79,9 @@ class ProjectsProjectIdRelationshipsLanguagesDataItemsNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsProjectIdRelationshipsLanguagesDataItems::class => false];
+    }
 }

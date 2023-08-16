@@ -74,4 +74,9 @@ class GetLanguagesLanguageId200ResponseNormalizer implements DenormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetLanguagesLanguageId200Response::class => false];
+    }
 }

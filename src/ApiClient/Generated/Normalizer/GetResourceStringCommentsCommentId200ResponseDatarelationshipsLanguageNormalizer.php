@@ -81,4 +81,9 @@ class GetResourceStringCommentsCommentId200ResponseDatarelationshipsLanguageNorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringCommentsCommentId200ResponseDatarelationshipsLanguage::class => false];
+    }
 }

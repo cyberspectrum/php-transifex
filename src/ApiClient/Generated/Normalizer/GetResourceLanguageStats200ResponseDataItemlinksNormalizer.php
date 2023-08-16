@@ -73,4 +73,9 @@ class GetResourceLanguageStats200ResponseDataItemlinksNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200ResponseDataItemlinks::class => false];
+    }
 }

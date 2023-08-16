@@ -74,4 +74,9 @@ class ResourceStringsResourceStringIdResponseNormalizer implements DenormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsResourceStringIdResponse::class => false];
+    }
 }

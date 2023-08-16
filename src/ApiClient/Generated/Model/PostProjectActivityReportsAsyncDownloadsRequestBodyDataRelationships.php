@@ -23,7 +23,8 @@ class PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationships
      */
     protected $language;
     /**
-     * The `project` whose translation activity you want.
+     * The `project` whose translation activity you want
+     * to make a report for.
      *
      * @var PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationshipsProject
      */
@@ -60,8 +61,8 @@ class PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `project` whose translation activity you want.
-    to make a report for.
+     * The `project` whose translation activity you want
+     * to make a report for.
      */
     public function getProject(): PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationshipsProject
     {
@@ -69,8 +70,8 @@ class PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `project` whose translation activity you want.
-    to make a report for.
+     * The `project` whose translation activity you want
+     * to make a report for.
      */
     public function setProject(PostProjectActivityReportsAsyncDownloadsRequestBodyDataRelationshipsProject $project): self
     {

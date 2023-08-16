@@ -99,4 +99,9 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributesNormalizer 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes::class => false];
+    }
 }

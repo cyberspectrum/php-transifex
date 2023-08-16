@@ -33,12 +33,13 @@ class GetI18nFormat extends BaseEndpoint implements Endpoint
 
     /**
      * Get information for all the supported i18n formats.
+     * For more information check https://help.transifex.com/en/articles/6219670-introduction-to-file-formats.
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[name] Get specific i18n format by name
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[name] Get specific i18n format by name
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

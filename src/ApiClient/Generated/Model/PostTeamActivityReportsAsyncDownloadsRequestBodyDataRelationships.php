@@ -23,7 +23,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationships
      */
     protected $language;
     /**
-     * The `team` whose translation activity you.
+     * The `team` whose translation activity you
+     * want to make a report for.
      *
      * @var PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationshipsTeam
      */
@@ -60,8 +61,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `team` whose translation activity you.
-    want to make a report for.
+     * The `team` whose translation activity you
+     * want to make a report for.
      */
     public function getTeam(): PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationshipsTeam
     {
@@ -69,8 +70,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationships
     }
 
     /**
-     * The `team` whose translation activity you.
-    want to make a report for.
+     * The `team` whose translation activity you
+     * want to make a report for.
      */
     public function setTeam(PostTeamActivityReportsAsyncDownloadsRequestBodyDataRelationshipsTeam $team): self
     {

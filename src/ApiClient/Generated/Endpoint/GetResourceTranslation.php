@@ -40,23 +40,23 @@ class GetResourceTranslation extends BaseEndpoint implements Endpoint
     /**
      * @param array $queryParameters {
      *
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[date_translated][gt]
-     *     @var string $filter[date_translated][lt]
-     *     @var string $filter[resource_string][key]
-     *     @var string $filter[resource_string][date_modified][gte]
-     *     @var string $filter[resource_string][date_modified][lte]
-     *     @var bool $filter[translated]
-     *     @var bool $filter[reviewed]
-     *     @var bool $filter[proofread]
-     *     @var bool $filter[finalized]
-     *     @var string $filter[translator]
-     *     @var string $include use the value `resource_string` to get the list of resource string objects in the response
-     *     @var array $filter[resource_string][tags][all] Retrieve translation strings containing all of the query tags
-     *     @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
-     * }
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[language] Filter results by a language
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[date_translated][gt]
+     * @var string $filter[date_translated][lt]
+     * @var string $filter[resource_string][key]
+     * @var string $filter[resource_string][date_modified][gte]
+     * @var string $filter[resource_string][date_modified][lte]
+     * @var bool   $filter[translated]
+     * @var bool   $filter[reviewed]
+     * @var bool   $filter[proofread]
+     * @var bool   $filter[finalized]
+     * @var string $filter[translator]
+     * @var string $include use the value `resource_string` to get the list of resource string objects in the response
+     * @var array  $filter[resource_string][tags][all] Retrieve translation strings containing all of the query tags
+     * @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

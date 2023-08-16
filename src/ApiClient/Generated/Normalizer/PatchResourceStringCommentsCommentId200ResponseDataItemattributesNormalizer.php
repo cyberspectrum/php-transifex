@@ -142,4 +142,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemattributesNormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemattributes::class => false];
+    }
 }

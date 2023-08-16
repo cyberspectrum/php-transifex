@@ -104,4 +104,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsNormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemrelationships::class => false];
+    }
 }

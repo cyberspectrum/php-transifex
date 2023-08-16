@@ -82,4 +82,9 @@ class PatchProjectsProjectIdRelationshipsLanguagesRequestBodyNormalizer implemen
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectIdRelationshipsLanguagesRequestBody::class => false];
+    }
 }

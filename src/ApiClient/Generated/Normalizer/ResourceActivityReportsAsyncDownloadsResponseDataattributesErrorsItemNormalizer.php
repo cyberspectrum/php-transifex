@@ -91,4 +91,9 @@ class ResourceActivityReportsAsyncDownloadsResponseDataattributesErrorsItemNorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceActivityReportsAsyncDownloadsResponseDataattributesErrorsItem::class => false];
+    }
 }

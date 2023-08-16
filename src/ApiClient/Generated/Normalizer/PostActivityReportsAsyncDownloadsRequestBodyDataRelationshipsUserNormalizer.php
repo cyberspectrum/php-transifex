@@ -74,4 +74,9 @@ class PostActivityReportsAsyncDownloadsRequestBodyDataRelationshipsUserNormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostActivityReportsAsyncDownloadsRequestBodyDataRelationshipsUser::class => false];
+    }
 }

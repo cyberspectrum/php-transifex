@@ -89,4 +89,9 @@ class GetProjectsProjectIdLanguages200ResponseNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdLanguages200Response::class => false];
+    }
 }

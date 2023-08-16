@@ -74,4 +74,9 @@ class PostProjectsRequestBodyNormalizer implements DenormalizerInterface, Normal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectsRequestBody::class => false];
+    }
 }

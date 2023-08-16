@@ -74,4 +74,9 @@ class PostContextScreenshotMapsRequestBodyNormalizer implements DenormalizerInte
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostContextScreenshotMapsRequestBody::class => false];
+    }
 }

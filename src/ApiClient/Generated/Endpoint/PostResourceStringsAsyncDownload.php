@@ -38,8 +38,8 @@ class PostResourceStringsAsyncDownload extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
-     * The response represents the file download job. Check the job's status.
-    and download the file itself once that is completed.
+     * The response represents the file download job. Check the job's status
+     * and download the file itself once that is completed.
      */
     public function __construct(PostResourceStringsAsyncDownloadsRequestBody $requestBody)
     {

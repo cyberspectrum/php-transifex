@@ -213,4 +213,9 @@ class GetResourceLanguageStatsResourceLanguageStatsId200ResponseDataattributesNo
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStatsResourceLanguageStatsId200ResponseDataattributes::class => false];
+    }
 }

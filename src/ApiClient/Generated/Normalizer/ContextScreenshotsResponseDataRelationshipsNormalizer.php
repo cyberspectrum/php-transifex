@@ -81,4 +81,9 @@ class ContextScreenshotsResponseDataRelationshipsNormalizer implements Denormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ContextScreenshotsResponseDataRelationships::class => false];
+    }
 }

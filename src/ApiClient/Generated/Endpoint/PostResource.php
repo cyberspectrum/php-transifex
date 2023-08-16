@@ -37,7 +37,10 @@ class PostResource extends BaseEndpoint implements Endpoint
 
     /**
      * Making a POST request to this endpoint creates a resource without content.
-    endpoint.
+     * This step is performed synchronously so you don't have to verify that
+     * resource creation succeeded afterwards. In order to upload content, see the
+     * [/resource_strings_async_uploads](#tag/Resource-Strings/paths/~1resource_strings_async_uploads/post)
+     * endpoint.
      */
     public function __construct(PostResourcesRequestBody $requestBody)
     {

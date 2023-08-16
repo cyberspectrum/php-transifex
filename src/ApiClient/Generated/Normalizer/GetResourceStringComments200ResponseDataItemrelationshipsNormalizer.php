@@ -104,4 +104,9 @@ class GetResourceStringComments200ResponseDataItemrelationshipsNormalizer implem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringComments200ResponseDataItemrelationships::class => false];
+    }
 }

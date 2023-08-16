@@ -38,9 +38,9 @@ class GetContextScreenshot extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $filter[project] Filter results by a project
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

@@ -89,4 +89,9 @@ class GetTeams200ResponseLinksNormalizer implements DenormalizerInterface, Norma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTeams200ResponseLinks::class => false];
+    }
 }

@@ -82,4 +82,9 @@ class PatchTeamsTeamId200ResponseNormalizer implements DenormalizerInterface, No
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamsTeamId200Response::class => false];
+    }
 }

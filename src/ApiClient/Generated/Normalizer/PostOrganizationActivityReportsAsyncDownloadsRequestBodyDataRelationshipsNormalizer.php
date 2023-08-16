@@ -88,4 +88,9 @@ class PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationshipsN
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostOrganizationActivityReportsAsyncDownloadsRequestBodyDataRelationships::class => false];
+    }
 }

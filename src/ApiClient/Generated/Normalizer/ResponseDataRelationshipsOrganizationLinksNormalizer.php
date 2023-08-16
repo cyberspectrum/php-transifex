@@ -73,4 +73,9 @@ class ResponseDataRelationshipsOrganizationLinksNormalizer implements Denormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseDataRelationshipsOrganizationLinks::class => false];
+    }
 }

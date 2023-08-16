@@ -93,4 +93,9 @@ class TeamActivityReportsAsyncDownloadsResponseDatarelationshipsTeamNormalizer i
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamActivityReportsAsyncDownloadsResponseDatarelationshipsTeam::class => false];
+    }
 }

@@ -74,4 +74,9 @@ class GetResourceStringCommentsCommentId200ResponseNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringCommentsCommentId200Response::class => false];
+    }
 }

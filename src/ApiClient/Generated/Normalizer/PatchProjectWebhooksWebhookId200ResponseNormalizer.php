@@ -74,4 +74,9 @@ class PatchProjectWebhooksWebhookId200ResponseNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectWebhooksWebhookId200Response::class => false];
+    }
 }

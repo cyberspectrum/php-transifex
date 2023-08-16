@@ -38,8 +38,13 @@ class PatchTeamMembershipByTeamMembershipId extends BaseEndpoint implements Endp
 
     /**
      * Update a membership's role.
-
-    [here](https://help.transifex.com/en/articles/6223458-managing-and-removing-collaborators#h_66d1be4260)
+     *
+     * You are only allowed to change the role. If you wish to change one of the
+     * relationships, you should delete the existing membership and create a new
+     * one with the desired relationships.
+     *
+     * The corresponding action in the UI is described
+     * [here](https://help.transifex.com/en/articles/6223458-managing-and-removing-collaborators#h_66d1be4260)
      */
     public function __construct(string $teamMembershipId, PatchTeamMembershipsTeamMembershipIdRequestBody $requestBody)
     {

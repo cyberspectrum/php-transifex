@@ -73,4 +73,9 @@ class GetUsersUserId200ResponseDatalinksNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetUsersUserId200ResponseDatalinks::class => false];
+    }
 }

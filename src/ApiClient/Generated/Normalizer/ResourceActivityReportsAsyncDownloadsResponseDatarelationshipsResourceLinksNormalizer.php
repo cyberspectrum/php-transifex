@@ -84,4 +84,9 @@ class ResourceActivityReportsAsyncDownloadsResponseDatarelationshipsResourceLink
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceActivityReportsAsyncDownloadsResponseDatarelationshipsResourceLinks::class => false];
+    }
 }

@@ -101,4 +101,9 @@ class PostResourceStringsAsyncDownloadsRequestBodyDataAttributesNormalizer imple
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsAsyncDownloadsRequestBodyDataAttributes::class => false];
+    }
 }

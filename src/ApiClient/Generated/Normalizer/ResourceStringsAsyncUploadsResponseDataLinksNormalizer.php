@@ -73,4 +73,9 @@ class ResourceStringsAsyncUploadsResponseDataLinksNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncUploadsResponseDataLinks::class => false];
+    }
 }

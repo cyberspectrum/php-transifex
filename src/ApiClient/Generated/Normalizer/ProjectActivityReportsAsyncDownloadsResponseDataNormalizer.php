@@ -115,4 +115,9 @@ class ProjectActivityReportsAsyncDownloadsResponseDataNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectActivityReportsAsyncDownloadsResponseData::class => false];
+    }
 }

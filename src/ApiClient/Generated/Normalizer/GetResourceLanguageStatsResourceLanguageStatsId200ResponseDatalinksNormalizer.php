@@ -73,4 +73,9 @@ class GetResourceLanguageStatsResourceLanguageStatsId200ResponseDatalinksNormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStatsResourceLanguageStatsId200ResponseDatalinks::class => false];
+    }
 }

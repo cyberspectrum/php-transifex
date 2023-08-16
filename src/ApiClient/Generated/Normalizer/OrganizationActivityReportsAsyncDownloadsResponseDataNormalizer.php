@@ -115,4 +115,9 @@ class OrganizationActivityReportsAsyncDownloadsResponseDataNormalizer implements
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [OrganizationActivityReportsAsyncDownloadsResponseData::class => false];
+    }
 }

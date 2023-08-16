@@ -86,4 +86,9 @@ class PatchResourceTranslationsRequestBodyDataItemsNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceTranslationsRequestBodyDataItems::class => false];
+    }
 }

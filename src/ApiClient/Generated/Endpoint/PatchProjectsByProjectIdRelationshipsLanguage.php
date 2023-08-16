@@ -35,8 +35,8 @@ class PatchProjectsByProjectIdRelationshipsLanguage extends BaseEndpoint impleme
 
     /**
      * Completely replace the target language of a specific project.
-
-    _**Warning**: This is a highly destructive operation._.
+     *
+     * _**Warning**: This is a highly destructive operation._
      *
      * @param string $projectId format of composite id should be `o:organization_slug:p:project_slug`
      */

@@ -100,4 +100,9 @@ class TeamsResponseDataNormalizer implements DenormalizerInterface, NormalizerIn
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamsResponseData::class => false];
+    }
 }

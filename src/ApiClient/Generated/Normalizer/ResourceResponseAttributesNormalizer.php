@@ -171,4 +171,9 @@ class ResourceResponseAttributesNormalizer implements DenormalizerInterface, Nor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceResponseAttributes::class => false];
+    }
 }

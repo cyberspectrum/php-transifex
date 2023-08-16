@@ -101,4 +101,9 @@ class ResourceAsyncDownloadsResponseDataAttributesNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceAsyncDownloadsResponseDataAttributes::class => false];
+    }
 }

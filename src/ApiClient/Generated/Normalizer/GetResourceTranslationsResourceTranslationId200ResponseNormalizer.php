@@ -89,4 +89,9 @@ class GetResourceTranslationsResourceTranslationId200ResponseNormalizer implemen
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceTranslationsResourceTranslationId200Response::class => false];
+    }
 }

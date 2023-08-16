@@ -101,4 +101,9 @@ class TmxAsyncDownloadsResponseDataAttributesNormalizer implements DenormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TmxAsyncDownloadsResponseDataAttributes::class => false];
+    }
 }

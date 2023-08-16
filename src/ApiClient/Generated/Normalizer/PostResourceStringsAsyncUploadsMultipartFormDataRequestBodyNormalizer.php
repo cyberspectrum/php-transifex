@@ -93,4 +93,9 @@ class PostResourceStringsAsyncUploadsMultipartFormDataRequestBodyNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsAsyncUploadsMultipartFormDataRequestBody::class => false];
+    }
 }

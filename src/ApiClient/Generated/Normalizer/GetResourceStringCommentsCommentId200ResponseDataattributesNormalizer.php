@@ -142,4 +142,9 @@ class GetResourceStringCommentsCommentId200ResponseDataattributesNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringCommentsCommentId200ResponseDataattributes::class => false];
+    }
 }

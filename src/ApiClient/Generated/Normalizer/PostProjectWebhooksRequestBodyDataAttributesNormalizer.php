@@ -91,4 +91,9 @@ class PostProjectWebhooksRequestBodyDataAttributesNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectWebhooksRequestBodyDataAttributes::class => false];
+    }
 }

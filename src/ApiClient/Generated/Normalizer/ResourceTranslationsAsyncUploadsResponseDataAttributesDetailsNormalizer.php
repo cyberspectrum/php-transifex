@@ -79,4 +79,9 @@ class ResourceTranslationsAsyncUploadsResponseDataAttributesDetailsNormalizer im
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsAsyncUploadsResponseDataAttributesDetails::class => false];
+    }
 }

@@ -81,4 +81,9 @@ class ResourceTranslationsAsyncResponseDataRelationshipsNormalizer implements De
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsAsyncResponseDataRelationships::class => false];
+    }
 }

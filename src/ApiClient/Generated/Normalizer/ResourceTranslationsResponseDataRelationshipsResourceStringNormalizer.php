@@ -81,4 +81,9 @@ class ResourceTranslationsResponseDataRelationshipsResourceStringNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsResponseDataRelationshipsResourceString::class => false];
+    }
 }

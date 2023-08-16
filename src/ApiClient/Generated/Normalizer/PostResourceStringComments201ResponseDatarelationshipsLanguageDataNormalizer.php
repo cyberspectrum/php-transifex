@@ -79,4 +79,9 @@ class PostResourceStringComments201ResponseDatarelationshipsLanguageDataNormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringComments201ResponseDatarelationshipsLanguageData::class => false];
+    }
 }

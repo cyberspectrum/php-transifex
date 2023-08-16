@@ -36,7 +36,8 @@ class DeleteResourceStringByResourceStringId extends BaseEndpoint implements End
 
     /**
      * Delete a resource string.
-
+     *
+     * <b>Available only for file-less resources.</b>
      *
      * @param string $resourceStringId format of the Resource String id should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash`
      */

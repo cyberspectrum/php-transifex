@@ -81,4 +81,9 @@ class ResourceAsyncResponseDataRelationshipsResourceNormalizer implements Denorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceAsyncResponseDataRelationshipsResource::class => false];
+    }
 }

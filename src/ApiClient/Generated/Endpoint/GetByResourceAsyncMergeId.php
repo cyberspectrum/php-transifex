@@ -35,7 +35,11 @@ class GetByResourceAsyncMergeId extends BaseEndpoint implements Endpoint
 
     /**
      * With this endpoint, you can inquire about the status of a resource merge job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the merge has failed to complete.
+     * - In case the upload job has been successful, you will receive a "200"
      *
      * @param string $resourceAsyncMergeId format of the resource_async_merge_id should be a UUID
      */

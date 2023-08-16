@@ -79,4 +79,9 @@ class OrganizationDataRelationshipsOrganizationDataNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [OrganizationDataRelationshipsOrganizationData::class => false];
+    }
 }

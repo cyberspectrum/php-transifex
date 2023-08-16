@@ -89,4 +89,9 @@ class GetResourceStringComments200ResponseLinksNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringComments200ResponseLinks::class => false];
+    }
 }

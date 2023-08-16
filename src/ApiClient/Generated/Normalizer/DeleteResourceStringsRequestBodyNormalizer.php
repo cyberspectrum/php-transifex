@@ -82,4 +82,9 @@ class DeleteResourceStringsRequestBodyNormalizer implements DenormalizerInterfac
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [DeleteResourceStringsRequestBody::class => false];
+    }
 }

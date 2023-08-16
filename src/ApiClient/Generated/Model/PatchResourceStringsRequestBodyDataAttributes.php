@@ -30,6 +30,17 @@ class PatchResourceStringsRequestBodyDataAttributes
     protected $instructions;
     /**
      * Dictionary with the translation content.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
+     *
+     * This field only applies to resources that support the
+     * [source string edit](https://help.transifex.com/en/articles/6236820-edit-source-strings-online)
+     * functionality. Otherwise, a `400 Bad request` response will be
+     * returned. Changing the source string does not remove its translations.
      *
      * @var PatchResourceStringsRequestBodyDataAttributesStrings
      */
@@ -86,7 +97,17 @@ class PatchResourceStringsRequestBodyDataAttributes
 
     /**
      * Dictionary with the translation content.
-    returned. Changing the source string does not remove its translations.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
+     *
+     * This field only applies to resources that support the
+     * [source string edit](https://help.transifex.com/en/articles/6236820-edit-source-strings-online)
+     * functionality. Otherwise, a `400 Bad request` response will be
+     * returned. Changing the source string does not remove its translations.
      */
     public function getStrings(): PatchResourceStringsRequestBodyDataAttributesStrings
     {
@@ -95,7 +116,17 @@ class PatchResourceStringsRequestBodyDataAttributes
 
     /**
      * Dictionary with the translation content.
-    returned. Changing the source string does not remove its translations.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
+     *
+     * This field only applies to resources that support the
+     * [source string edit](https://help.transifex.com/en/articles/6236820-edit-source-strings-online)
+     * functionality. Otherwise, a `400 Bad request` response will be
+     * returned. Changing the source string does not remove its translations.
      */
     public function setStrings(PatchResourceStringsRequestBodyDataAttributesStrings $strings): self
     {

@@ -79,4 +79,9 @@ class PatchProjectsProjectIdRelationshipsTeamRequestBodyDataNormalizer implement
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectIdRelationshipsTeamRequestBodyData::class => false];
+    }
 }

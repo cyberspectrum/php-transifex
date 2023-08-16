@@ -89,4 +89,9 @@ class GetOrganizations200ResponseNormalizer implements DenormalizerInterface, No
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetOrganizations200Response::class => false];
+    }
 }

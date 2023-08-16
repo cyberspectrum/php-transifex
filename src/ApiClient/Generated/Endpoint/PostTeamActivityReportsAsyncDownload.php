@@ -37,7 +37,7 @@ class PostTeamActivityReportsAsyncDownload extends BaseEndpoint implements Endpo
 
     /**
      * The response represents the team activity report file download job.
-    Check the job's status and download the file itself once that is completed.
+     * Check the job's status and download the file itself once that is completed.
      */
     public function __construct(PostTeamActivityReportsAsyncDownloadsRequestBody $requestBody)
     {

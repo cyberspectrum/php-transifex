@@ -74,4 +74,9 @@ class PostTeamActivityReportsAsyncDownloadsRequestBodyNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTeamActivityReportsAsyncDownloadsRequestBody::class => false];
+    }
 }

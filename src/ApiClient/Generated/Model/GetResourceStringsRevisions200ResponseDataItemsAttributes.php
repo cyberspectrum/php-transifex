@@ -24,6 +24,12 @@ class GetResourceStringsRevisions200ResponseDataItemsAttributes
     protected $dateCreated;
     /**
      * Dictionary with the translation content.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      *
      * @var ResourceStringsAttributesStrings
      */
@@ -49,7 +55,12 @@ class GetResourceStringsRevisions200ResponseDataItemsAttributes
 
     /**
      * Dictionary with the translation content.
-    ('other') is required.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      */
     public function getStrings(): ResourceStringsAttributesStrings
     {
@@ -58,7 +69,12 @@ class GetResourceStringsRevisions200ResponseDataItemsAttributes
 
     /**
      * Dictionary with the translation content.
-    ('other') is required.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      */
     public function setStrings(ResourceStringsAttributesStrings $strings): self
     {

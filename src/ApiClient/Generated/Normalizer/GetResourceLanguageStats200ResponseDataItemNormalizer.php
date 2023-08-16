@@ -115,4 +115,9 @@ class GetResourceLanguageStats200ResponseDataItemNormalizer implements Denormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200ResponseDataItem::class => false];
+    }
 }

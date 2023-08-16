@@ -178,4 +178,9 @@ class ProjectsResponseDataAttributesNormalizer implements DenormalizerInterface,
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsResponseDataAttributes::class => false];
+    }
 }

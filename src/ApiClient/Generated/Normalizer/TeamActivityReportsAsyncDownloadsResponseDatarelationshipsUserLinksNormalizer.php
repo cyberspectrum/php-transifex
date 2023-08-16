@@ -84,4 +84,9 @@ class TeamActivityReportsAsyncDownloadsResponseDatarelationshipsUserLinksNormali
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamActivityReportsAsyncDownloadsResponseDatarelationshipsUserLinks::class => false];
+    }
 }

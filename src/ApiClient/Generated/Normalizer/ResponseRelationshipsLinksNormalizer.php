@@ -73,4 +73,9 @@ class ResponseRelationshipsLinksNormalizer implements DenormalizerInterface, Nor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseRelationshipsLinks::class => false];
+    }
 }

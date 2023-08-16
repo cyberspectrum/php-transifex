@@ -74,4 +74,9 @@ class ContextScreenshotsContextIdResponseNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ContextScreenshotsContextIdResponse::class => false];
+    }
 }
