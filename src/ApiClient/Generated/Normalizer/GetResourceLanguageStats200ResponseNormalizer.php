@@ -101,4 +101,9 @@ class GetResourceLanguageStats200ResponseNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200Response::class => false];
+    }
 }

@@ -88,4 +88,9 @@ class PatchResourceTranslationsRequestBodyDataAttributesNormalizer implements De
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceTranslationsRequestBodyDataAttributes::class => false];
+    }
 }

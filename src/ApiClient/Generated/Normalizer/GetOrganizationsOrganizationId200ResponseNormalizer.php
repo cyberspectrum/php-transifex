@@ -74,4 +74,9 @@ class GetOrganizationsOrganizationId200ResponseNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetOrganizationsOrganizationId200Response::class => false];
+    }
 }

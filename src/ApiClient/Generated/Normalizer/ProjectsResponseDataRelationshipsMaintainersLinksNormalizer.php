@@ -79,4 +79,9 @@ class ProjectsResponseDataRelationshipsMaintainersLinksNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsResponseDataRelationshipsMaintainersLinks::class => false];
+    }
 }

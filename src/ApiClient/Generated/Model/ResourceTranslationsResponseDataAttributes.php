@@ -62,6 +62,8 @@ class ResourceTranslationsResponseDataAttributes
     protected $reviewed;
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys will be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
+     * For non-pluralized resource strings, only the default plural rule ('other') will be present.
+     * The object will be `null` in case of untranslated content.
      *
      * @var ResourceTranslationsResponseDataAttributesStrings|null
      */
@@ -207,7 +209,8 @@ class ResourceTranslationsResponseDataAttributes
 
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys will be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
-    The object will be `null` in case of untranslated content.
+     * For non-pluralized resource strings, only the default plural rule ('other') will be present.
+     * The object will be `null` in case of untranslated content.
      */
     public function getStrings(): ?ResourceTranslationsResponseDataAttributesStrings
     {
@@ -216,7 +219,8 @@ class ResourceTranslationsResponseDataAttributes
 
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys will be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
-    The object will be `null` in case of untranslated content.
+     * For non-pluralized resource strings, only the default plural rule ('other') will be present.
+     * The object will be `null` in case of untranslated content.
      */
     public function setStrings(?ResourceTranslationsResponseDataAttributesStrings $strings): self
     {

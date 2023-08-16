@@ -73,4 +73,9 @@ class GetIdResponseDataItemattributesNormalizer implements DenormalizerInterface
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetIdResponseDataItemattributes::class => false];
+    }
 }

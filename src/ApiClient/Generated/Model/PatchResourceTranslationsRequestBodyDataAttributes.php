@@ -30,6 +30,8 @@ class PatchResourceTranslationsRequestBodyDataAttributes
     protected $reviewed;
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys should be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
+     * For non-pluralized resource strings, only the default plural rule ('other') is required.
+     * In order to delete existing translated content, the client should supply `null` as the value of the object.
      *
      * @var PatchResourceTranslationsRequestBodyDataAttributesStrings|null
      */
@@ -80,7 +82,8 @@ class PatchResourceTranslationsRequestBodyDataAttributes
 
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys should be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
-    In order to delete existing translated content, the client should supply `null` as the value of the object.
+     * For non-pluralized resource strings, only the default plural rule ('other') is required.
+     * In order to delete existing translated content, the client should supply `null` as the value of the object.
      */
     public function getStrings(): ?PatchResourceTranslationsRequestBodyDataAttributesStrings
     {
@@ -89,7 +92,8 @@ class PatchResourceTranslationsRequestBodyDataAttributes
 
     /**
      * Dictionary with the translation content. For pluralized resource strings, the keys should be all the available plural rules for target language, as defined in CLDR, and the values the actual translation for each plural rule.
-    In order to delete existing translated content, the client should supply `null` as the value of the object.
+     * For non-pluralized resource strings, only the default plural rule ('other') is required.
+     * In order to delete existing translated content, the client should supply `null` as the value of the object.
      */
     public function setStrings(?PatchResourceTranslationsRequestBodyDataAttributesStrings $strings): self
     {

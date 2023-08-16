@@ -91,4 +91,9 @@ class DataRelationshipsTeamDataNormalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [DataRelationshipsTeamData::class => false];
+    }
 }

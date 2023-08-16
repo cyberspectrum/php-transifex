@@ -84,4 +84,9 @@ class ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsLanguageLinks
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsLanguageLinks::class => false];
+    }
 }

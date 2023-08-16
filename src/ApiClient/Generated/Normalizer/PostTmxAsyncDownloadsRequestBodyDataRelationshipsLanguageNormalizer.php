@@ -74,4 +74,9 @@ class PostTmxAsyncDownloadsRequestBodyDataRelationshipsLanguageNormalizer implem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTmxAsyncDownloadsRequestBodyDataRelationshipsLanguage::class => false];
+    }
 }

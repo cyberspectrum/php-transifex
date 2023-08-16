@@ -79,4 +79,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsLangua
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemrelationshipsLanguageData::class => false];
+    }
 }

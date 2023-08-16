@@ -115,4 +115,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemNormalizer implemen
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItem::class => false];
+    }
 }

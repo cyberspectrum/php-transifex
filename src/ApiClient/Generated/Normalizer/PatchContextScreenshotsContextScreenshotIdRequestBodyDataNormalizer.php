@@ -86,4 +86,9 @@ class PatchContextScreenshotsContextScreenshotIdRequestBodyDataNormalizer implem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchContextScreenshotsContextScreenshotIdRequestBodyData::class => false];
+    }
 }

@@ -110,4 +110,9 @@ class ResourceStringsAsyncUploadsResponseDataAttributesNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncUploadsResponseDataAttributes::class => false];
+    }
 }

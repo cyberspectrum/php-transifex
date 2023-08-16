@@ -18,6 +18,7 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
     protected array $initialized = [];
     /**
      * The url that will be called when the processing is completed.
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      *
      * @var string|null
      */
@@ -41,7 +42,10 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
      */
     protected $mode = 'default';
     /**
-     * Generate mock translation of phrases.<br>.
+     * Generate mock translation of phrases.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.<br>
+     * <b>This attribute is deprecated and will be removed in a future release.</b><br>
+     * For pseudo translations see [/resource_strings_async_downloads](#tag/Resource-Strings/paths/~1resource_strings_async_downloads/post).
      *
      * @deprecated
      *
@@ -56,7 +60,7 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function getCallbackUrl(): ?string
     {
@@ -65,7 +69,7 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
 
     /**
      * The url that will be called when the processing is completed.
-    For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section
+     * For more details about callback_url you can refer to [Asynchronous Processing](#section/Asynchronous-Processing) section.
      */
     public function setCallbackUrl(?string $callbackUrl): self
     {
@@ -133,7 +137,10 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Generate mock translation of phrases.<br>.
+     * Generate mock translation of phrases.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.<br>
+     * <b>This attribute is deprecated and will be removed in a future release.</b><br>
+     * For pseudo translations see [/resource_strings_async_downloads](#tag/Resource-Strings/paths/~1resource_strings_async_downloads/post).
      *
      * @deprecated
      */
@@ -143,7 +150,10 @@ class PostResourceTranslationsAsyncDownloadsRequestBodyDataAttributes
     }
 
     /**
-     * Generate mock translation of phrases.<br>.
+     * Generate mock translation of phrases.<br>
+     * More about pseudo-localization: https://help.transifex.com/en/articles/6231812-testing-localized-apps-with-pseudo-files.<br>
+     * <b>This attribute is deprecated and will be removed in a future release.</b><br>
+     * For pseudo translations see [/resource_strings_async_downloads](#tag/Resource-Strings/paths/~1resource_strings_async_downloads/post).
      *
      * @deprecated
      */

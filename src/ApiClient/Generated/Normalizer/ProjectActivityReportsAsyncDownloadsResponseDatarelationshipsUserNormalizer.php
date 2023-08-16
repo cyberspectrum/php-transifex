@@ -93,4 +93,9 @@ class ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsUserNormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsUser::class => false];
+    }
 }

@@ -153,4 +153,9 @@ class PostProjectsRequestBodyDataAttributesNormalizer implements DenormalizerInt
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectsRequestBodyDataAttributes::class => false];
+    }
 }

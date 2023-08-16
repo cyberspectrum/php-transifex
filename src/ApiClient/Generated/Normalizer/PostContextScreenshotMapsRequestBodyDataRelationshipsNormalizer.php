@@ -81,4 +81,9 @@ class PostContextScreenshotMapsRequestBodyDataRelationshipsNormalizer implements
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostContextScreenshotMapsRequestBodyDataRelationships::class => false];
+    }
 }

@@ -37,10 +37,10 @@ class PatchTeamsByTeamIdRelationshipsManager extends BaseEndpoint implements End
 
     /**
      * Completely replace team managers.
-
-    _**Warning**: This is a highly destructive operation._.
      *
-     * @param string $teamId Format of composite id should be `o:organization_slug:t:team_slug`.
+     * _**Warning**: This is a highly destructive operation._
+     *
+     * @param string $teamId format of composite id should be `o:organization_slug:t:team_slug`
      */
     public function __construct(string $teamId, IdRelationshipsRequestBody $requestBody)
     {

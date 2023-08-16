@@ -84,4 +84,9 @@ class GetResourceLanguageStats200ResponseDataItemrelationshipsResourceLinksNorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200ResponseDataItemrelationshipsResourceLinks::class => false];
+    }
 }

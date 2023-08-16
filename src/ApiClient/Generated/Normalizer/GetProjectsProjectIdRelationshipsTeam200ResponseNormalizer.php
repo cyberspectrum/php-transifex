@@ -81,4 +81,9 @@ class GetProjectsProjectIdRelationshipsTeam200ResponseNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdRelationshipsTeam200Response::class => false];
+    }
 }

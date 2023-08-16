@@ -81,4 +81,9 @@ class GetResourceStringComments200ResponseDataItemrelationshipsResolverNormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringComments200ResponseDataItemrelationshipsResolver::class => false];
+    }
 }

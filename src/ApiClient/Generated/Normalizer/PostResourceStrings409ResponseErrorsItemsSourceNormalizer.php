@@ -73,4 +73,9 @@ class PostResourceStrings409ResponseErrorsItemsSourceNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStrings409ResponseErrorsItemsSource::class => false];
+    }
 }

@@ -81,4 +81,9 @@ class GetResourceLanguageStats200ResponseDataItemrelationshipsLanguageNormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStats200ResponseDataItemrelationshipsLanguage::class => false];
+    }
 }

@@ -89,4 +89,9 @@ class GetTeamsTeamIdManagers200ResponseNormalizer implements DenormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTeamsTeamIdManagers200Response::class => false];
+    }
 }

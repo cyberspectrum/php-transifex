@@ -74,4 +74,9 @@ class PatchProjectsProjectIdRequestBodyNormalizer implements DenormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectIdRequestBody::class => false];
+    }
 }

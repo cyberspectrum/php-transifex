@@ -93,4 +93,9 @@ class GetResourceStringsRevisions200ResponseDataItemsNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringsRevisions200ResponseDataItems::class => false];
+    }
 }

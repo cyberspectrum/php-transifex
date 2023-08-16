@@ -89,4 +89,9 @@ class GetTeamMembershipsTeamMembershipId200ResponseNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTeamMembershipsTeamMembershipId200Response::class => false];
+    }
 }

@@ -113,4 +113,9 @@ class ResourceTranslationsResponseDataRelationships1Normalizer implements Denorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsResponseDataRelationships1::class => false];
+    }
 }

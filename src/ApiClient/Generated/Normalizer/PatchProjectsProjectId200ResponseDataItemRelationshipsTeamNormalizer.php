@@ -81,4 +81,9 @@ class PatchProjectsProjectId200ResponseDataItemRelationshipsTeamNormalizer imple
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItemRelationshipsTeam::class => false];
+    }
 }

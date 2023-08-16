@@ -74,4 +74,9 @@ class PostResourceStrings201ResponseNormalizer implements DenormalizerInterface,
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStrings201Response::class => false];
+    }
 }

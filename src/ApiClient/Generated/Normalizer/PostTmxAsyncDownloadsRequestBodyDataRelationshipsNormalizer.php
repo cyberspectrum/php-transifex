@@ -81,4 +81,9 @@ class PostTmxAsyncDownloadsRequestBodyDataRelationshipsNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTmxAsyncDownloadsRequestBodyDataRelationships::class => false];
+    }
 }

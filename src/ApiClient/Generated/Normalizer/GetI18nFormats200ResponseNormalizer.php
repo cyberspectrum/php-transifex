@@ -82,4 +82,9 @@ class GetI18nFormats200ResponseNormalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetI18nFormats200Response::class => false];
+    }
 }

@@ -38,14 +38,14 @@ class GetTeamMembership extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[team] Filter results by a team
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $filter[user] Filter results by a user
-     *     @var string $filter[role] Filter results by role
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $include
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[team] Filter results by a team
+     * @var string $filter[language] Filter results by a language
+     * @var string $filter[user] Filter results by a user
+     * @var string $filter[role] Filter results by role
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $include
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

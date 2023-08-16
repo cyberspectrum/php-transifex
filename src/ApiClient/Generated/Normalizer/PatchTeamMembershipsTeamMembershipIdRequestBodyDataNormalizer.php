@@ -86,4 +86,9 @@ class PatchTeamMembershipsTeamMembershipIdRequestBodyDataNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchTeamMembershipsTeamMembershipIdRequestBodyData::class => false];
+    }
 }

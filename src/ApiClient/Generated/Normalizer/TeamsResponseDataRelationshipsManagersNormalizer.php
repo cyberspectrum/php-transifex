@@ -74,4 +74,9 @@ class TeamsResponseDataRelationshipsManagersNormalizer implements DenormalizerIn
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamsResponseDataRelationshipsManagers::class => false];
+    }
 }

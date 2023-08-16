@@ -82,4 +82,9 @@ class ResponseShared429ResponseNormalizer implements DenormalizerInterface, Norm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseShared429Response::class => false];
+    }
 }

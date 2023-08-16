@@ -73,4 +73,9 @@ class TeamMembershipsDataAttributesNormalizer implements DenormalizerInterface, 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamMembershipsDataAttributes::class => false];
+    }
 }

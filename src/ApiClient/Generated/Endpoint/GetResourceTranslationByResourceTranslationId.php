@@ -38,8 +38,8 @@ class GetResourceTranslationByResourceTranslationId extends BaseEndpoint impleme
      * @param string $resourceTranslationId Format of the Resource Translation id. Should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash:l:language_code`.
      * @param array  $queryParameters       {
      *
-     *     @var string $include Use the value `resource_string` to get the list of resource string objects in the response.
-     * }
+     * @var string $include Use the value `resource_string` to get the list of resource string objects in the response.
+     *             }
      */
     public function __construct(string $resourceTranslationId, array $queryParameters = [])
     {

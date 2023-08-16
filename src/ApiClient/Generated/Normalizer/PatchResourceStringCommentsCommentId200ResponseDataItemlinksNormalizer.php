@@ -73,4 +73,9 @@ class PatchResourceStringCommentsCommentId200ResponseDataItemlinksNormalizer imp
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200ResponseDataItemlinks::class => false];
+    }
 }

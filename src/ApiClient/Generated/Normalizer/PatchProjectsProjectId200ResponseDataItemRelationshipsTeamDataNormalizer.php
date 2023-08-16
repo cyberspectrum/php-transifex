@@ -91,4 +91,9 @@ class PatchProjectsProjectId200ResponseDataItemRelationshipsTeamDataNormalizer i
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItemRelationshipsTeamData::class => false];
+    }
 }

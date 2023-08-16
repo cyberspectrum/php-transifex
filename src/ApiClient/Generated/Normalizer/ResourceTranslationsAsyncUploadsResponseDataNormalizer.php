@@ -100,4 +100,9 @@ class ResourceTranslationsAsyncUploadsResponseDataNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsAsyncUploadsResponseData::class => false];
+    }
 }

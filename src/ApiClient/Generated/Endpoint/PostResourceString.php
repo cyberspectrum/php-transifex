@@ -40,7 +40,8 @@ class PostResourceString extends BaseEndpoint implements Endpoint
     protected $accept;
 
     /**
-     * Create a new resource string. This path is valid only for file-less.
+     * Create a new resource string. This path is valid only for file-less
+     * resources.
      *
      * @param PostResourceStringsRequestBody|PostResourceStringsRequestBody1 $requestBody
      * @param array                                                          $accept      Accept content header application/vnd.api+json|application/vnd.api+json;profile="bulk"

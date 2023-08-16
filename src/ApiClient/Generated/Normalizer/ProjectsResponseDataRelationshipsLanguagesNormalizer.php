@@ -74,4 +74,9 @@ class ProjectsResponseDataRelationshipsLanguagesNormalizer implements Denormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsResponseDataRelationshipsLanguages::class => false];
+    }
 }

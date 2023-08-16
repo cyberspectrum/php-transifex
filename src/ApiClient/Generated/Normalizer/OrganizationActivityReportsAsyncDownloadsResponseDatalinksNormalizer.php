@@ -73,4 +73,9 @@ class OrganizationActivityReportsAsyncDownloadsResponseDatalinksNormalizer imple
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [OrganizationActivityReportsAsyncDownloadsResponseDatalinks::class => false];
+    }
 }

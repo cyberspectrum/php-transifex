@@ -147,4 +147,9 @@ class PatchProjectsProjectIdRequestBodyDataAttributesNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectIdRequestBodyDataAttributes::class => false];
+    }
 }

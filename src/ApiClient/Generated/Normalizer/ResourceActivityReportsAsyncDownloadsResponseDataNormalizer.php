@@ -115,4 +115,9 @@ class ResourceActivityReportsAsyncDownloadsResponseDataNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceActivityReportsAsyncDownloadsResponseData::class => false];
+    }
 }

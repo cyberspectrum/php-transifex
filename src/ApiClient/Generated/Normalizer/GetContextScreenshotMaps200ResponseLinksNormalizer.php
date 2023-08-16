@@ -89,4 +89,9 @@ class GetContextScreenshotMaps200ResponseLinksNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetContextScreenshotMaps200ResponseLinks::class => false];
+    }
 }

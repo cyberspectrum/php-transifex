@@ -25,8 +25,20 @@ class DeleteResourceString extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
-     * Include a payload with resource identifiers to all resource strings you.
-    of the more common `application/vnd.api+json`.
+     * Include a payload with resource identifiers to all resource strings you
+     * wish to delete. Resource identifiers are objects with only the `type` and
+     * `id` fields.
+     *
+     * <b>Available only for file-less resources.</b>
+     *
+     * All deleted resource strings need to belong to the same resource.
+     * Bulk deletes do not support partial success, ie either all
+     * resource strings will be deleted, or none will.
+     *
+     * Consult the error response to figure out which resource strings
+     * you need to fix or omit and try again. Don't forget to use the
+     * `application/vnd.api+json;profile="bulk"` Content-Type instead
+     * of the more common `application/vnd.api+json`.
      */
     public function __construct(DeleteResourceStringsRequestBody $requestBody)
     {

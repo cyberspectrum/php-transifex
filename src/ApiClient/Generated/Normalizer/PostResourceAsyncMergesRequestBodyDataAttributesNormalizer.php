@@ -87,4 +87,9 @@ class PostResourceAsyncMergesRequestBodyDataAttributesNormalizer implements Deno
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceAsyncMergesRequestBodyDataAttributes::class => false];
+    }
 }

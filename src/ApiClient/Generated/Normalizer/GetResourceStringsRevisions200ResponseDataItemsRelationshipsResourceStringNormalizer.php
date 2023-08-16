@@ -81,4 +81,9 @@ class GetResourceStringsRevisions200ResponseDataItemsRelationshipsResourceString
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringsRevisions200ResponseDataItemsRelationshipsResourceString::class => false];
+    }
 }

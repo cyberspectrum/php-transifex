@@ -20,6 +20,8 @@ class ResourceResponseAttributes
     protected array $initialized = [];
     /**
      * The order that the resource string appears in it's container.
+     * In case of files appearance order is extracted automatically,
+     * where in other cases this may be missing.
      *
      * @var int|null
      */
@@ -31,7 +33,10 @@ class ResourceResponseAttributes
      */
     protected $characterLimit;
     /**
-     * Additional context added, in order to link the resource string.
+     * Additional context added, in order to link the resource string
+     * to the environment in which the communication takes
+     * place and/or disambiguate resource strings with the same content.
+     * Context can be multiple substrings, concatenated with some separator.
      *
      * @var string
      */
@@ -43,7 +48,8 @@ class ResourceResponseAttributes
      */
     protected $datetimeCreated;
     /**
-     * Developer comment gives additional information about the usage of this.
+     * Developer comment gives additional information about the usage of this
+     * string and/or technical details relevant to this string.
      *
      * @var string|null
      */
@@ -56,6 +62,8 @@ class ResourceResponseAttributes
     protected $instructions;
     /**
      * The identifier of the resource string in it's container.
+     * In cases where two resource strings in the same container share the same key,
+     * `context` is also used to disambiguate the identity of each resource string.
      *
      * @var string
      */
@@ -86,6 +94,12 @@ class ResourceResponseAttributes
     protected $stringHash;
     /**
      * Dictionary with the translation content.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      *
      * @var ResourceStringsAttributesStrings
      */
@@ -110,7 +124,8 @@ class ResourceResponseAttributes
 
     /**
      * The order that the resource string appears in it's container.
-    where in other cases this may be missing
+     * In case of files appearance order is extracted automatically,
+     * where in other cases this may be missing.
      */
     public function getAppearanceOrder(): ?int
     {
@@ -119,7 +134,8 @@ class ResourceResponseAttributes
 
     /**
      * The order that the resource string appears in it's container.
-    where in other cases this may be missing
+     * In case of files appearance order is extracted automatically,
+     * where in other cases this may be missing.
      */
     public function setAppearanceOrder(?int $appearanceOrder): self
     {
@@ -149,8 +165,10 @@ class ResourceResponseAttributes
     }
 
     /**
-     * Additional context added, in order to link the resource string.
-    Context can be multiple substrings, concatenated with some separator.
+     * Additional context added, in order to link the resource string
+     * to the environment in which the communication takes
+     * place and/or disambiguate resource strings with the same content.
+     * Context can be multiple substrings, concatenated with some separator.
      */
     public function getContext(): string
     {
@@ -158,8 +176,10 @@ class ResourceResponseAttributes
     }
 
     /**
-     * Additional context added, in order to link the resource string.
-    Context can be multiple substrings, concatenated with some separator.
+     * Additional context added, in order to link the resource string
+     * to the environment in which the communication takes
+     * place and/or disambiguate resource strings with the same content.
+     * Context can be multiple substrings, concatenated with some separator.
      */
     public function setContext(string $context): self
     {
@@ -189,8 +209,8 @@ class ResourceResponseAttributes
     }
 
     /**
-     * Developer comment gives additional information about the usage of this.
-    string and/or technical details relevant to this string.
+     * Developer comment gives additional information about the usage of this
+     * string and/or technical details relevant to this string.
      */
     public function getDeveloperComment(): ?string
     {
@@ -198,8 +218,8 @@ class ResourceResponseAttributes
     }
 
     /**
-     * Developer comment gives additional information about the usage of this.
-    string and/or technical details relevant to this string.
+     * Developer comment gives additional information about the usage of this
+     * string and/or technical details relevant to this string.
      */
     public function setDeveloperComment(?string $developerComment): self
     {
@@ -230,7 +250,8 @@ class ResourceResponseAttributes
 
     /**
      * The identifier of the resource string in it's container.
-    `context` is also used to disambiguate the identity of each resource string.
+     * In cases where two resource strings in the same container share the same key,
+     * `context` is also used to disambiguate the identity of each resource string.
      */
     public function getKey(): string
     {
@@ -239,7 +260,8 @@ class ResourceResponseAttributes
 
     /**
      * The identifier of the resource string in it's container.
-    `context` is also used to disambiguate the identity of each resource string.
+     * In cases where two resource strings in the same container share the same key,
+     * `context` is also used to disambiguate the identity of each resource string.
      */
     public function setKey(string $key): self
     {
@@ -327,7 +349,12 @@ class ResourceResponseAttributes
 
     /**
      * Dictionary with the translation content.
-    ('other') is required.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      */
     public function getStrings(): ResourceStringsAttributesStrings
     {
@@ -336,7 +363,12 @@ class ResourceResponseAttributes
 
     /**
      * Dictionary with the translation content.
-    ('other') is required.
+     * For pluralized resource strings, the keys should be all the
+     * available plural rules for source language, as defined in CLDR,
+     * and the values the actual content for each plural rule.
+     *
+     * For non-pluralized resource strings, only the default plural rule
+     * ('other') is required.
      */
     public function setStrings(ResourceStringsAttributesStrings $strings): self
     {

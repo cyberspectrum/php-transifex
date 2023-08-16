@@ -86,4 +86,9 @@ class PatchResourceStringsRequestBodyData1Normalizer implements DenormalizerInte
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringsRequestBodyData1::class => false];
+    }
 }

@@ -74,4 +74,9 @@ class ResourceTranslationsAsyncDownloadsResponseNormalizer implements Denormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsAsyncDownloadsResponse::class => false];
+    }
 }

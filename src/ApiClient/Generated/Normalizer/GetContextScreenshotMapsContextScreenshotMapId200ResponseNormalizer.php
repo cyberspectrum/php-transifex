@@ -74,4 +74,9 @@ class GetContextScreenshotMapsContextScreenshotMapId200ResponseNormalizer implem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetContextScreenshotMapsContextScreenshotMapId200Response::class => false];
+    }
 }

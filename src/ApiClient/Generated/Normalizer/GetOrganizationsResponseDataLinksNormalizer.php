@@ -73,4 +73,9 @@ class GetOrganizationsResponseDataLinksNormalizer implements DenormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetOrganizationsResponseDataLinks::class => false];
+    }
 }

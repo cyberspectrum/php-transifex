@@ -74,4 +74,9 @@ class GetResourceStringsRevisions200ResponseDataItemsRelationshipsNormalizer imp
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringsRevisions200ResponseDataItemsRelationships::class => false];
+    }
 }

@@ -82,4 +82,9 @@ class PatchResourceTranslations200ResponseNormalizer implements DenormalizerInte
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceTranslations200Response::class => false];
+    }
 }

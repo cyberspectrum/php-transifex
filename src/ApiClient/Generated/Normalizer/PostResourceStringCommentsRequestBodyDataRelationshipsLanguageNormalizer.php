@@ -74,4 +74,9 @@ class PostResourceStringCommentsRequestBodyDataRelationshipsLanguageNormalizer i
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringCommentsRequestBodyDataRelationshipsLanguage::class => false];
+    }
 }

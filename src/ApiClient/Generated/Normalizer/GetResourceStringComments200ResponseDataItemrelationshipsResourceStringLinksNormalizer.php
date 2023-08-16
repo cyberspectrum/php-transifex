@@ -73,4 +73,9 @@ class GetResourceStringComments200ResponseDataItemrelationshipsResourceStringLin
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringComments200ResponseDataItemrelationshipsResourceStringLinks::class => false];
+    }
 }

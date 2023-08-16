@@ -74,4 +74,9 @@ class ResourceStringsAsyncResponseDataRelationshipsNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncResponseDataRelationships::class => false];
+    }
 }

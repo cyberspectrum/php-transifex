@@ -74,4 +74,9 @@ class PatchResourceStringCommentsCommentIdRequestBodyNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentIdRequestBody::class => false];
+    }
 }

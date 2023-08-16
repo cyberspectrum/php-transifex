@@ -89,4 +89,9 @@ class GetProjectsProjectIdRelationshipsMaintainers200ResponseLinksNormalizer imp
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdRelationshipsMaintainers200ResponseLinks::class => false];
+    }
 }

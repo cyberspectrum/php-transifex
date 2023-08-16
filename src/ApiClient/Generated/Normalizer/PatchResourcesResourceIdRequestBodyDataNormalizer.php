@@ -93,4 +93,9 @@ class PatchResourcesResourceIdRequestBodyDataNormalizer implements DenormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourcesResourceIdRequestBodyData::class => false];
+    }
 }

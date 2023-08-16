@@ -98,4 +98,9 @@ class PostResourceStrings409ResponseErrorsItemsNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStrings409ResponseErrorsItems::class => false];
+    }
 }

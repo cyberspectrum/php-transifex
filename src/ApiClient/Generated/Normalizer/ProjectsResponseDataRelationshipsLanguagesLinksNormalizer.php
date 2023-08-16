@@ -79,4 +79,9 @@ class ProjectsResponseDataRelationshipsLanguagesLinksNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectsResponseDataRelationshipsLanguagesLinks::class => false];
+    }
 }

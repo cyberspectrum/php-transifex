@@ -91,4 +91,9 @@ class ResourceActivityReportsAsyncDownloadsResponseDatarelationshipsResourceData
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceActivityReportsAsyncDownloadsResponseDatarelationshipsResourceData::class => false];
+    }
 }

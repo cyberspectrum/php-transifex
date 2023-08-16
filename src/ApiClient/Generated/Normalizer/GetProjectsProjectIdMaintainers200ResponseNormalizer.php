@@ -89,4 +89,9 @@ class GetProjectsProjectIdMaintainers200ResponseNormalizer implements Denormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectsProjectIdMaintainers200Response::class => false];
+    }
 }

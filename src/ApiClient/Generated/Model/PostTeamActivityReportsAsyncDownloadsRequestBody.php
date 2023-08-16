@@ -17,7 +17,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBody
      */
     protected array $initialized = [];
     /**
-     * Create team activity report download body request.
+     * Create team activity report download body request
+     * details.
      *
      * @var PostTeamActivityReportsAsyncDownloadsRequestBodyData
      */
@@ -29,8 +30,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBody
     }
 
     /**
-     * Create team activity report download body request.
-    details.
+     * Create team activity report download body request
+     * details.
      */
     public function getData(): PostTeamActivityReportsAsyncDownloadsRequestBodyData
     {
@@ -38,8 +39,8 @@ class PostTeamActivityReportsAsyncDownloadsRequestBody
     }
 
     /**
-     * Create team activity report download body request.
-    details.
+     * Create team activity report download body request
+     * details.
      */
     public function setData(PostTeamActivityReportsAsyncDownloadsRequestBodyData $data): self
     {

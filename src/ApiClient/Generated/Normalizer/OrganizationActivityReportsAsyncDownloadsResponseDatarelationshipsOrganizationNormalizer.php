@@ -93,4 +93,9 @@ class OrganizationActivityReportsAsyncDownloadsResponseDatarelationshipsOrganiza
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [OrganizationActivityReportsAsyncDownloadsResponseDatarelationshipsOrganization::class => false];
+    }
 }

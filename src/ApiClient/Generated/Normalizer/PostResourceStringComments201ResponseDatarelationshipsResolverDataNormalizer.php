@@ -91,4 +91,9 @@ class PostResourceStringComments201ResponseDatarelationshipsResolverDataNormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringComments201ResponseDatarelationshipsResolverData::class => false];
+    }
 }

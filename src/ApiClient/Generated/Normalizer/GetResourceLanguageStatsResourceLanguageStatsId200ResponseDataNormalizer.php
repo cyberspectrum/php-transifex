@@ -115,4 +115,9 @@ class GetResourceLanguageStatsResourceLanguageStatsId200ResponseDataNormalizer i
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceLanguageStatsResourceLanguageStatsId200ResponseData::class => false];
+    }
 }

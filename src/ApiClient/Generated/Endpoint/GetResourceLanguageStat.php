@@ -34,15 +34,16 @@ class GetResourceLanguageStat extends BaseEndpoint implements Endpoint
     use EndpointTrait;
 
     /**
-     * Get the statistics for a set of resources. You must specify at least a project.
+     * Get the statistics for a set of resources. You must specify at least a project
+     * and optionally a language / resource to filter against.
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-
+     * @var string $filter[project] Filter results by a project
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[language] Filter results by a language
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *
      * }
      */
     public function __construct(array $queryParameters = [])

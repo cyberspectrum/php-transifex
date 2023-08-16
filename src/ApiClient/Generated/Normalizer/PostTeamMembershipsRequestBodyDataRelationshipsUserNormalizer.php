@@ -74,4 +74,9 @@ class PostTeamMembershipsRequestBodyDataRelationshipsUserNormalizer implements D
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTeamMembershipsRequestBodyDataRelationshipsUser::class => false];
+    }
 }

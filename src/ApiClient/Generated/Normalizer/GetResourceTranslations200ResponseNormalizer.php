@@ -104,4 +104,9 @@ class GetResourceTranslations200ResponseNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceTranslations200Response::class => false];
+    }
 }

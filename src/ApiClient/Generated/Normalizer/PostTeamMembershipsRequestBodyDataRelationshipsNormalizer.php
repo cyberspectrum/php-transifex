@@ -88,4 +88,9 @@ class PostTeamMembershipsRequestBodyDataRelationshipsNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTeamMembershipsRequestBodyDataRelationships::class => false];
+    }
 }

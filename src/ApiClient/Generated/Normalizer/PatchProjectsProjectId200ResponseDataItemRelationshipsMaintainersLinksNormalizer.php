@@ -79,4 +79,9 @@ class PatchProjectsProjectId200ResponseDataItemRelationshipsMaintainersLinksNorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItemRelationshipsMaintainersLinks::class => false];
+    }
 }

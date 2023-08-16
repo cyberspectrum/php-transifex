@@ -89,4 +89,9 @@ class GetContextScreenshots200ResponseNormalizer implements DenormalizerInterfac
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetContextScreenshots200Response::class => false];
+    }
 }

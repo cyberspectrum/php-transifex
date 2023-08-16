@@ -73,4 +73,9 @@ class ContextScreenshotsResponseDataRelationshipsContextScreenshotsMapsLinksNorm
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ContextScreenshotsResponseDataRelationshipsContextScreenshotsMapsLinks::class => false];
+    }
 }

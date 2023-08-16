@@ -37,7 +37,7 @@ class PostOrganizationActivityReportsAsyncDownload extends BaseEndpoint implemen
 
     /**
      * The response represents the organization activity report file download job.
-    Check the job's status and download the file itself once that is completed.
+     * Check the job's status and download the file itself once that is completed.
      */
     public function __construct(PostOrganizationActivityReportsAsyncDownloadsRequestBody $requestBody)
     {

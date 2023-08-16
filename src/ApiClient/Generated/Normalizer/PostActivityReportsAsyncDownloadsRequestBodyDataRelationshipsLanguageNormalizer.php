@@ -74,4 +74,9 @@ class PostActivityReportsAsyncDownloadsRequestBodyDataRelationshipsLanguageNorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostActivityReportsAsyncDownloadsRequestBodyDataRelationshipsLanguage::class => false];
+    }
 }

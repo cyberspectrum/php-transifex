@@ -82,4 +82,9 @@ class PatchResourceStringCommentsCommentId200ResponseNormalizer implements Denor
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchResourceStringCommentsCommentId200Response::class => false];
+    }
 }

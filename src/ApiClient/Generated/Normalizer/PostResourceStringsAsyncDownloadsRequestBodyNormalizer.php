@@ -74,4 +74,9 @@ class PostResourceStringsAsyncDownloadsRequestBodyNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceStringsAsyncDownloadsRequestBody::class => false];
+    }
 }

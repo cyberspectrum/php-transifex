@@ -89,4 +89,9 @@ class GetTeamMemberships200ResponseLinksNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetTeamMemberships200ResponseLinks::class => false];
+    }
 }

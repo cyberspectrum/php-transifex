@@ -726,12 +726,12 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[resource_string]
-     *     @var string $filter[context_screenshot] Retrieve maps related to a specific context screenshot
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $filter[project] Filter results by a project
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[resource_string]
+     * @var string $filter[context_screenshot] Retrieve maps related to a specific context screenshot
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -807,9 +807,9 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $filter[project] Filter results by a project
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -902,12 +902,13 @@ class Client extends ClientBase
 
     /**
      * Get information for all the supported i18n formats.
+     * For more information check https://help.transifex.com/en/articles/6219670-introduction-to-file-formats.
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[name] Get specific i18n format by name
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[name] Get specific i18n format by name
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -929,9 +930,9 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[code] The code of the language to get details
-     *     @var string $filter[code][any] A list of codes of the languages to get details. This will fetch any available.
-     * }
+     * @var string $filter[code] The code of the language to get details
+     * @var string $filter[code][any] A list of codes of the languages to get details. This will fetch any available.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -969,6 +970,7 @@ class Client extends ClientBase
 
     /**
      * The response represents the organization activity report file download job.
+     * Check the job's status and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -988,9 +990,19 @@ class Client extends ClientBase
     }
 
     /**
-     * With this endpoint, you can inquire about the status of an organization.
+     * With this endpoint, you can inquire about the status of an organization
+     * activity report download job.
      *
-     * @param string $organizationActivityReportsAsyncDownloadId Format of the organization_activity_reports_async_download_id should be
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the report has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to
+     * [download the file](#tag/File-Downloads/paths/get) that have been
+     * extracted from your file.
+     *
+     * @param string $organizationActivityReportsAsyncDownloadId format of the organization_activity_reports_async_download_id should be
+     *                                                           a UUID
      * @param string $fetch                                      Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return OrganizationActivityReportsAsyncDownloadsResponse|ResponseInterface|null
@@ -1011,9 +1023,9 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug] The slug of the organization to get details
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug] The slug of the organization to get details
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1047,7 +1059,8 @@ class Client extends ClientBase
     }
 
     /**
-     * The response represents the project activity report download job. Check the.
+     * The response represents the project activity report download job. Check the
+     * job's status and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1067,9 +1080,19 @@ class Client extends ClientBase
     }
 
     /**
-     * With this endpoint, you can inquire about the status of a project activity.
+     * With this endpoint, you can inquire about the status of a project activity
+     * report download job.
      *
-     * @param string $projectActivityReportsAsyncDownloadId Format of the project_activity_reports_async_download_id should be a
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the report has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to
+     * [download the file](#tag/File-Downloads/paths/get) that have been
+     * extracted from your file.
+     *
+     * @param string $projectActivityReportsAsyncDownloadId format of the project_activity_reports_async_download_id should be a
+     *                                                      UUID
      * @param string $fetch                                 Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ProjectActivityReportsAsyncDownloadsResponse|ResponseInterface|null
@@ -1090,10 +1113,10 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[project] Filter results by a project
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1188,11 +1211,11 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug]
-     *     @var string $filter[name]
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug]
+     * @var string $filter[name]
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1311,8 +1334,8 @@ class Client extends ClientBase
      * @param string $projectId       format of composite id should be `o:organization_slug:p:project_slug`
      * @param array  $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1351,8 +1374,8 @@ class Client extends ClientBase
      * @param string $projectId       format of composite id should be `o:organization_slug:p:project_slug`
      * @param array  $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1372,8 +1395,8 @@ class Client extends ClientBase
 
     /**
      * Completely replace the target language of a specific project.
-
-    _**Warning**: This is a highly destructive operation._.
+     *
+     * _**Warning**: This is a highly destructive operation._
      *
      * @param string $projectId format of composite id should be `o:organization_slug:p:project_slug`
      * @param string $fetch     Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1434,8 +1457,8 @@ class Client extends ClientBase
      * @param string $projectId       format of composite id should be `o:organization_slug:p:project_slug`
      * @param array  $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1456,8 +1479,8 @@ class Client extends ClientBase
 
     /**
      * Completely replace project maintainers.
-
-    _**Warning**: This is a highly destructive operation._.
+     *
+     * _**Warning**: This is a highly destructive operation._
      *
      * @param string $projectId format of composite id should be `o:organization_slug:p:project_slug`
      * @param string $fetch     Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1532,7 +1555,8 @@ class Client extends ClientBase
     }
 
     /**
-     * The response represents the resource activity report download job. Check.
+     * The response represents the resource activity report download job. Check
+     * the job's status and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1552,9 +1576,19 @@ class Client extends ClientBase
     }
 
     /**
-     * With this endpoint, you can inquire about the status of an resource.
+     * With this endpoint, you can inquire about the status of an resource
+     * activity report download job.
      *
-     * @param string $resourceActivityReportsAsyncDownloadId Format of the resource_activity_reports_async_download_id should be a
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the report has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to
+     * [download the file](#tag/File-Downloads/paths/get) that have been
+     * extracted from your file.
+     *
+     * @param string $resourceActivityReportsAsyncDownloadId format of the resource_activity_reports_async_download_id should be a
+     *                                                       UUID
      * @param string $fetch                                  Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ResourceActivityReportsAsyncDownloadsResponse|ResponseInterface|null
@@ -1593,7 +1627,11 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of a resource merge job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the merge has failed to complete.
+     * - In case the upload job has been successful, you will receive a "200"
      *
      * @param string $resourceAsyncMergeId format of the resource_async_merge_id should be a UUID
      * @param string $fetch                Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1613,15 +1651,16 @@ class Client extends ClientBase
     }
 
     /**
-     * Get the statistics for a set of resources. You must specify at least a project.
+     * Get the statistics for a set of resources. You must specify at least a project
+     * and optionally a language / resource to filter against.
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-
+     * @var string $filter[project] Filter results by a project
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[language] Filter results by a language
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *
      * }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1664,19 +1703,19 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[category]
-     *     @var string $filter[author]
-     *     @var string $filter[datetime_created][gte]
-     *     @var string $filter[datetime_created][lt]
-     *     @var string $filter[priority]
-     *     @var string $filter[resource]
-     *     @var string $filter[resource_string]
-     *     @var string $filter[status]
-     *     @var string $filter[type]
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[project] Filter results by a project
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[category]
+     * @var string $filter[author]
+     * @var string $filter[datetime_created][gte]
+     * @var string $filter[datetime_created][lt]
+     * @var string $filter[priority]
+     * @var string $filter[resource]
+     * @var string $filter[resource_string]
+     * @var string $filter[status]
+     * @var string $filter[type]
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1770,7 +1809,20 @@ class Client extends ClientBase
     }
 
     /**
-     * Include a payload with resource identifiers to all resource strings you.
+     * Include a payload with resource identifiers to all resource strings you
+     * wish to delete. Resource identifiers are objects with only the `type` and
+     * `id` fields.
+     *
+     * <b>Available only for file-less resources.</b>
+     *
+     * All deleted resource strings need to belong to the same resource.
+     * Bulk deletes do not support partial success, ie either all
+     * resource strings will be deleted, or none will.
+     *
+     * Consult the error response to figure out which resource strings
+     * you need to fix or omit and try again. Don't forget to use the
+     * `application/vnd.api+json;profile="bulk"` Content-Type instead
+     * of the more common `application/vnd.api+json`.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1785,14 +1837,14 @@ class Client extends ClientBase
     /**
      * @param array $queryParameters {
      *
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[strings_date_modified][gte]
-     *     @var string $filter[strings_date_modified][lte]
-     *     @var string $filter[key] Exact match for the key of the resource string. This filter is case sensitive.
-     *     @var array $filter[tags][all] Retrieve source strings containing all of the query tags
-     *     @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
-     * }
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[strings_date_modified][gte]
+     * @var string $filter[strings_date_modified][lte]
+     * @var string $filter[key] Exact match for the key of the resource string. This filter is case sensitive.
+     * @var array  $filter[tags][all] Retrieve source strings containing all of the query tags
+     * @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1830,7 +1882,8 @@ class Client extends ClientBase
     }
 
     /**
-     * Create a new resource string. This path is valid only for file-less.
+     * Create a new resource string. This path is valid only for file-less
+     * resources.
      *
      * @param PostResourceStringsRequestBody|PostResourceStringsRequestBody1 $requestBody
      * @param string                                                         $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1854,7 +1907,8 @@ class Client extends ClientBase
 
     /**
      * Delete a resource string.
-
+     *
+     * <b>Available only for file-less resources.</b>
      *
      * @param string $resourceStringId format of the Resource String id should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash`
      * @param string $fetch            Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1913,7 +1967,8 @@ class Client extends ClientBase
     }
 
     /**
-     * The response represents the file download job. Check the job's status.
+     * The response represents the file download job. Check the job's status
+     * and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -1935,7 +1990,13 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of a resource strings download job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the source file has failed to be compiled.
+     * - In case the download job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to [download the file](#tag/File-Downloads/paths/get)
+     * that have been extracted from your file.
      *
      * @param string $resourceStringsAsyncDownloadId format of the resource_strings_async_download_id should be `o:organization_slug:p:project_slug:r:resource_slug`
      * @param string $fetch                          Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1956,6 +2017,13 @@ class Client extends ClientBase
 
     /**
      * For more details about File uploads you can refer to [File Uploads](#section/File-Uploads) section.
+     *
+     * The response represents the file upload job. Look into the 'status'
+     * attribute to verify that the upload has completed successfuly. If the
+     * status is 'pending' or 'processing', then you will need to periodically
+     * inquire about its status. Use the 'self' link, which will get you to the
+     * [/resource_strings_async_uploads/{resource_strings_async_upload_id}](#tag/Resource-Strings/paths/~1resource_strings_async_uploads~1{resource_strings_async_upload_id}/get)
+     * endpoint.
      *
      * @param PostResourceStringsAsyncUploadsMultipartFormDataRequestBody|PostResourceStringsAsyncUploadsRequestBody $requestBody
      * @param string                                                                                                 $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
@@ -1978,7 +2046,14 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of a source upload job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the content has failed to be uploaded to the
+     * resource.
+     * - If the 'status' is 'succeeded', you can get more details about the number
+     * of strings created, deleted, skipped and updated in the `details` attribute
+     * of the response.
      *
      * @param string $resourceStringsAsyncUploadId format of the resource_strings_async_upload_id should be a UUID
      * @param string $fetch                        Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2001,12 +2076,12 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[resource_string][resource] Filter results by a resource
-     *     @var string $filter[resource_string][key] Exact match for the key of the resource string. This filter is case sensitive.
-     *     @var array $filter[resource_string][tags][all] Retrieve source strings revisions containing all of the query tags
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
-     * }
+     * @var string $filter[resource_string][resource] Filter results by a resource
+     * @var string $filter[resource_string][key] Exact match for the key of the resource string. This filter is case sensitive.
+     * @var array  $filter[resource_string][tags][all] Retrieve source strings revisions containing all of the query tags
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2028,23 +2103,23 @@ class Client extends ClientBase
     /**
      * @param array $queryParameters {
      *
-     *     @var string $filter[resource] Filter results by a resource
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[date_translated][gt]
-     *     @var string $filter[date_translated][lt]
-     *     @var string $filter[resource_string][key]
-     *     @var string $filter[resource_string][date_modified][gte]
-     *     @var string $filter[resource_string][date_modified][lte]
-     *     @var bool $filter[translated]
-     *     @var bool $filter[reviewed]
-     *     @var bool $filter[proofread]
-     *     @var bool $filter[finalized]
-     *     @var string $filter[translator]
-     *     @var string $include use the value `resource_string` to get the list of resource string objects in the response
-     *     @var array $filter[resource_string][tags][all] Retrieve translation strings containing all of the query tags
-     *     @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
-     * }
+     * @var string $filter[resource] Filter results by a resource
+     * @var string $filter[language] Filter results by a language
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[date_translated][gt]
+     * @var string $filter[date_translated][lt]
+     * @var string $filter[resource_string][key]
+     * @var string $filter[resource_string][date_modified][gte]
+     * @var string $filter[resource_string][date_modified][lte]
+     * @var bool   $filter[translated]
+     * @var bool   $filter[reviewed]
+     * @var bool   $filter[proofread]
+     * @var bool   $filter[finalized]
+     * @var string $filter[translator]
+     * @var string $include use the value `resource_string` to get the list of resource string objects in the response
+     * @var array  $filter[resource_string][tags][all] Retrieve translation strings containing all of the query tags
+     * @var string $limit The page size limit. If not set, the default value is 150. <br> If set, the minimum value it can take is 150 and the maximum 1000.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2066,6 +2141,8 @@ class Client extends ClientBase
 
     /**
      * Allows for bulk updating of translations up to 150 at a time.
+     * All resource strings should belong to the same resource
+     * and target the same translation language.
      *
      * @param string $fetch  Fetch mode to use (can be OBJECT or RESPONSE)
      * @param array  $accept Accept content header application/vnd.api+json;profile="bulk"|application/vnd.api+json
@@ -2088,8 +2165,8 @@ class Client extends ClientBase
      * @param string $resourceTranslationId Format of the Resource Translation id. Should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash:l:language_code`.
      * @param array  $queryParameters       {
      *
-     *     @var string $include Use the value `resource_string` to get the list of resource string objects in the response.
-     * }
+     * @var string $include Use the value `resource_string` to get the list of resource string objects in the response.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2108,7 +2185,14 @@ class Client extends ClientBase
     }
 
     /**
-     * Allows to add/update/remove content for Resource Translations as well as.
+     * Allows to add/update/remove content for Resource Translations as well as
+     * reviewing/unreviewing existing work.
+     *
+     * When not all of the attributes are supplied in the request, these are interpreted as
+     * if they were included with their current value.
+     * The only exception in this rule is when `strings` are modified,
+     * the resource translation is by default unreviewed unless otherwise specified
+     * (with the `reviewed`/`proofread` attributes on the request body).
      *
      * @param string $resourceTranslationId Format of the Resource Translation id. Should be `o:organization_slug:p:project_slug:r:resource_slug:s:string_hash:l:language_code`.
      * @param string $fetch                 Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2130,7 +2214,8 @@ class Client extends ClientBase
     }
 
     /**
-     * The response represents the file download job. Check the job's status.
+     * The response represents the file download job. Check the job's status
+     * and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2152,7 +2237,13 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of an translation download job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the translation has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to [download the file](#tag/File-Downloads/paths/get)
+     * that have been extracted from your file.
      *
      * @param string $resourceTranslationsAsyncDownloadId format of the resource_translations_async_download_id should be a UUID
      * @param string $fetch                               Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2218,11 +2309,11 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[project] Filter results by a project
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug]
-     *     @var string $filter[name]
-     * }
+     * @var string $filter[project] Filter results by a project
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug]
+     * @var string $filter[name]
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2242,6 +2333,10 @@ class Client extends ClientBase
 
     /**
      * Making a POST request to this endpoint creates a resource without content.
+     * This step is performed synchronously so you don't have to verify that
+     * resource creation succeeded afterwards. In order to upload content, see the
+     * [/resource_strings_async_uploads](#tag/Resource-Strings/paths/~1resource_strings_async_uploads/post)
+     * endpoint.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2319,6 +2414,7 @@ class Client extends ClientBase
 
     /**
      * The response represents the team activity report file download job.
+     * Check the job's status and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2338,9 +2434,19 @@ class Client extends ClientBase
     }
 
     /**
-     * With this endpoint, you can inquire about the status of an team.
+     * With this endpoint, you can inquire about the status of an team
+     * activity report download job.
      *
-     * @param string $teamActivityReportsAsyncDownloadId Format of the team_activity_reports_async_download_id should be
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the report has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to
+     * [download the file](#tag/File-Downloads/paths/get) that have been
+     * extracted from your file.
+     *
+     * @param string $teamActivityReportsAsyncDownloadId format of the team_activity_reports_async_download_id should be
+     *                                                   a UUID
      * @param string $fetch                              Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @return ResponseInterface|TeamActivityReportsAsyncDownloadsResponse|null
@@ -2361,14 +2467,14 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $filter[team] Filter results by a team
-     *     @var string $filter[language] Filter results by a language
-     *     @var string $filter[user] Filter results by a user
-     *     @var string $filter[role] Filter results by role
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $include
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $filter[team] Filter results by a team
+     * @var string $filter[language] Filter results by a language
+     * @var string $filter[user] Filter results by a user
+     * @var string $filter[role] Filter results by role
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $include
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2430,8 +2536,8 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $include
-     * }
+     * @var string $include
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2451,7 +2557,13 @@ class Client extends ClientBase
 
     /**
      * Update a membership's role.
-
+     *
+     * You are only allowed to change the role. If you wish to change one of the
+     * relationships, you should delete the existing membership and create a new
+     * one with the desired relationships.
+     *
+     * The corresponding action in the UI is described
+     * [here](https://help.transifex.com/en/articles/6223458-managing-and-removing-collaborators#h_66d1be4260)
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2475,11 +2587,11 @@ class Client extends ClientBase
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug] The slug of the team to get details
-     *     @var string $filter[name]
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug] The slug of the team to get details
+     * @var string $filter[name]
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2576,8 +2688,8 @@ class Client extends ClientBase
      * @param string $teamId          format of composite id should be `o:organization_slug:t:team_slug`
      * @param array  $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2615,8 +2727,8 @@ class Client extends ClientBase
      * @param string $teamId          format of composite id should be `o:organization_slug:t:team_slug`
      * @param array  $queryParameters {
      *
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     * }
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     *             }
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2636,10 +2748,10 @@ class Client extends ClientBase
 
     /**
      * Completely replace team managers.
-
-    _**Warning**: This is a highly destructive operation._.
      *
-     * @param string $teamId Format of composite id should be `o:organization_slug:t:team_slug`.
+     * _**Warning**: This is a highly destructive operation._
+     *
+     * @param string $teamId format of composite id should be `o:organization_slug:t:team_slug`
      * @param string $fetch  Fetch mode to use (can be OBJECT or RESPONSE)
      *
      * @throws PatchTeamsByTeamIdRelationshipsManagerBadRequestException
@@ -2676,7 +2788,8 @@ class Client extends ClientBase
     }
 
     /**
-     * The response represents the file download job. Check the job's status.
+     * The response represents the file download job. Check the job's status
+     * and download the file itself once that is completed.
      *
      * @param string $fetch Fetch mode to use (can be OBJECT or RESPONSE)
      *
@@ -2697,7 +2810,13 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of an tmx file download job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the translation has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to download the file.
+     * The download link will be valid for 30 days.
      *
      * @param string $tmxAsyncDownloadId format of the tmx_async_download_id should be a UUID
      * @param string $fetch              Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2717,6 +2836,7 @@ class Client extends ClientBase
 
     /**
      * Upload a new TMX file for a project.
+     * The response represents the file upload job. Check the job's status to determine it's completion.
      *
      * @param PostTmxAsyncUploadsMultipartFormDataRequestBody|PostTmxAsyncUploadsRequestBody $requestBody
      * @param string                                                                         $fetch       Fetch mode to use (can be OBJECT or RESPONSE)
@@ -2738,7 +2858,12 @@ class Client extends ClientBase
 
     /**
      * With this endpoint, you can inquire about the status of an tmx file upload job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the upload has failed to be parsed or validated.
+     * - In case the upload job has been successful, you will receive a 'succeeded'
+     * value for the 'status' attribute.
      *
      * @param string $tmxAsyncUploadId format of the tmx_async_upload_id should be a UUID
      * @param string $fetch            Fetch mode to use (can be OBJECT or RESPONSE)

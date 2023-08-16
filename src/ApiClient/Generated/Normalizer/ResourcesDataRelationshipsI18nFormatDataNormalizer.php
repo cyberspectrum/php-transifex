@@ -79,4 +79,9 @@ class ResourcesDataRelationshipsI18nFormatDataNormalizer implements Denormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourcesDataRelationshipsI18nFormatData::class => false];
+    }
 }

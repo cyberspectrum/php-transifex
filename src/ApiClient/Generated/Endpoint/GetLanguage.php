@@ -36,9 +36,9 @@ class GetLanguage extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[code] The code of the language to get details
-     *     @var string $filter[code][any] A list of codes of the languages to get details. This will fetch any available.
-     * }
+     * @var string $filter[code] The code of the language to get details
+     * @var string $filter[code][any] A list of codes of the languages to get details. This will fetch any available.
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

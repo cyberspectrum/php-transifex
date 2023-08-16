@@ -73,4 +73,9 @@ class ResponseDataRelationshipsResourceStringLinksNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseDataRelationshipsResourceStringLinks::class => false];
+    }
 }

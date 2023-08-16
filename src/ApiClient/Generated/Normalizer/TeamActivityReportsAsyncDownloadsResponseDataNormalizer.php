@@ -115,4 +115,9 @@ class TeamActivityReportsAsyncDownloadsResponseDataNormalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamActivityReportsAsyncDownloadsResponseData::class => false];
+    }
 }

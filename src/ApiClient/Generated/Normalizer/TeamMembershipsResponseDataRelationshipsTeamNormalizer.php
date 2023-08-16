@@ -81,4 +81,9 @@ class TeamMembershipsResponseDataRelationshipsTeamNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamMembershipsResponseDataRelationshipsTeam::class => false];
+    }
 }

@@ -33,7 +33,13 @@ class GetTmxAsyncDownloadByTmxAsyncDownloadId extends BaseEndpoint implements En
 
     /**
      * With this endpoint, you can inquire about the status of an tmx file download job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the translation has failed to be compiled.
+     * - In case the upload job has been successful, you will receive a "303 - See
+     * Other" response and you can follow its `Location` to download the file.
+     * The download link will be valid for 30 days.
      *
      * @param string $tmxAsyncDownloadId format of the tmx_async_download_id should be a UUID
      */

@@ -79,4 +79,9 @@ class ContextScreenshotMapsDataRelationshipsContextScreenshotDataNormalizer impl
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ContextScreenshotMapsDataRelationshipsContextScreenshotData::class => false];
+    }
 }

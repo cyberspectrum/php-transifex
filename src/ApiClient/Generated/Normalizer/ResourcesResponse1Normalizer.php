@@ -74,4 +74,9 @@ class ResourcesResponse1Normalizer implements DenormalizerInterface, NormalizerI
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourcesResponse1::class => false];
+    }
 }

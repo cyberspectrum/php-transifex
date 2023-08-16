@@ -91,4 +91,9 @@ class ResponseShared500ResponseErrorsItemNormalizer implements DenormalizerInter
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseShared500ResponseErrorsItem::class => false];
+    }
 }

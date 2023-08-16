@@ -36,11 +36,11 @@ class GetTeam extends BaseEndpoint implements Endpoint
      *
      * @param array $queryParameters {
      *
-     *     @var string $filter[organization] Filter results by an organization
-     *     @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
-     *     @var string $filter[slug] The slug of the team to get details
-     *     @var string $filter[name]
-     * }
+     * @var string $filter[organization] Filter results by an organization
+     * @var string $page[cursor] The cursor used for pagination. The value of the cursor must be retrieved from pagination links included in previous responses; you should not attempt to write them on your own.
+     * @var string $filter[slug] The slug of the team to get details
+     * @var string $filter[name]
+     *             }
      */
     public function __construct(array $queryParameters = [])
     {

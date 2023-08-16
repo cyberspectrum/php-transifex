@@ -73,4 +73,9 @@ class ResponseShared409ResponseErrorsItemSourceNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResponseShared409ResponseErrorsItemSource::class => false];
+    }
 }

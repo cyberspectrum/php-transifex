@@ -89,4 +89,9 @@ class GetProjectWebhooks200ResponseLinksNormalizer implements DenormalizerInterf
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjectWebhooks200ResponseLinks::class => false];
+    }
 }

@@ -74,4 +74,9 @@ class TeamMembershipsResponseNormalizer implements DenormalizerInterface, Normal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [TeamMembershipsResponse::class => false];
+    }
 }

@@ -100,4 +100,9 @@ class ResourceStringsAsyncDownloadsResponseDataNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncDownloadsResponseData::class => false];
+    }
 }

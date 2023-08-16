@@ -80,4 +80,9 @@ class ResourceAsyncMergesResponseDataRelationships1Normalizer implements Denorma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceAsyncMergesResponseDataRelationships1::class => false];
+    }
 }

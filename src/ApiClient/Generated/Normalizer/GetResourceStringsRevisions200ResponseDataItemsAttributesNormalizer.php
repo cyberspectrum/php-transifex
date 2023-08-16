@@ -81,4 +81,9 @@ class GetResourceStringsRevisions200ResponseDataItemsAttributesNormalizer implem
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringsRevisions200ResponseDataItemsAttributes::class => false];
+    }
 }

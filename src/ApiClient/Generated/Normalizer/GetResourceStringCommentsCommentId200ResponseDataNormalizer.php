@@ -115,4 +115,9 @@ class GetResourceStringCommentsCommentId200ResponseDataNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringCommentsCommentId200ResponseData::class => false];
+    }
 }

@@ -30,20 +30,24 @@ class PostProjectWebhooksRequestBodyDataAttributes
     protected $callbackUrl;
     /**
      * The event that when occurred will trigger the webhook.
-    The following events are supported:
+     * The following events are supported:
      * `translation_completed`
      * `translation_updated_completed`
      * `review_completed`
      * `proofread_completed`
      * `fillup_completed`
-     * `resource_language_stats`
-
+     * `resource_language_stats`.
+     *
+     * For details about when each of the events is fired, please visit https://help.transifex.com/en/articles/6216204-webhooks.
      *
      * @var string
      */
     protected $eventType;
     /**
      * The secret key is used in order to validate the sender of the request as well as that the content is not tampered. The secret key will be included in the http request when the webhook is triggered.
+     * The request will include the headers `X-TX-Signature-V2`, `Content-MD5`, `X-TX-Url`, `Date`.
+     *
+     * For more details about webhook verification, check https://help.transifex.com/en/articles/6216204-webhooks.
      *
      * @var string
      */
@@ -94,15 +98,15 @@ class PostProjectWebhooksRequestBodyDataAttributes
 
     /**
      * The event that when occurred will trigger the webhook.
-    The following events are supported:
+     * The following events are supported:
      * `translation_completed`
      * `translation_updated_completed`
      * `review_completed`
      * `proofread_completed`
      * `fillup_completed`
-     * `resource_language_stats`
-
-    For details about when each of the events is fired, please visit https://help.transifex.com/en/articles/6216204-webhooks.
+     * `resource_language_stats`.
+     *
+     * For details about when each of the events is fired, please visit https://help.transifex.com/en/articles/6216204-webhooks.
      */
     public function getEventType(): string
     {
@@ -111,15 +115,15 @@ class PostProjectWebhooksRequestBodyDataAttributes
 
     /**
      * The event that when occurred will trigger the webhook.
-    The following events are supported:
+     * The following events are supported:
      * `translation_completed`
      * `translation_updated_completed`
      * `review_completed`
      * `proofread_completed`
      * `fillup_completed`
-     * `resource_language_stats`
-
-    For details about when each of the events is fired, please visit https://help.transifex.com/en/articles/6216204-webhooks.
+     * `resource_language_stats`.
+     *
+     * For details about when each of the events is fired, please visit https://help.transifex.com/en/articles/6216204-webhooks.
      */
     public function setEventType(string $eventType): self
     {
@@ -131,7 +135,9 @@ class PostProjectWebhooksRequestBodyDataAttributes
 
     /**
      * The secret key is used in order to validate the sender of the request as well as that the content is not tampered. The secret key will be included in the http request when the webhook is triggered.
-    For more details about webhook verification, check https://help.transifex.com/en/articles/6216204-webhooks.
+     * The request will include the headers `X-TX-Signature-V2`, `Content-MD5`, `X-TX-Url`, `Date`.
+     *
+     * For more details about webhook verification, check https://help.transifex.com/en/articles/6216204-webhooks.
      */
     public function getSecretKey(): string
     {
@@ -140,7 +146,9 @@ class PostProjectWebhooksRequestBodyDataAttributes
 
     /**
      * The secret key is used in order to validate the sender of the request as well as that the content is not tampered. The secret key will be included in the http request when the webhook is triggered.
-    For more details about webhook verification, check https://help.transifex.com/en/articles/6216204-webhooks.
+     * The request will include the headers `X-TX-Signature-V2`, `Content-MD5`, `X-TX-Url`, `Date`.
+     *
+     * For more details about webhook verification, check https://help.transifex.com/en/articles/6216204-webhooks.
      */
     public function setSecretKey(string $secretKey): self
     {

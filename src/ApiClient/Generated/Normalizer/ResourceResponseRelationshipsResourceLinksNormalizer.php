@@ -73,4 +73,9 @@ class ResourceResponseRelationshipsResourceLinksNormalizer implements Denormaliz
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceResponseRelationshipsResourceLinks::class => false];
+    }
 }

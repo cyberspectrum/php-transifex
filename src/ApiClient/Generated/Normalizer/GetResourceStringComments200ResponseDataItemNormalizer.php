@@ -115,4 +115,9 @@ class GetResourceStringComments200ResponseDataItemNormalizer implements Denormal
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetResourceStringComments200ResponseDataItem::class => false];
+    }
 }

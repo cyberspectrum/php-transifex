@@ -79,4 +79,9 @@ class AsyncResponseDataAttributesErrorsItemsNormalizer implements DenormalizerIn
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [AsyncResponseDataAttributesErrorsItems::class => false];
+    }
 }

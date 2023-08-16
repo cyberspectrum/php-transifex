@@ -99,4 +99,9 @@ class PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBodyNormalizer
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostResourceTranslationsAsyncUploadsMultipartFormDataRequestBody::class => false];
+    }
 }

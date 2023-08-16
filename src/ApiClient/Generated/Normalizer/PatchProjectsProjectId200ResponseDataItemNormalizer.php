@@ -100,4 +100,9 @@ class PatchProjectsProjectId200ResponseDataItemNormalizer implements Denormalize
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200ResponseDataItem::class => false];
+    }
 }

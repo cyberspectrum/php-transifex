@@ -87,4 +87,9 @@ class PostTeamsRequestBodyDataNormalizer implements DenormalizerInterface, Norma
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostTeamsRequestBodyData::class => false];
+    }
 }

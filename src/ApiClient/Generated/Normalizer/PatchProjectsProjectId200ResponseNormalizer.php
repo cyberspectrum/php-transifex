@@ -82,4 +82,9 @@ class PatchProjectsProjectId200ResponseNormalizer implements DenormalizerInterfa
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PatchProjectsProjectId200Response::class => false];
+    }
 }

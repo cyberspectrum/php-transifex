@@ -74,4 +74,9 @@ class PostProjectsRequestBodyDataRelationshipsOrganizationNormalizer implements 
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [PostProjectsRequestBodyDataRelationshipsOrganization::class => false];
+    }
 }

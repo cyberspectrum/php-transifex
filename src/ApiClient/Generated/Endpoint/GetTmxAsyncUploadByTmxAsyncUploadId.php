@@ -33,7 +33,12 @@ class GetTmxAsyncUploadByTmxAsyncUploadId extends BaseEndpoint implements Endpoi
 
     /**
      * With this endpoint, you can inquire about the status of an tmx file upload job.
-
+     *
+     * - If the value of the 'status' attribute is 'pending' or 'processing', you
+     * should check this endpoint again later.
+     * - If the 'status' is 'failed', the upload has failed to be parsed or validated.
+     * - In case the upload job has been successful, you will receive a 'succeeded'
+     * value for the 'status' attribute.
      *
      * @param string $tmxAsyncUploadId format of the tmx_async_upload_id should be a UUID
      */

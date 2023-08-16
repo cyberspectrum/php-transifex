@@ -84,4 +84,9 @@ class ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsProjectLinksN
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ProjectActivityReportsAsyncDownloadsResponseDatarelationshipsProjectLinks::class => false];
+    }
 }

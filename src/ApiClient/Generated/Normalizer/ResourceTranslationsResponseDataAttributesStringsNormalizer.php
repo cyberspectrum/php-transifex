@@ -103,4 +103,9 @@ class ResourceTranslationsResponseDataAttributesStringsNormalizer implements Den
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceTranslationsResponseDataAttributesStrings::class => false];
+    }
 }

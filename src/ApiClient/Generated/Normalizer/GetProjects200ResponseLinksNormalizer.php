@@ -89,4 +89,9 @@ class GetProjects200ResponseLinksNormalizer implements DenormalizerInterface, No
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [GetProjects200ResponseLinks::class => false];
+    }
 }

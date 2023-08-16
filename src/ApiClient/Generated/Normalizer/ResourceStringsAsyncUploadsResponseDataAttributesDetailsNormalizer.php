@@ -91,4 +91,9 @@ class ResourceStringsAsyncUploadsResponseDataAttributesDetailsNormalizer impleme
 
         return $data;
     }
+
+    public function getSupportedTypes(string $format = null): array
+    {
+        return [ResourceStringsAsyncUploadsResponseDataAttributesDetails::class => false];
+    }
 }
